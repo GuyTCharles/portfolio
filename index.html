@@ -4,8 +4,91 @@
 <head>
     <meta charset="utf-8">
     <title>Portfolio Website</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .share-button {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .share-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5%;
+            border: 2px solid #4ade80;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .share-options input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .share-options button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .share-options button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
 </head>
 
 <body class="bg-white text-black">
@@ -28,8 +111,8 @@
 
         <!-- Profile image -->
         <div class="relative flex justify-center mb-2" style="margin-top: 4.5rem;">
-            <div class="rounded-full bg-white absolute top-0 left-1/2 transform -translate-x-1/2 z-50" style="width: 150px; height: 150px;">
-                <img alt="imageofProfile" class="rounded-full border-4 border-green-600" src="images/ID_Photo.png" style="width: 150px; height: 150px;">
+            <div class="rounded-full bg-white absolute top-0 left-1/2 transform -translate-x-1/2 z-50" style="width: 170px; height: 170px;">
+                <img alt="imageofProfile" class="rounded-full border-4 border-green-600" src="images/ID_Photo.png" style="width: 170px; height: 170px;">
             </div>
         </div>
     </div>
@@ -37,7 +120,7 @@
     <!-- Main content -->
     <div class="mb-16 container mx-auto pt-20">
         <!-- About section -->
-        <section id="about" class="m-20 text-center mt-20 relative mb-16 px-4 py-4 rounded-lg shadow-md overflow-hidden bg-gradient-to-b from-gray-600 to-gray-800">
+        <section id="about" class="m-20 text-center mt-24 relative mb-16 px-4 py-4 rounded-lg shadow-md overflow-hidden bg-gradient-to-b from-gray-600 to-gray-800">
             <h2 class="text-2xl font-bold mb-4 text-center text-white">
                 About Me
             </h2>
@@ -201,18 +284,19 @@
                     Contact Me
                 </h2>
                 <!-- Contact details -->
-                <div class="mb-2">
-                    <a href="mailto:example@example.com">
-                        <i class="fas fa-envelope mr-2"></i>
-                        guythierrycharles@gmail.com
-                    </a>
-                </div>
-                <div class="mb-2">
+                 <div class="mb-2">
                     <a href="tel:+19173425599">
-                        <i class="fas fa-phone mr-2"></i>
+                        <i class="fas fa-phone mr-1"></i>
                         917-342-5599
                     </a>
                 </div>
+                <div class="mb-2">
+                    <a href="mailto:example@example.com">
+                        <i class="fas fa-envelope mr-1"></i>
+                        guythierrycharles@gmail.com
+                    </a>
+                </div>
+               
                 <!-- Hire Me button -->
                 <a href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" class="inline-block px-5 my-5 py-2 rounded-md bg-green-500 text-white hover:bg-blue-600 transition duration-300">
                     Hire Me
@@ -231,10 +315,75 @@
             </div>
             <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
                 <!-- Image section -->
-                <img src="images/ID_Photo.png" alt="Your Image" class="w-full h-auto max-w-xs rounded-full object-cover">
+                <div class="share-button" onclick="shareProfile()">
+                    <img src="images/ProfileCard.png" alt="Your Image" class="w-full h-auto max-w-xs">
+                </div>
+            </div>
+
+            <!-- Modal for fallback -->
+            <div id="shareModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal()">&times;</span>
+                    <h2>Share this Profile Card</h2>
+                    <p>Copy the link or share via email:</p>
+                    <div class="share-options">
+                        <input type="text" id="profileLink" value="https://qr.link/efCaAY" readonly>
+                        <button onclick="copyLink()">Copy Link</button>
+                        <button onclick="shareViaEmail()">Share via Email</button>
+                    </div>
+                </div>
             </div>
         </footer>
     </div>
+    <script>
+        function shareProfile() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out this profile card',
+                    text: 'Here is the link to the profile card:',
+                    url: 'https://qr.link/efCaAY'
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch((error) => {
+                    console.error('Something went wrong sharing the profile card:', error);
+                });
+            } else {
+                // Fallback for browsers that do not support the Web Share API
+                document.getElementById('shareModal').style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('shareModal').style.display = 'none';
+        }
+
+        function copyLink() {
+            var copyText = document.getElementById('profileLink');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+            alert("Link copied to clipboard: " + copyText.value);
+        }
+
+        function shareViaEmail() {
+            var emailAddress = prompt("Enter email address:");
+            if (emailAddress) {
+                var url = `mailto:${emailAddress}?subject=Check%20out%20this%20profile%20card&body=Here%20is%20the%20link%20to%20the%20profile%20card:%20https://yourprofilecardurl.com`;
+                window.open(url, '_blank');
+            } else {
+                alert("Please enter a valid email address.");
+            }
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            var modal = document.getElementById('shareModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    </script>
 </body>
 
 </html>
