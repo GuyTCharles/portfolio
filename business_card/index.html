@@ -15,9 +15,10 @@
             background-color: #000000;
         }
 
-        .card-container {
-            width: 600px;
-            height: 300px;
+         .card-container {
+            width: 90%;
+            max-width: 600px;
+            height: auto;
             background-color: #000;
             display: flex;
             align-items: center;
@@ -25,6 +26,7 @@
             border: 2px solid #fff;
             box-sizing: border-box;
             margin: 20px auto;
+            flex-direction: row;
         }
 
         .card-container img {
@@ -32,6 +34,7 @@
             width: 180px;
             height: 180px;
             object-fit: cover;
+            margin-bottom: 20px;
         }
 
         .card-details {
@@ -120,6 +123,48 @@
 
         .download-card a:hover {
             background-color: #2563eb;
+        }
+        
+        /* Media queries for small screen responsiveness */
+        @media (max-width: 669px) {
+            .card-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .card-container img {
+                width: 140px;
+                height: 140px;
+                margin: 0;
+                padding: 5px;
+            }
+
+            .card-details {
+                padding-left: 10px;
+                text-align: left;
+            }
+
+            .card-details h1 {
+                font-size: 25px;
+                margin: 0;
+            }
+
+            .card-details h2 {
+                font-size: 17px;
+            }
+
+            .contact-info {
+                font-size: 17px;
+            }
+
+            .small-text {
+                font-size: 13px;
+                 margin-bottom: 15px;
+            }
+
+            .address i {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
