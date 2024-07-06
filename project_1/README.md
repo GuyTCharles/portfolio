@@ -12,7 +12,7 @@ My To-Do List application is intended to be a simple yet effective task manageme
 
 3. **Edit Tasks**: Users can edit task descriptions and priorities. Edits are validated to ensure data security and integrity.
 
-4. **Toggle Task Completion**: Tasks can be marked as completed, with a line-through text style to distinguish them from ongoing tasks.
+4. **Toggle Task Completion**: To distinguish ongoing tasks from completed tasks, tasks can be marked as completed with a line-through text style.
 
 5. **Delete Tasks**: Users can remove tasks to keep the list clean and up-to-date.
 
