@@ -1,6 +1,6 @@
 # Places Album
 
-## Explanation
+## Overview
 
 Places Album is a dynamic photo album that showcases various locations by loading images from a remote API. The site features a clean and modern design, providing users with an engaging and intuitive browsing experience.
 
