@@ -1,6 +1,6 @@
 # Pacific Trails Resort
 
-## Explanation
+## Overview
 
 The Pacific Trails Resort website offers users a comprehensive and engaging experience, showcasing the resort's accommodations, activities, and dining options. The site is designed with a focus on user experience and responsive design, ensuring accessibility on both desktop and mobile devices.
 
