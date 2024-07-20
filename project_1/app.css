@@ -133,10 +133,9 @@ select.task-priority {
 }
 
 /* Media Query for Small Screens (Mobile Devices) */
-@media (max-width: 600px) {
-
+@media (max-width: 650px) {
     .app-container {
-        max-width: 420px;
+        max-width:370px;
         margin: 0 auto;
     }
 
