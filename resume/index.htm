@@ -1,543 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>Portfolio Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Guy Thierry Charles</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        nav {
-            font-size: 17px;
-        }
-        
-        /* Button Styles */
-        .button {
-            position: relative;
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform:
-                cursor: pointer;
-            border: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .button::before,
-        .button::after {
-            content: "";
-            position: absolute;
-            width: 105%;
-            height: 50%;
-            background-color: transparent;
-            border: 1px solid rgb(134, 129, 124);
-            left: -2.5%;
-            z-index: -1;
-        }
-
-        .button::before {
-            border-bottom: 0;
-            top: -10%;
-        }
-
-        .button::after {
-            border-top: 0;
-            bottom: -10%;
-        }
-
-        .button-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 120%;
-            height: 110%;
-            background-color: rgb(37, 99, 235);
-            transform: translateX(-105%) skew(-10deg);
-            transition: 0.7s ease;
-            z-index: 0;
-        }
-
-        .button:hover .button-overlay {
-            transform: translateX(-5%) skew(-10deg);
-        }
-
-        .button-text {
-            position: relative;
-            z-index: 2;
-            padding: .3rem;
-        }
-        
-        /* Interactive Social Media Icons */
-        .item {
-            list-style: none;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .item a {
-            text-decoration: none;
-            width: 4.8rem;
-            height: 4.8rem;
-            background-color: #f0f9fe;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            border: 3px solid #f0f9fe;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .item a::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            z-index: 0;
-            scale: 1 0;
-            transform-origin: bottom;
-            transition: scale 0.5s ease;
-        }
-
-        .item:hover a::before,
-        .item:hover .icon-name {
-            scale: 1 1;
-        }
-
-        .icon {
-            font-size: 2rem;
-            color: #124827;
-            transition: 0.5s ease;
-            z-index: 2;
-        }
-
-        .item a:hover .icon,
-        .item:hover .icon {
-            color: #fff;
-            transform: rotateY(360deg);
-        }
-
-        .icon-name {
-            margin-top: 0.1rem;
-            color: #f0f9fe;
-            padding: 0.2rem 0.6rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .item:nth-child(1) {
-            --bg-color: #0077b5;
-        }
-
-        .item:nth-child(2) {
-            --bg-color: #333;
-        }
-
-        .item:nth-child(3) {
-            --bg-color: #000;
-        }
-
-        .share-button {
-            position: relative;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-        }
-
-        .share-button img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 5%;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .share-options input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .share-options button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
-        }
-
-        .share-options button:hover {
-            background-color: #0056b3;
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="bg-white text-black">
-    <!-- Sticky container for navbar and profile image -->
-    <div class="sticky top-0 z-50">
-        <!-- Navigation menu -->
-        <nav class="py-2 fixed w-full top-0 left-0 z-50 " style="background-image: linear-gradient(90deg, #74D7BB, #53C8B6, #35A99C)">
-            <div class="container flex justify-between items-center mx-auto px-4 sm:px-5 lg:px-5">
-                <div class="text-xl font-bold text-white">
-                    Guy's Portfolio
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="resume-header">
+            <img src="ID_Photo.png" alt="Profile Photo" class="profile-photo">
+            <h1>Guy Thierry Charles</h1>
+            <div class="contact-info">
+                <div>
+                    <a href="https://www.google.com/maps/place/3855+Shore+Parkway,+Brooklyn,+NY+11235" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> Brooklyn, NY 11235
+                    </a>
                 </div>
-                <div class="flex space-x-4" style="margin-right: -13px;">
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#about">About</a>
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#projects">Projects</a>
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#skills">Skills</a>
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#contact">Contact</a>
+                <div>
+                    <a href="tel:+19173425599">
+                        <i class="fas fa-phone"></i> 917-342-5599
+                    </a>
                 </div>
-            </div>
-        </nav>
-        <!-- Profile image -->
-        <div class="relative flex justify-center mb-4" style="margin-top: 4.5rem;">
-            <div class="rounded-full bg-white absolute top-0 left-1/2 transform -translate-x-1/2 z-50" style="width: 170px; height: 170px;">
-                <a href="#">
-                    <img alt="imageofProfile" class="rounded-full border-4 border-green-500" src="images/ID_Photo.png" style="width: 170px; height: 170px;">
-                </a>
+                <div class="email">
+                    <a href="mailto:guythierrycharles@gmail.com">
+                        <i class="fas fa-envelope"></i> guythierrycharles@gmail.com
+                    </a>
+                </div>
+                
+                <div class="linkedIn">
+                    <a href="http://linkedin.com/in/guy-thierry-charles-986bb167">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Main content -->
-    <div class="mb-16 container mx-auto pt-20">
-        <!-- About section -->
-        <section id="about" class="m-5 text-center relative mb-16 px-4 py-4 rounded-lg shadow-md overflow-hidden bg-gradient-to-b from-gray-600 to-gray-800" style="margin-top: 6.5rem">
-            <h2 class="text-2xl font-bold mb-4 text-center text-white">
-                About Me
-            </h2>
-            <p class="text-base text-white">
-                Hello! I’m Guy Thierry Charles, an experienced IT Technician with over a decade of expertise in the field, complemented by Web Design and Development skills and knowledge of various programming languages. I am looking for opportunities to showcase and further develop my abilities as a developer. I am a proactive and dedicated professional with good communication and observation skills. Above all, I am committed to contributing to the team's success through productive work, attention to detail, and excellent organizational skills, fostering a collaborative and supportive work environment.
+        <!-- Professional Summary -->
+        <section>
+            <h2 class="summary-h2">Professional Summary</h2>
+            <p>
+                Proactive and results-oriented IT professional with over a decade of experience, demonstrating strong communication and observation skills. Adept at contributing to team success through meticulous work, attention to detail, and exceptional organizational skills. Expertly manages day-to-day activities while continuously seeking opportunities to learn and make impactful contributions.
             </p>
-            <div class="flex flex-col items-center mt-4">
-                <a href="resume/index.htm" target="_blank" class="inline-block mb-4 px-3 py-2 rounded-md bg-green-500 text-white hover:bg-blue-600 transition duration-300 button">
-                    <span class="button-overlay"></span>
-                    <span class="button-text">Resume</span>
-                </a>
-            </div>
-            <div class="flex flex-col items-center mt-1 mb-1">
-                <a href="business_card/index.html" target="_blank" class="inline-block px-3 py-2 rounded-md bg-green-500 text-white hover:bg-blue-600 transition duration-300 button">
-                    <span class="button-overlay"></span>
-                    <span class="button-text">Business Card</span>
-                </a>
-            </div>
-        </section>
-        <!-- Projects section -->
-        <section id="projects" class="m-5 rounded mb-16 bg-gradient-to-b from-gray-600 to-gray-800 text-white mb-8 px-4 py-10">
-            <h2 class="text-4xl font-bold mb-10 text-center">
-                Projects
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- Project 1 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
-                    <img src="images/My_To-Do_List_App_Project.png" alt="Project 1" class="w-full h-auto">
-                    <h3 class="font-bold mt-4">My To-Do List</h3>
-                    <p class="text-sm leading-relaxed mb-2">
-                        A user-friendly To-Do List application that lets users add, prioritize (high, medium, low), and manage tasks efficiently. Users can mark tasks as completed, edit descriptions, and delete tasks. Tasks are stored in local storage for persistence across sessions. The app features input validation to prevent HTML injection, smooth scrolling, and a responsive design for both desktop and mobile devices.
-                    </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
-                    <div class="flex space-x-8">
-                        <a href="project_1/index-App.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/My-To-Do-List" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project 2 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
-                    <img src="images/Pacific_Trails_Resort_Site_Project.png" alt="Project 2" class="w-full h-auto">
-                    <h3 class="font-bold mt-4">Pacific Trails Resort</h3>
-                    <p class="text-sm leading-relaxed mb-2">
-                        A responsive website for Pacific Trails Resort on the Northern California coast, featuring information on private yurts, resort activities, and dining options. The site features a hamburger menu for mobile navigation, drag-and-drop package selection, and geolocation functionality to show nearby trails. Users can view a video about the resort, explore activities, and contact the resort through the site.
-                    </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
-                    <div class="flex space-x-8">
-                        <a href="project_2/index.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/Pacific-Trails-Resort" class="text-blue-500 hover:underline">GitHub</a>
-                    </div>
-                </div>
-                <!-- Project 3 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
-                    <img src="images/Places_Album_Project.png" alt="Project 3" class="w-full h-auto">
-                    <h3 class="font-bold mt-4">Places Album</h3>
-                    <p class="text-sm leading-relaxed mb-2">
-                        A dynamic photo album featuring various locations, built with Bootstrap and AJAX. The site loads images from a remote API and displays them in a responsive, visually appealing grid layout. It features a clean and modern design with an error-handling feature to handle network issues. Users can view various places with descriptions retrieved asynchronously, ensuring a seamless and efficient browsing experience.
-                    </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
-                    <div class="flex space-x-9">
-                        <a href="project_3/index.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/Places-Album" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
-
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
-                    <img src="images/GCArthriFit_Project.png" alt="Project 4" class="w-full h-auto">
-                    <h3 class="font-bold mt-4">GCArthriFit</h3>
-                    <p class="text-sm leading-relaxed mb-2">
-                        A comprehensive platform designed to provide users with valuable information and resources related to arthritis management and fitness. In a responsive design, the website features detailed content on exercise routines, dietary advice, and wellness tips tailored specifically for individuals with arthritis, along with seamless navigation to enhance user experience.
-                    </p>
-                    <p class="font-bold text-xs mb-4">Technology: Weebly.com (Web Hosting and Development Platform)</p>
-                    <div class="flex space-x-9">
-                        <a href="https://gcarthrifit.weebly.com/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
-                    <img src="images/Website_Design_Layout_Project1.png" alt="Project 5" class="w-full h-auto">
-                    <h3 class="font-bold mt-4">EcoTechAccessories Site Mockups</h3>
-                    <p class="text-sm leading-relaxed mb-2">
-                        EcoTechAccessories is a comprehensive e-commerce platform designed to showcase eco-friendly tech accessories with a strong focus on sustainability. It is crafted to allow users to browse products, add them to their cart, and checkout securely. The site features a clean, modern design that enhances user navigation and provides a seamless shopping experience.
-                    </p>
-                    <p class="font-bold text-xs mb-4">Technology: Web Design (Balsamiq Wireframe Platform)</p>
-                    <div class="flex space-x-9">
-                        <a href="images/Website_Design_Layout_Project(1).png" target="_blank" class="text-blue-500 hover:underline">Live Preview</a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
-                    <img src="images/Website_Design_Layout_Project2.png" alt="Project 6" class="w-full h-auto">
-                    <h3 class="font-bold mt-4">Mortar & Pestle Bakery and Cafe Site Mockups</h3>
-                    <p class="text-sm leading-relaxed mb-2">
-                        Mortar & Pestle Bakery and Cafe is designed to provide a comprehensive and delightful online experience of the bakery and cafe. It offers a charming browsing experience, highlighting the bakery’s inviting atmosphere and detailed information on services, operating hours, and more. Users can explore various delicious baked goods, organic beverages, and upcoming entertainment and community events.
-                    </p>
-                    <p class="font-bold text-xs mb-4">Technology: Web Design (Balsamiq Wireframe Platform)</p>
-                    <div class="flex space-x-9">
-                        <a href="images/Website_Design_Layout_Project(2).png" target="_blank" class="text-blue-500 hover:underline">Live Preview</a>
-                    </div>
-                </div>
-            </div>
         </section>
 
-        <!-- Skills section -->
-        <section id="skills" class="m-5 p-10 mb-16 rounded-lg shadow-md text-white relative overflow-hidden rounded mb-16 bg-gradient-to-b from-gray-600 to-gray-800 px-4 py-10">
-            <h2 class="text-2xl font-bold mb-4">Skills</h2>
-            <!-- Skill progress bars -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <p class="font-bold">HTML</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full w-4/5"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="font-bold">Python</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full w-3/5">
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="font-bold">CSS</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full w-4/5"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="font-bold">C++</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full w-3/5"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="font-bold">JavaScript</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full w-4/5"></div>
-                    </div>
-                </div>
-                <div>
-                    <p class="font-bold">PHP</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full w-3/5"></div>
-                    </div>
-                </div>
-                <!--
-                <div>
-                    <p class="font-bold">React.js</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 65%;"></div>
-                    </div>
-                </div>
-                -->
-            </div>
-        </section>
-
-        <!-- Contact section -->
-        <footer id="contact" class="m-5 p-10 rounded-lg shadow-md text-white relative overflow-hidden rounded mb-16 bg-gradient-to-b from-gray-600 to-gray-800 flex flex-wrap">
-            <div class="w-full lg:w-1/2 mb-10 lg:mb-0">
-                <h2 class="text-2xl font-bold mb-4">
-                    Contact Me
-                </h2>
-                <!-- Contact details -->
-                <div class="mb-2">
-                    <a href="tel:+19173425599">
-                        <i class="fas fa-phone mr-1"></i>
-                        917-342-5599
-                    </a>
-                </div>
-                <div class="mb-2">
-                    <a href="mailto:example@example.com">
-                        <i class="fas fa-envelope mr-1"></i>
-                        guythierrycharles@gmail.com
-                    </a>
-                </div>
-
-                <!-- Social Media Icons -->
-                <ul class="flex space-x-4 mt-4">
-                    <li class="item linkedin">
-                        <a href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank">
-                            <i class="fa-brands fa-linkedin icon"></i>
-                        </a>
-                        <span class="icon-name">LinkedIn</span>
-                    </li>
-                    <li class="item github">
-                        <a href="https://github.com/GuyTCharles" target="_blank">
-                            <i class="fa-brands fa-github icon"></i>
-                        </a>
-                        <span class="icon-name">GitHub</span>
-                    </li>
-                    <li class="item codepen">
-                        <a href="https://codepen.io/Guy-Thierry-Charles" target="_blank">
-                            <i class="fa-brands fa-codepen icon"></i>
-                        </a>
-                        <span class="icon-name">CodePen</span>
-                    </li>
+        <!-- Skills -->
+        <section>
+            <h2 class="skills-h2">Skills</h2>
+            <div class="skills">
+                <ul>
+                    <li>Troubleshooting PCs, laptops, mobile devices, network devices and printers</li>
+                    <li>Proficient in various programming languages, including HTML, CSS, JavaScript, PHP, Python, Java and C++</li>
+                </ul>
+                <ul>
+                    <li>Skilled in managing productivity applications Services, including Google Workspace, Microsoft Office 365, and Slack</li>
+                    <li>Good verbal and written communication</li>
+                    <li>Fluent in Creole, French, and English</li>
                 </ul>
             </div>
-            <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
-                <!-- Image section -->
-                <div class="share-button" onclick="shareProfile()">
-                    <img src="images/ProfileCard.png" alt="Profile Card" class="w-full h-auto max-w-xs">
-                </div>
-            </div>
+        </section>
 
-            <!-- Modal for fallback -->
-            <div id="shareModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <h2>Share this Profile Card</h2>
-                    <p>Copy the link or share via email:</p>
-                    <div class="share-options">
-                        <input type="text" id="profileLink" value="https://qr.link/efCaAY" readonly>
-                        <button onclick="copyLink()">Copy Link</button>
-                        <button onclick="shareViaEmail()">Share via Email</button>
-                    </div>
+        <!-- Work History -->
+        <section>
+            <h2 class="work-history-h2">Work History</h2>
+            <div class="job">
+                <h3>Technical Support Associate</h3>
+                <p class="italic">09/2022 - Current | Research Foundation of CUNY</p>
+                <ul>
+                    <li>Created and maintained the internal daily report and ticket system, streamlining issue tracking and resolution.</li>
+                    <li>Configured and deployed new devices, enhancing staff productivity with up-to-date technology.</li>
+                    <li>Diagnosed and resolved hardware and software issues, improving system reliability and user satisfaction.</li>
+                    <li>Provided comprehensive support to staff, ensuring effective and efficient use of new and existing technological resources, improving productivity, and reducing downtime.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>Help Desk Support / Youth Counselor</h3>
+                <p class="italic">08/2018 - 09/2022 | Millennium Development, Brooklyn, NY</p>
+                <ul>
+                    <li>Mentored participants in computer fundamentals and basic programming languages, cultivating their technical skills and sparking their interest in technology.</li>
+                    <li>Delivered daily IT support for over 50 devices, ensuring continuous operation and user efficiency.</li>
+                    <li>Implemented a preventive maintenance schedule that reduced device downtime by 30%, optimizing resource availability.</li>
+                </ul>
+            </div>
+            <div class="job">
+                <h3>IT Support Tier 2</h3>
+                <p class="italic">01/2013 - 05/2016 | Unibank S.A.</p>
+                <ul>
+                    <li>Successfully Deployed over 500 new workstations annually with Windows 10 and MS Office 365, significantly modernizing the bank's IT infrastructure.</li>
+                    <li>Successfully deployed 1200 new workstations for the UNIBANK Tout Kote project as lead project technician.</li>
+                    <li>Performed and resolved over 75 weekly hardware and software troubleshooting on various devices (computers, mobile devices, printers), maintaining optimal system performance and seamless operations across all branches.</li>
+                    <li>Managed an average of 20 tickets daily, improving issue resolution times and user satisfaction.</li>
+                    <li>Provided remote support for network, software, and application issues, ensuring timely and effective problem resolution.</li>
+                    <li>Configured and managed user accounts and permissions in Active Directory servers, ensuring secure and efficient access control.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section>
+            <h2 class="education-h2">Education</h2>
+            <div class="education">
+                <div>
+                    <h3>Bachelor of Science in Web Design & Development</h3>
+                    <p class="italic">Expected 2025 | Champlain College, Burlington, VT</p>
+                </div>
+                <div>
+                    <h3>Associate of Applied Science in Computer Information Systems</h3>
+                    <p class="italic">06/2022 | Kingsborough Community College, Brooklyn, NY</p>
+                </div>
+                <div>
+                    <h3>Associate of Science in Information Technology</h3>
+                    <p class="italic">12/2009 | St. Gerard University, Port-au-Prince, Haiti</p>
                 </div>
             </div>
-        </footer>
+        </section>
+
+        <!-- Certification -->
+        <section>
+            <h2 class="cert-h2">Certification</h2>
+            <ul class="cert-list">
+                <li>TestOut PC Pro Certified <span class="italic">(2020 – Present)</span></li>
+            </ul>
+        </section>
+
+        <!-- Honors and Awards -->
+        <section>
+            <h2 class="H-A-h2">Honors and Awards</h2>
+            <ul class="H-A-list">
+                <li>Champlain College President's List <span class="italic">(2023 – Present)</span></li>
+                <li>Champlain College Trustees' List <span class="italic">(2023 – Present)</span></li>
+                <li>Phi Theta Kappa Honor Society <span class="italic">(2022 – Present)</span></li>
+                <li>National Society of Leadership and Success <span class="italic">(2020 – Present)</span></li>
+                <li>Kingsborough Community College Dean's List <span class="italic">(2020 – 2022)</span></li>
+            </ul>
+        </section>
+
+        <!-- Download PDF Button -->
+        <div class="download-resume">
+            <a href="Guy_Thierry_Charles_Resume.pdf" download="Guy_Thierry_Charles_Resume.pdf">
+                <i class="fas fa-download"></i> Download Resume (PDF)
+            </a>
+        </div>
     </div>
-    <script>
-        function shareProfile() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Check out this profile card',
-                    text: 'Here is the link to the profile card:',
-                    url: 'https://qr.link/efCaAY'
-                }).then(() => {
-                    console.log('Thanks for sharing!');
-                }).catch((error) => {
-                    console.error('Something went wrong sharing the profile card:', error);
-                });
-            } else {
-                // Fallback for browsers that do not support the Web Share API
-                document.getElementById('shareModal').style.display = 'flex';
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('shareModal').style.display = 'none';
-        }
-
-        function copyLink() {
-            var copyText = document.getElementById('profileLink');
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // For mobile devices
-            document.execCommand("copy");
-            alert("Link copied to clipboard: " + copyText.value);
-        }
-
-        function shareViaEmail() {
-            var emailAddress = prompt("Enter email address:");
-            if (emailAddress) {
-                var url = `mailto:${emailAddress}?subject=Check%20out%20this%20profile%20card&body=Here%20is%20the%20link%20to%20the%20profile%20card:%20https://yourprofilecardurl.com`;
-                window.open(url, '_blank');
-            } else {
-                alert("Please enter a valid email address.");
-            }
-        }
-
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            var modal = document.getElementById('shareModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-
-    </script>
 </body>
-
 </html>
