@@ -12,6 +12,9 @@ A comprehensive website for Pacific Trails Resort, showcasing accommodations, ac
 ### Project 3: Places Album
 A dynamic photo album that loads images from a remote API, featuring a clean design and responsive grid layout for exploring various places.
 
+### Project 4: Bug Report App
+A secure web app, PHP-based tool designed for efficient bug tracking. Users can submit, update, and view bug reports via an intuitive interface. The app ensures data safety with SSL/TLS encryption and is optimized for usability.
+
 ---
 
 Each project folder contains its own README file with detailed explanations of the project features and implementation.
