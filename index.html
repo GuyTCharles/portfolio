@@ -16,6 +16,18 @@
         nav {
             font-size: 17px;
         }
+        
+        .project-desc {
+            font-size: 15px !important;
+        }
+        
+        .project-sub {
+            font-size: 15px !important;
+        }
+        
+        .skills-title {
+            font-size: 16.5px;
+        }
 
         /* Button Styles */
         .button {
@@ -23,7 +35,7 @@
             font-size: 1rem;
             font-weight: 500;
             text-transform:
-                cursor: pointer;
+            cursor: pointer;
             border: none;
             overflow: hidden;
             z-index: 1;
@@ -128,16 +140,6 @@
             transform: rotateY(360deg);
         }
 
-        .icon-name {
-            margin-top: 0.1rem;
-            color: #f0f9fe;
-            padding: 0.2rem 0.6rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
         .item:nth-child(1) {
             --bg-color: #0077b5;
         }
@@ -163,7 +165,22 @@
             object-fit: cover;
             border-radius: 5%;
         }
-
+        
+         .icon-name {
+            margin-top: 0.1rem;
+            color: #f0f9fe;
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.5rem;
+            font-size: 15px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+      
+        .phone-text, .email-text {
+            font-size: 17px;
+        }
+        
         /* Modal Styles */
         .modal {
             display: none;
@@ -292,10 +309,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/My_To-Do_List_App_Project.png" alt="Project 1" class="w-full h-auto">
                     <h3 class="font-bold mt-4">My To-Do List</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         A user-friendly To-Do List application that lets users add, prioritize (high, medium, low), and manage tasks efficiently. Users can mark tasks as completed, edit descriptions, and delete tasks. Tasks are stored in local storage for persistence across sessions. The app features input validation to prevent HTML injection, smooth scrolling, and a responsive design for both desktop and mobile devices.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
                     <div class="flex space-x-8">
                         <a href="project_1/index-App.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                         <a href="https://github.com/GuyTCharles/My-To-Do-List" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
@@ -306,10 +323,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/Bug-Report-App-Project.png" alt="Project 4" class="w-full h-auto">
                     <h3 class="font-bold mt-4">Bug Report App</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         A robust web application designed to streamline the process of reporting, tracking, and managing software bugs. The app provides users with a simple interface to submit new bug reports, update existing ones, and view all reported issues in a structured format. It enhances collaboration between developers and testers by maintaining an organized record of bugs, ensuring effective communication and faster resolution.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript, PHP, MySQL</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript, PHP, MySQL</p>
                     <div class="flex space-x-9">
                         <a href="https://bugreportapp.sytes.net" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                         <a href="https://github.com/GuyTCharles/bug-report-app" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
@@ -320,10 +337,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/Pacific_Trails_Resort_Site_Project.png" alt="Project 2" class="w-full h-auto">
                     <h3 class="font-bold mt-4">Pacific Trails Resort</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         A responsive website for Pacific Trails Resort on the Northern California coast, featuring information on private yurts, resort activities, and dining options. The site features a hamburger menu for mobile navigation, drag-and-drop package selection, and geolocation functionality to show nearby trails. Users can view a video about the resort, explore activities, and contact the resort through the site.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
                     <div class="flex space-x-8">
                         <a href="project_2/index.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                         <a href="https://github.com/GuyTCharles/Pacific-Trails-Resort" class="text-blue-500 hover:underline">GitHub</a>
@@ -334,10 +351,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/Places_Album_Project.png" alt="Project 3" class="w-full h-auto">
                     <h3 class="font-bold mt-4">Places Album</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         A dynamic photo album featuring various locations, built with Bootstrap and AJAX. The site loads images from a remote API and displays them in a responsive, visually appealing grid layout. It features a clean and modern design with an error-handling feature to handle network issues. Users can view various places with descriptions retrieved asynchronously, ensuring a seamless and efficient browsing experience.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
                     <div class="flex space-x-9">
                         <a href="project_3/index.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                         <a href="https://github.com/GuyTCharles/Places-Album" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
@@ -348,10 +365,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/GCArthriFit_Project.png" alt="Project 4" class="w-full h-auto">
                     <h3 class="font-bold mt-4">GCArthriFit</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         An educational platform designed to provide users with valuable information and resources related to arthritis management and fitness. In a responsive design, the website features detailed content on exercise routines, dietary advice, and wellness tips tailored specifically for individuals with arthritis, along with seamless navigation to enhance user experience.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technology: Weebly.com (Web Hosting and Development Platform)</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technology: Weebly.com (Web Hosting and Development Hub)</p>
                     <div class="flex space-x-9">
                         <a href="https://gcarthrifit.weebly.com/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                     </div>
@@ -361,10 +378,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/PlanifyVerse.png" alt="Project 4" class="w-full h-auto">
                     <h3 class="font-bold mt-4">PlanifyVerse</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         PlanifyVerse is an AI platform designed to create personalized study plans through OpenAI API integration. The website allows users to enter their subjects, available schedules, and learning objectives to generate concise or detailed study plans. Its intuitive interface, responsive design, and features like dynamic theme switching and PDF export simplify the study-planning process for learners of all backgrounds.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technology: HTML, CSS, JavaScript, Flask (Python), OpenAI API</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technology: HTML, CSS, JavaScript, Flask/Python, OpenAI API</p>
                     <div class="flex space-x-9">
                         <a href="https://planifyverse.onrender.com" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                         <a href="https://github.com/GuyTCharles/PlanifyVerse" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
@@ -375,10 +392,10 @@
                 <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-110">
                     <img src="images/ConsultCareConnect_Project.png" alt="Project 4" class="w-full h-auto">
                     <h3 class="font-bold mt-4">ConsultCareConnect</h3>
-                    <p class="text-sm leading-relaxed mb-2">
+                    <p class="project-desc text-sm leading-relaxed mb-3">
                         A comprehensive virtual healthcare platform designed for users with busy schedules, in remote locations, or looking for quick, non-urgent consultations. The platform allows users to easily book consultations, manage health information, and receive personalized insights through a symptom checker tool. Emphasizing simplicity, accessibility, and robust data security for its users.
                     </p>
-                    <p class="font-bold text-xs mb-4">Technology: Figma (Designing and Prototyping Wireframe)</p>
+                    <p class="project-sub font-bold text-xs mb-4">Technology: Figma (Designing and Prototyping Wireframe)</p>
                     <div class="flex space-x-9">
                         <a href="https://www.figma.com/proto/PGFO2sqmv02KvQQIlJux7n/Material-Design-Theme-Kit-(Community)?node-id=37386-3122&t=D4U8opDF5iLUrX0i-1" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
                     </div>
@@ -422,14 +439,14 @@
             <!-- Skill progress bars -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <p class="font-bold">HTML</p>
+                    <p class="skills-title font-bold">HTML</p>
                     <div class="bg-gray-600 h-4 w-full rounded-full">
                         <div class="bg-green-400 h-full rounded-full w-5/5"></div>
                     </div>
                 </div>
 
                 <div>
-                    <p class="font-bold">Python</p>
+                    <p class="skills-title font-bold">Python</p>
                     <div class="bg-gray-600 h-4 w-full rounded-full">
                         <div class="bg-green-400 h-full rounded-full w-3/5">
                         </div>
@@ -437,27 +454,27 @@
                 </div>
 
                 <div>
-                    <p class="font-bold">CSS</p>
+                    <p class="skills-title font-bold">CSS</p>
                     <div class="bg-gray-600 h-4 w-full rounded-full">
                         <div class="bg-green-400 h-full rounded-full w-4/5"></div>
                     </div>
                 </div>
 
                 <div>
-                    <p class="font-bold">C++</p>
+                    <p class="skills-title font-bold">C++</p>
                     <div class="bg-gray-600 h-4 w-full rounded-full">
                         <div class="bg-green-400 h-full rounded-full w-3/5"></div>
                     </div>
                 </div>
 
                 <div>
-                    <p class="font-bold">JavaScript</p>
+                    <p class="skills-title font-bold">JavaScript</p>
                     <div class="bg-gray-600 h-4 w-full rounded-full">
                         <div class="bg-green-400 h-full rounded-full w-4/5"></div>
                     </div>
                 </div>
                 <div>
-                    <p class="font-bold">PHP</p>
+                    <p class="skills-title font-bold">PHP</p>
                     <div class="bg-gray-600 h-4 w-full rounded-full">
                         <div class="bg-green-400 h-full rounded-full w-3/5"></div>
                     </div>
@@ -481,13 +498,13 @@
 
                 <!-- Phone & Email -->
                 <div class="mb-2">
-                    <a href="tel:+19173425599">
+                    <a href="tel:+19173425599" class="phone-text">
                         <i class="fas fa-phone mr-1"></i>
                         917-342-5599
                     </a>
                 </div>
                 <div class="mb-2">
-                    <a href="mailto:example@example.com">
+                    <a href="mailto:example@example.com" class="email-text">
                         <i class="fas fa-envelope mr-1"></i>
                         guythierrycharles@gmail.com
                     </a>
