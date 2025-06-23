@@ -1,4 +1,4 @@
-# portfolio
+## portfolio
 This repository showcases various projects I have worked on, highlighting my skills in web development and design. Below are the details of each project included in this portfolio.
 
 ## Projects
