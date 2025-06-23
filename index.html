@@ -280,25 +280,7 @@
         .download-btn:hover {
             background: #0056b3;
         }
-
-        .email-btn {
-            display: inline-block;
-            margin-top: 15px;
-            background: #28a745;
-            /* green shade for contrast */
-            color: #fff;
-            padding: 10px 39px;
-            border-radius: 5px;
-            border: none;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .email-btn:hover {
-            background: #218838;
-        }
-
+        
         .share-button {
             padding: 10px;
             background-color: #22c55e;
@@ -651,19 +633,16 @@
             <div id="shareModal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>
-                    <h2 style="font-weight: bold; margin-bottom: -13px;">SHARE THIS QR CODE</h2>
+                    <h2 style="font-weight: bold; margin-bottom: -13px;">SAVE THIS QR CODE</h2>
                     <!-- Modal fallback message, hidden by default -->
                     <p id="fallbackMessage" style="display: none;">
                         Your browser doesn't support direct sharing.<br>
-                        Please download or share via email:
+                        Please download the QR Code.
                     </p>
 
                     <img src="images/Business-Card_QR-Code.png" alt="Profile QR Code" style="max-width:200px; display:block; margin: 20px auto;">
 
                     <a href="images/Business-Card_QR-Code.png" download="Business-Card_QR-Code.png" class="download-btn">Download QR Code</a>
-
-                    <!-- Add styled Share via Email button -->
-                    <button class="email-btn" onclick="shareViaEmail()">Share via Email</button>
                 </div>
             </div>
         </footer>
@@ -703,20 +682,6 @@
             document.getElementById('shareModal').style.display = 'none';
             // add 'hidden' to hide the fallback text
             document.getElementById('fallbackMessage').classList.add('hidden');
-        }
-
-        function shareViaEmail() {
-            const emailAddress = prompt("Enter email address:");
-            if (emailAddress) {
-                const subject = encodeURIComponent("Check out my profile QR Code");
-                const body = encodeURIComponent(
-                    "Hi,\n\nPlease find attached my profile QR Code. You can scan it to connect with me.\n\n(If needed, download it here: [Your Website URL if you have one])"
-                );
-                const mailtoLink = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
-                window.open(mailtoLink, '_blank');
-            } else {
-                alert("Please enter a valid email address.");
-            }
         }
 
         // Close modal and hide message when clicking outside
