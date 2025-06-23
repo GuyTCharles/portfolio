@@ -222,29 +222,147 @@
             cursor: pointer;
         }
 
-        .share-options input {
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
         }
 
-        .share-options button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
+        .modal-content {
+            background-color: #fefefe;
+            color: #333;
+            /* ✅ Ensure text is dark on light background */
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
-            margin-top: 10px;
         }
 
-        .share-options button:hover {
-            background-color: #0056b3;
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .download-btn:hover {
+            background: #0056b3;
+        }
+
+        .email-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: #28a745;
+            /* green shade for contrast */
+            color: #fff;
+            padding: 10px 39px;
+            border-radius: 5px;
+            border: none;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .email-btn:hover {
+            background: #218838;
+        }
+
+        .share-button {
+            padding: 10px;
+            background-color: #22c55e;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            max-width: fit-content;
+        }
+
+        .share-button:hover {
+            background-color: #16a34a;
+            transform: scale(1.05);
+        }
+
+        .share-button img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        /* Base footer layout: keep wrap, align top by default */
+        footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Center blocks on small by default */
+            align-items: flex-start;
+        }
+
+        /* Left side: Contact info block — center text and items on small screens */
+        footer>div:first-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Right side: QR code share button block — center on small screens */
+        footer>div:nth-child(2) {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        /* On large screens: switch to side by side */
+        @media (min-width: 1024px) {
+            footer {
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            footer>div:first-child {
+                width: 48%;
+                align-items: flex-start;
+                text-align: left;
+            }
+
+            footer>div:nth-child(2) {
+                width: auto;
+                /* let it shrink to QR code content */
+                justify-content: flex-end;
+                flex: 1;
+            }
         }
     </style>
 </head>
@@ -525,72 +643,90 @@
             <!-- Right side: Share Button / QR Code -->
             <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
                 <div class="share-button" onclick="shareProfile()">
-                    <img src="images/ProfileCard.png" alt="Profile Card" class="w-full h-auto max-w-xs">
+                    <img src="images/Business-Card_QR-Code.png" alt="Profile Card" class="w-full h-auto max-w-xs">
                 </div>
             </div>
 
-            <!-- Modal for fallback -->
+            <!-- Fallback Modal: Download & Share via Email -->
             <div id="shareModal" class="modal">
                 <div class="modal-content">
                     <span class="close" onclick="closeModal()">&times;</span>
-                    <h2>Share this Profile Card</h2>
-                    <p>Copy the link or share via email:</p>
-                    <div class="share-options">
-                        <input type="text" id="profileLink" value="https://qr.link/efCaAY" readonly>
-                        <button onclick="copyLink()">Copy Link</button>
-                        <button onclick="shareViaEmail()">Share via Email</button>
-                    </div>
+                    <h2>Share this QR Code</h2>
+                    <!-- Modal fallback message, hidden by default -->
+                    <p id="fallbackMessage" style="display: none;">
+                        Your browser doesn't support direct sharing.<br>
+                        Please download or share via email:
+                    </p>
+
+                    <img src="images/Business-Card_QR-Code.png" alt="Profile QR Code" style="max-width:200px; display:block; margin: 20px auto;">
+
+                    <a href="images/Business-Card_QR-Code.png" download="Business-Card_QR-Code.png" class="download-btn">Download QR Code</a>
+
+                    <!-- Add styled Share via Email button -->
+                    <button class="email-btn" onclick="shareViaEmail()">Share via Email</button>
                 </div>
             </div>
         </footer>
     </div>
     <script>
-        function shareProfile() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Check out this profile card',
-                    text: 'Here is the link to the profile card:',
-                    url: 'https://qr.link/efCaAY'
-                }).then(() => {
-                    console.log('Thanks for sharing!');
-                }).catch((error) => {
-                    console.error('Something went wrong sharing the profile card:', error);
+        async function shareProfile() {
+            const fileUrl = 'images/Business-Card_QR-Code.png';
+
+            try {
+                const response = await fetch(fileUrl);
+                const blob = await response.blob();
+                const file = new File([blob], 'Business-Card_QR-Code.png', {
+                    type: blob.type
                 });
-            } else {
-                // Fallback for browsers that do not support the Web Share API
+
+                if (navigator.canShare && navigator.canShare({
+                        files: [file]
+                    })) {
+                    await navigator.share({
+                        files: [file],
+                        title: 'Guy Thierry Charles Business Card',
+                        text: 'Scan this QR Code to connect!'
+                    });
+                } else {
+                    document.getElementById('shareModal').style.display = 'flex';
+                    // remove 'hidden' to show the fallback text
+                    document.getElementById('fallbackMessage').classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('Sharing failed:', error);
                 document.getElementById('shareModal').style.display = 'flex';
+                document.getElementById('fallbackMessage').classList.remove('hidden');
             }
         }
 
         function closeModal() {
             document.getElementById('shareModal').style.display = 'none';
-        }
-
-        function copyLink() {
-            var copyText = document.getElementById('profileLink');
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); // For mobile devices
-            document.execCommand("copy");
-            alert("Link copied to clipboard: " + copyText.value);
+            // add 'hidden' to hide the fallback text
+            document.getElementById('fallbackMessage').classList.add('hidden');
         }
 
         function shareViaEmail() {
-            var emailAddress = prompt("Enter email address:");
+            const emailAddress = prompt("Enter email address:");
             if (emailAddress) {
-                var url = `mailto:${emailAddress}?subject=Check%20out%20this%20profile%20card&body=Here%20is%20the%20link%20to%20the%20profile%20card:%20https://yourprofilecardurl.com`;
-                window.open(url, '_blank');
+                const subject = encodeURIComponent("Check out my profile QR Code");
+                const body = encodeURIComponent(
+                    "Hi,\n\nPlease find attached my profile QR Code. You can scan it to connect with me.\n\n(If needed, download it here: [Your Website URL if you have one])"
+                );
+                const mailtoLink = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
+                window.open(mailtoLink, '_blank');
             } else {
                 alert("Please enter a valid email address.");
             }
         }
 
-        // Close modal when clicking outside of it
+        // Close modal and hide message when clicking outside
         window.onclick = function(event) {
-            var modal = document.getElementById('shareModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
+            const modal = document.getElementById('shareModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.getElementById('fallbackMessage').classList.add('hidden');
             }
-        }
+        };
     </script>
 </body>
 
