@@ -1,587 +1,1486 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="utf-8">
-    <title>Guy's Portfolio</title>
-    <!-- Logo icon -->
-    <link rel="icon" href="images/initial-logo.jpg" type="image/jpg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guy Thierry Charles — Portfolio </title>
+
+    <link rel="icon" href="images/initial-logo.png" type="image/png" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
+        /* -----------------------------
+       THEME TOKENS (Dark + Light)
+    ------------------------------ */
+        :root {
+            --bg: hsl(220 20% 15%);
+            --panel: hsl(220 20% 20%);
+            --panel2: hsl(220 18% 24%);
+            --text: hsl(0 0% 96%);
+            --muted: hsl(220 10% 75%);
+            --stroke: hsl(220 18% 28%);
+            --accent: hsl(160 84% 39%);
+            --accent2: hsl(190 90% 45%);
+            --ring: rgba(34, 197, 94, .35);
+            --hover: rgba(255, 255, 255, .08);
+            /* subtle hover in dark */
+            --hover-strong: rgba(255, 255, 255, .12);
+            /* slightly stronger (optional) */
+
+            --glass-bg: rgba(255, 255, 255, .06);
+            --glass-stroke: rgba(255, 255, 255, .10);
+            rgba(2, 6, 23, .06);
+            /* light mode hover */
+            --shadow: 0 20px 60px rgba(0, 0, 0, .28);
+        }
+
+        /* Light theme overrides */
+        html[data-theme="light"] {
+            --bg: hsl(210 40% 98%);
+            --panel: hsl(0 0% 100%);
+            --panel2: hsl(210 40% 96%);
+            --text: hsl(222 47% 11%);
+            --muted: hsl(215 16% 35%);
+            --stroke: hsl(215 20% 88%);
+            --accent: hsl(160 84% 34%);
+            --accent2: hsl(200 95% 36%);
+            --ring: rgba(16, 185, 129, .28);
+            --hover: rgba(2, 6, 23, .06);
+            /* subtle hover in light */
+            --hover-strong: rgba(2, 6, 23, .10);
+            /* slightly stronger (optional) */
+
+            --glass-bg: rgba(255, 255, 255, .75);
+            --glass-stroke: rgba(15, 23, 42, .10);
+
+            --shadow: 0 20px 60px rgba(2, 6, 23, .10);
+        }
+
         html {
-            scroll-behavior: smooth;
+            scrollbar-gutter: stable;
         }
 
-        nav {
-            font-size: 17px;
+        body {
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .project-desc {
-            font-size: 15px !important;
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            background: var(--bg);
         }
 
-        .project-sub {
-            font-size: 15px !important;
+        #services,
+        #projects,
+        #skills,
+        #about,
+        #contact {
+            scroll-margin-top: 105px;
         }
 
-        .skills-title {
-            font-size: 16.5px;
+        @media (min-width: 1024px) {
+
+            #services,
+            #projects,
+            #skills,
+            #about,
+            #contact {
+                scroll-margin-top: 110px;
+            }
         }
 
-        /* Button Styles */
-        .button {
-            display: inline-block;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 5px;
-            padding: 0.5rem 1rem;
-            margin-top: 10px;
-            background-color: transparent;
-            color: #333;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .button:hover {
-            background-color: #16a34a;
-            color: #fff;
-        }
-
-        .button-text {
-            position: relative;
-            z-index: 2;
-            padding: 0.3rem;
-        }
-
-        /* Interactive Social Media Icons */
-        .item {
-            list-style: none;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .item a {
-            text-decoration: none;
-            width: 4.8rem;
-            height: 4.8rem;
-            background-color: #f0f9fe;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            border: 3px solid #f0f9fe;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .item a::before {
+        /* Fancy background glow */
+        .bg-glow:before {
             content: "";
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-color);
-            z-index: 0;
-            scale: 1 0;
-            transform-origin: bottom;
-            transition: scale 0.5s ease;
+            inset: -40%;
+            background:
+                radial-gradient(650px 320px at 20% 20%, rgba(34, 197, 94, .16), transparent 60%),
+                radial-gradient(700px 360px at 85% 30%, rgba(34, 211, 238, .12), transparent 60%),
+                radial-gradient(520px 300px at 55% 85%, rgba(59, 130, 246, .10), transparent 60%);
+            filter: blur(12px);
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .item:hover a::before,
-        .item:hover .icon-name {
-            scale: 1 1;
+        html[data-theme="light"] .bg-glow:before {
+            background:
+                radial-gradient(650px 320px at 20% 20%, rgba(16, 185, 129, .14), transparent 60%),
+                radial-gradient(700px 360px at 85% 30%, rgba(14, 165, 233, .10), transparent 60%),
+                radial-gradient(520px 300px at 55% 85%, rgba(59, 130, 246, .08), transparent 60%);
+            filter: blur(14px);
         }
 
-        .icon {
-            font-size: 2rem;
-            color: #124827;
-            transition: 0.5s ease;
-            z-index: 2;
+        /* Glass surface */
+        .glass {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-stroke);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        .item a:hover .icon,
-        .item:hover .icon {
+        :focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 3px;
+            border-radius: 14px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, .16);
+            border-radius: 999px;
+        }
+
+        html[data-theme="light"] ::-webkit-scrollbar-thumb {
+            background: rgba(2, 6, 23, .18);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            opacity: .9;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                scroll-behavior: auto !important;
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+
+        /* -----------------------------
+       SCROLL REVEAL (simple)
+    ------------------------------ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .6s ease, transform .6s ease;
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #projectModal .overflow-y-auto {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* -----------------------------
+       TOGGLES (theme + mode)
+    ------------------------------ */
+        .icon-pill {
+            width: 42px;
+            height: 42px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            border: 1px solid var(--glass-stroke);
+            transition: transform .18s ease, background .2s ease;
+        }
+
+        .icon-pill:hover {
+            transform: translateY(-1px);
+        }
+
+        /* Dark mode needs: white circle + sun icon */
+        html[data-theme="dark"] .theme-pill {
+            background: #fff;
+            color: #0b1220;
+        }
+
+        /* Light mode: dark circle + moon icon */
+        html[data-theme="light"] .theme-pill {
+            background: #0b1220;
             color: #fff;
-            transform: rotateY(360deg);
         }
 
-        .item:nth-child(1) {
-            --bg-color: #0077b5;
+        .mode-pill {
+            background: var(--glass-bg);
+            color: var(--text);
         }
 
-        .item:nth-child(2) {
-            --bg-color: #333;
+        .mode-pill[data-active="true"] {
+            background: var(--text);
+            color: var(--bg);
         }
 
-        .item:nth-child(3) {
-            --bg-color: #000;
+        /* Utility for hiding sections by view */
+        [data-view="client-only"].hidden,
+        [data-view="recruiter-only"].hidden {
+            display: none !important;
         }
 
-        .icon-name {
-            margin-top: 0.1rem;
-            color: #f0f9fe;
-            padding: 0.2rem 0.6rem;
-            border-radius: 0.5rem;
-            font-size: 15px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
+        /* --- Hero "Visit GiqComp Solutions" subtle blue accent --- */
+        #heroThirdLink[data-action="visit"] {
+            background: linear-gradient(135deg,
+                    rgba(59, 130, 246, .12),
+                    /* soft blue */
+                    transparent);
         }
 
-        .phone-text,
-        .email-text {
-            font-size: 17px;
+        #heroThirdLink[data-action="visit"] .heroActionIcon {
+            color: rgba(59, 130, 246, .95);
+            filter: drop-shadow(0 0 10px rgba(59, 130, 246, .25));
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            justify-content: center;
-            align-items: center;
+        html[data-theme="light"] #heroThirdLink[data-action="visit"] {
+            background: linear-gradient(135deg,
+                    rgba(37, 99, 235, .10),
+                    transparent);
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 400px;
-            width: 80%;
-            text-align: center;
-            position: relative;
+        html[data-theme="light"] #heroThirdLink[data-action="visit"] .heroActionIcon {
+            color: #2563eb;
         }
 
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: #aaa;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
+        /* =============================
+   Social hover + Resume styles
+============================= */
+        /* --- Brand hover colors for icons (works for hero card + contact) --- */
+        .socialIcon {
+            transition: color .18s ease, transform .18s ease, filter .18s ease;
         }
 
-        .close:hover,
-        .close:focus {
-            color: black;
+        /* Dark mode: slightly lighter LinkedIn blue */
+        .socialLink:hover .socialIcon-linkedin {
+            color: #3b82f6;
+            /* softened LinkedIn blue for dark backgrounds */
+            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .30));
         }
 
-        .hidden {
-            display: none;
+        /* Light mode: official LinkedIn blue */
+        html[data-theme="light"] .socialLink:hover .socialIcon-linkedin {
+            color: #0A66C2;
+            /* official LinkedIn blue */
+            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .22));
         }
 
-        .download-btn {
-            display: inline-block;
-            background: #22c55e;
-            color: #fff;
-            padding: 10px 13px;
-            margin: 4px 0px 20px 0px;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background 0.3s;
+        /* GitHub (make it visibly change) */
+        .socialLink:hover .socialIcon-github {
+            color: #a78bfa;
+            /* violet/purple */
+            filter: drop-shadow(0 0 10px rgba(167, 139, 250, .30));
         }
 
-        .download-btn:hover {
-            background: #16a34a;
-            ;
+        html[data-theme="light"] .socialLink:hover .socialIcon-github {
+            color: #6d28d9;
+            /* deeper violet */
+            filter: drop-shadow(0 0 10px rgba(109, 40, 217, .22));
         }
 
-        .share-button {
-            padding: 10px;
-            background-color: #22c55e;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            max-width: fit-content;
+        /* Website / Globe (soft blue logic like GitHub) */
+        .socialLink:hover .socialIcon-website {
+            color: #60a5fa;
+            /* soft blue for dark mode */
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, .28));
         }
 
-        .share-button:hover {
-            background-color: #16a34a;
-            transform: scale(1.05);
+        html[data-theme="light"] .socialLink:hover .socialIcon-website {
+            color: #2563eb;
+            /* deeper blue in light mode */
+            filter: drop-shadow(0 0 10px rgba(37, 99, 235, .20));
         }
 
-        .share-button img {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
+        /* --- Resume button styling (recruiter-only, contact section) --- */
+        .resumeBtn {
+            background: linear-gradient(135deg, rgba(34, 197, 94, .14), rgba(34, 211, 238, .08), transparent);
         }
 
-        /* Base footer layout: wrap and stack by default */
-        footer {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: stretch;
-            /* Ensures even height columns */
-            padding: 20px 0;
+        .resumeBtn:hover {
+            border-color: rgba(34, 197, 94, .45);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, .14);
         }
 
-        /* Left Block: Contact Info */
-        footer>div:first-child {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex: 1 1 100%;
-            padding: 10px;
+        .resumeBtn i {
+            color: rgba(34, 197, 94, .95);
         }
 
-        /* Right Block: QR Code */
-        footer>div:nth-child(2) {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1 1 100%;
-            padding: 10px;
+        /* --- Hero "Resume" vs "Let's build something" special accent colors --- */
+        #heroThirdLink[data-action="resume"] .heroActionIcon {
+            color: rgba(34, 197, 94, .98);
+            /* green */
+            filter: drop-shadow(0 0 10px rgba(34, 197, 94, .25));
         }
 
-        /* Side-by-side layout on medium+ screens */
-        @media (min-width: 600px) {
-            footer {
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-items: stretch;
-                padding: 20px 0;
-                gap: 20px;
-            }
-
-            footer>div:first-child,
-            footer>div:nth-child(2) {
-                flex: 0 0 48%;
-                padding: 0;
-            }
-
-            footer>div:first-child {
-                align-items: flex-start;
-                text-align: left;
-            }
-
-            footer>div:nth-child(2) {
-                justify-content: flex-end;
-                align-items: center;
-            }
+        #heroThirdLink[data-action="resume"] {
+            background: linear-gradient(135deg, rgba(34, 197, 94, .12), transparent);
         }
 
-        /* Image scaling fix */
-        footer img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+        #heroThirdLink[data-action="build"] .heroActionIcon {
+            color: rgba(34, 211, 238, .98);
+            /* cyan */
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, .22));
         }
+
+        #heroThirdLink[data-action="build"] {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .10), transparent);
+        }
+
+        /* =============================
+   CONTACT section ring hover
+============================= */
+
+        #contact .contactSocial {
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+        }
+
+        #contact .contactSocial:hover {
+            transform: translateY(-1px);
+        }
+
+        /* LinkedIn ring (NO icon color touch) */
+        #contact .contactSocial--linkedin:hover {
+            border-color: rgba(59, 130, 246, .55);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, .14);
+        }
+
+        html[data-theme="light"] #contact .contactSocial--linkedin:hover {
+            border-color: rgba(10, 102, 194, .55);
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, .14);
+        }
+
+        /* GitHub ring */
+        #contact .contactSocial--github:hover {
+            border-color: rgba(167, 139, 250, .55);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, .14);
+        }
+
+        html[data-theme="light"] #contact .contactSocial--github:hover {
+            border-color: rgba(109, 40, 217, .55);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, .14);
+        }
+
+        /* Website ring */
+        #contact .contactSocial--website:hover {
+            border-color: rgba(96, 165, 250, .55);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, .14);
+        }
+
+        html[data-theme="light"] #contact .contactSocial--website:hover {
+            border-color: rgba(37, 99, 235, .55);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .14);
         }
     </style>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: {
+                        '2xl': '1.25rem'
+                    }
+                }
+            }
+        };
+    </script>
 </head>
 
-<body class="bg-white text-black text-base sm:text-lg">
-    <!-- Sticky container for navbar and profile image -->
-    <div class="sticky top-0 z-50">
-        <!-- Navigation menu -->
-        <nav class="fixed top-0 w-full z-50 bg-green-500 py-2" style="background-image: linear-gradient(90deg, #74D7BB, #53C8B6, #35A99C)">
-            <div class="mx-auto max-w-full px-10 flex items-center justify-between">
-                <div class="text-xl font-bold text-white py-1">
-                    Guy's Portfolio
-                </div>
-                <div class="flex space-x-4">
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#about">About</a>
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#projects">Projects</a>
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#skills">Skills</a>
-                    <a class="hover:bg-gray-800 text-white px-4 py-2 no-underline transition duration-300 bg-transparent hover:bg-gray-700" href="#contact">Contact</a>
+<body class="relative overflow-x-hidden">
+    <div class="bg-glow fixed inset-0 pointer-events-none"></div>
+
+    <div id="progress" class="fixed top-0 left-0 h-[3px] w-0 bg-black/40 dark:bg-white/70 z-[60]"></div>
+
+    <!-- NAV -->
+    <header class="sticky top-0 z-50">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-4">
+            <div class="glass w-full rounded-2xl px-4 sm:px-5 py-3 shadow-[var(--shadow)]">
+                <div class="flex items-center justify-between gap-3 w-full flex-wrap sm:flex-nowrap">
+
+                    <!-- LEFT: Brand -->
+                    <a href="#top" class="flex items-center gap-3 no-underline min-w-0">
+                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black/10 text-[color:var(--text)] border border-[color:var(--stroke)]">
+                            <i class="fa-solid fa-bolt"></i>
+                        </span>
+                        <div class="leading-tight">
+                            <div class="font-semibold tracking-tight">Guy Thierry Charles</div>
+                            <div class="text-xs opacity-80">IT • Web • Network • Security • Cloud • AI</div>
+                        </div>
+                    </a>
+
+                    <!-- CENTER: Nav links (only these collapse) -->
+                    <nav class="hidden lg:flex items-center gap-1">
+                        <a data-view="client-only" class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#services">
+                            Services
+                        </a>
+                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#projects">Projects</a>
+                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#skills">Skills</a>
+                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#about">About</a>
+                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#contact">Contact</a>
+                    </nav>
+
+                    <!-- RIGHT: Controls (always visible) -->
+                    <div class="flex items-center gap-2 shrink-0">
+                        <!-- View toggle -->
+                        <div class="flex items-center gap-2">
+                            <button id="recruiterModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold" aria-label="Recruiter view">
+                                Recruiter
+                            </button>
+                            <button id="clientModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold" aria-label="Client view">
+                                Client
+                            </button>
+                        </div>
+
+                        <!-- Theme toggle (single button for all sizes) -->
+                        <button id="themeBtn" class="w-10 h-10 flex items-center justify-center rounded-2xl mode-pill border border-[color:var(--stroke)]" aria-label="Toggle theme">
+                            <i id="themeIcon" class="fa-solid fa-sun leading-none text-[15px]"></i>
+                        </button>
+
+                        <!-- Hamburger appears only on small screens -->
+                        <button id="menuBtn" class="icon-pill lg:hidden" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+                            <i id="menuIcon" class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </nav>
-        <!-- Profile image -->
-        <div class="relative flex justify-center mb-0" style="margin-top: 5.5rem;">
-            <div class="rounded-full bg-white absolute top-0 left-1/2 transform -translate-x-1/2 z-50" style="width: 150px; height: 150px;">
-                <a href="#">
-                    <img alt="imageofProfile" class="rounded-full border-2 border-green-500" src="images/ID_Photo.png" style="width: 150px; height: 150px;">
-                </a>
+
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="hidden mt-3 glass rounded-2xl p-3 shadow-[var(--shadow)]">
+                <div class="grid gap-2">
+                    <!--
+                    <div class="flex gap-2">
+                        <button id="recruiterModeBtnM" type="button" class="w-1/2 px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold">
+                            Recruiter
+                        </button>
+                        <button id="clientModeBtnM" type="button" class="w-1/2 px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold">
+                            Client
+                        </button>
+                    </div>
+                    -->
+                    <a data-view="client-only" class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#services">
+                        Services
+                    </a>
+                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#projects">Projects</a>
+                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#skills">Skills</a>
+                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#about">About</a>
+                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="top" class="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-6">
+        <section class="grid lg:grid-cols-12 gap-8 items-start reveal">
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-sm">
+                    <span class="h-2 w-2 rounded-full bg-[color:var(--accent)]"></span>
+                    <span class="opacity-90">Secure, modern, user-friendly systems</span>
+                </div>
+
+                <!--<h1 class="mt-5 text-3xl sm:text-[2.5rem] font-semibold tracking-tight">-->
+                <h1 class="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
+                    IT Support & Web Specialist
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400">
+                        Building Secure, Scalable Systems
+                    </span>
+                </h1>
+
+                <p class="mt-4 text-lg leading-relaxed opacity-80">
+                    I’m Guy Thierry Charles, an IT Support Specialist, Web Designer/Developer, and founder of GiqComp Solutions. I help individuals and businesses overcome technical challenges by delivering reliable IT support and modern, high-performance, secure web solutions.
+                </p>
+
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <a href="#projects" class="px-5 py-3 rounded-2xl bg-[color:var(--text)] text-[color:var(--bg)] font-semibold hover:opacity-90 transition">
+                        View Featured Projects
+                    </a>
+
+                    <button id="copyEmailBtn" type="button" class="px-5 py-3 rounded-2xl glass border border-[color:var(--stroke)] font-semibold hover:opacity-95 transition">
+                        Copy Email
+                    </button>
+
+                    <button data-view="client-only" id="openQRBtn" type="button" class="px-5 py-3 rounded-2xl glass border border-[color:var(--stroke)] font-semibold hover:opacity-95 transition">
+                        Share QR
+                    </button>
+                </div>
+
+                <!-- Client view CTA -->
+                <div data-view="client-only" class="mt-8 rounded-2xl glass border border-[color:var(--stroke)] p-5">
+                    <div class="font-semibold text-lg">Need IT support or a modern website?</div>
+                    <p class="mt-1 opacity-80">From troubleshooting to secure web builds, I deliver solutions that work.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <a href="#contact" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] font-semibold hover:opacity-95 transition">
+                            Request a Consultation
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5">
+                <div class="glass rounded-2xl p-5 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+                    <div class="flex items-center gap-4">
+                        <div class="relative">
+                            <img src="images/ID_Photo.png" alt="Guy Thierry Charles" class="h-20 w-20 rounded-2xl object-cover border border-[color:var(--stroke)]">
+                            <span class="absolute -bottom-2 -right-2 inline-flex h-7 w-7 items-center justify-center rounded-2xl bg-[color:var(--accent)] text-black font-bold border border-black/10">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                        </div>
+                        <div>
+                            <div id="heroRoleTitle" class="font-semibold text-xl">Founder • GiqComp Solutions</div>
+                            <div id="heroRoleSub" class="opacity-75">IT Support • Web Solutions</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 grid gap-3">
+                        <a id="heroLinkedInBtn" class="socialLink glass rounded-2xl p-4 transition flex items-center justify-between border border-[color:var(--stroke)] hover:bg-[color:var(--hover)]" href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" rel="noreferrer">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-brands fa-linkedin text-xl socialIcon socialIcon-linkedin"></i>
+                                <span class="font-semibold">LinkedIn</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square opacity-70"></i>
+                        </a>
+
+                        <a id="heroGitHubBtn" class="socialLink glass rounded-2xl p-4 transition flex items-center justify-between border border-[color:var(--stroke)] hover:bg-[color:var(--hover)]" href="https://github.com/GuyTCharles" target="_blank" rel="noreferrer">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-brands fa-github text-xl socialIcon socialIcon-github"></i>
+                                <span class="font-semibold">GitHub</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square opacity-70"></i>
+                        </a>
+
+                        <a id="heroThirdLink" data-view="client-only" class="heroActionLink glass rounded-2xl p-4 transition flex items-center justify-between border border-[color:var(--stroke)] hover:bg-[color:var(--hover)]" href="https://www.giqcompsolutions.com" target="_blank" rel="noreferrer" data-action="visit">
+                            <div class="flex items-center gap-3">
+                                <i id="heroThirdIcon" class="fa-solid fa-globe text-xl heroActionIcon"></i>
+                                <span id="heroThirdText" class="font-semibold">Visit GiqComp Solutions</span>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES (Client view only) -->
+        <section id="services" data-view="client-only" class="mt-16 reveal">
+            <div class="glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Services</h2>
+                        <p class="mt-2 opacity-80">Tailored support and digital builds from GiqComp Solutions.</p>
+                    </div>
+                    <button id="openQuoteBtn" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition w-fit">
+                        Get a Quote
+                    </button>
+                </div>
+
+                <div class="mt-6 grid md:grid-cols-3 gap-5">
+                    <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+                        <div class="font-semibold text-lg">IT Support</div>
+                        <p class="mt-2 opacity-80">Device troubleshooting, Microsoft 365 help, setup & optimization, and ongoing support.</p>
+                        <ul class="mt-3 space-y-2 opacity-80">
+                            <li>• Windows/macOS support</li>
+                            <li>• Account & access help</li>
+                            <li>• Performance tune-ups</li>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+                        <div class="font-semibold text-lg">Web Apps & Websites</div>
+                        <p class="mt-2 opacity-80">Modern, responsive websites and web apps designed for clarity and conversions.</p>
+                        <ul class="mt-3 space-y-2 opacity-80">
+                            <li>• Landing pages & portfolios</li>
+                            <li>• WordPress builds</li>
+                            <li>• Performance + UX polish</li>
+                        </ul>
+                    </div>
+
+                    <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+                        <div class="font-semibold text-lg">Security Consulting</div>
+                        <p class="mt-2 opacity-80">Security-first guidance to reduce risk and strengthen your environment.</p>
+                        <ul class="mt-3 space-y-2 opacity-80">
+                            <li>• Best-practice hardening</li>
+                            <li>• Backup strategies</li>
+                            <li>• Security hygiene checks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED PROJECTS -->
+        <section id="projects" class="mt-16 reveal">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Featured Projects</h2>
+                    <p class="mt-2 opacity-80">Selected projects with concise overviews and case studies.</p>
+                </div>
+
+                <div class="flex flex-wrap gap-2">
+                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="all" type="button">All</button>
+                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="web" type="button">Web</button>
+                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="fullstack" type="button">Full-Stack</button>
+                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="ai" type="button">AI</button>
+                </div>
+            </div>
+
+            <div id="projectsGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="mt-16 reveal">
+            <div class="glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Skills Snapshot</h2>
+                        <p class="mt-2 opacity-80">Practical mix of IT operations, web development, and security-first thinking.</p>
+                    </div>
+                    <div class="text-sm opacity-75">Clean UI • Fast UX • Reliable delivery</div>
+                </div>
+
+                <div class="mt-6 grid md:grid-cols-3 gap-5">
+                    <!-- IT & Systems -->
+                    <div class="rounded-2xl border border-[color:var(--stroke)] p-5
+              bg-gradient-to-br
+              from-emerald-500/25 via-emerald-500/10 to-transparent
+              dark:from-emerald-400/25 dark:via-emerald-400/10">
+                        <div class="font-semibold">IT & Systems</div>
+                        <ul class="mt-3 opacity-80 space-y-2">
+                            <li>Windows • macOS • Troubleshooting</li>
+                            <li>Active Directory • Microsoft 365</li>
+                            <li>Endpoint hygiene • Documentation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="rounded-2xl border border-[color:var(--stroke)] p-5
+              bg-gradient-to-br
+              from-sky-500/25 via-sky-500/10 to-transparent
+              dark:from-sky-400/25 dark:via-sky-400/10">
+                        <div class="font-semibold">Web Development</div>
+                        <ul class="mt-3 opacity-80 space-y-2">
+                            <li>HTML • CSS • JavaScript</li>
+                            <li>Tailwind • Responsive UI</li>
+                            <li>WordPress • UX polish</li>
+                        </ul>
+                    </div>
+
+                    <!-- Full-Stack & AI -->
+                    <div class="rounded-2xl border border-[color:var(--stroke)] p-5
+              bg-gradient-to-br
+              from-violet-500/25 via-violet-500/10 to-transparent
+              dark:from-violet-400/25 dark:via-violet-400/10">
+                        <div class="font-semibold">Full-Stack & AI</div>
+                        <ul class="mt-3 opacity-80 space-y-2">
+                            <li>Python/Flask • PHP • MySQL</li>
+                            <li>Deployments (Render/Hosting)</li>
+                            <li>OpenAI API • Workflow automation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="mt-16 reveal">
+            <div class="grid lg:grid-cols-12 gap-6 items-start">
+                <div class="lg:col-span-7 glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+                    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">About</h2>
+                    <p class="mt-3 opacity-80 leading-relaxed">
+                        I provide IT support to individuals, healthcare, education, and enterprise environments. I also design and develop modern, streamlined, responsive, and secure web applications and websites. Rigorous, collaborative, and results-oriented, I focus on optimizing operational efficiency, enhancing the user experience, and delivering reliable and scalable solutions.
+                    </p>
+
+                    <div class="mt-6 flex flex-wrap gap-2">
+                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Security-first mindset</span>
+                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Accessible, user-focused UI</span>
+                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Efficient troubleshooting</span>
+                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Effective communication</span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 glass rounded-xl p-5 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+                    <h3 class="text-xl font-semibold">Experience Timeline</h3>
+                    <div class="mt-4 space-y-4">
+                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-3">
+                            <div class="font-semibold">IT Support Specialist</div>
+                            <div class="text-sm opacity-75">Healthcare, enterprise, and end-user support</div>
+                        </div>
+                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-3">
+                            <div class="font-semibold">Founder — GiqComp Solutions</div>
+                            <div class="text-sm opacity-75">IT support, consulting, web, and digital solutions</div>
+                        </div>
+                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-3">
+                            <div class="font-semibold">Technical Builder</div>
+                            <div class="text-sm opacity-75">Automation, performance optimization, UI, and UX refinements</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="mt-16 reveal">
+            <div class="glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Contact</h2>
+                        <p class="mt-2 opacity-80">Professional IT support and modern web solutions, tailored to your needs.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <a id="contactCallBtn" class="px-4 py-2 rounded-2xl bg-[color:var(--text)] text-[color:var(--bg)] font-semibold hover:opacity-90 transition" href="tel:+17044457288">
+                            <i class="fa-solid fa-phone mr-2"></i>Call
+                        </a>
+                        <a id="contactEmailBtn" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="mailto:info@giqcompsolutions.com">
+                            <i class="fa-solid fa-envelope mr-2"></i>Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-7 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <div class="rounded-2xl bg-black/5 dark:bg-black/10 border border-[color:var(--stroke)] p-4">
+                                <div class="text-sm opacity-75">Phone</div>
+                                <div id="contactPhoneText" class="mt-1 font-semibold">+1 (704) 445-7288</div>
+                            </div>
+                            <div class="rounded-2xl bg-black/5 dark:bg-black/10 border border-[color:var(--stroke)] p-4">
+                                <div class="text-sm opacity-75">Email</div>
+                                <div id="contactEmailText" class="mt-1 font-semibold">info@giqcompsolutions.com</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <!-- Recruiter-only button -->
+                            <a id="contactLinkedInBtn" class="contactSocial socialLink contactSocial--linkedin px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" rel="noreferrer">
+                                <i class="fa-brands fa-linkedin mr-2 socialIcon socialIcon-linkedin"></i>LinkedIn
+                            </a>
+                            <!-- Recruiter-only button -->
+                            <a class="contactSocial socialLink contactSocial--github px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://github.com/GuyTCharles" target="_blank" rel="noreferrer">
+                                <i class="fa-brands fa-github mr-2 socialIcon socialIcon-github"></i>GitHub
+                            </a>
+                            <!-- Recruiter-only button -->
+                            <a id="contactResumeBtn" data-view="recruiter-only" class="resumeBtn contactSocial px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)]" href="resume/Guy_Thierry_Charles—Resume.pdf" download="Guy_Thierry_Charles—Resume.pdf">
+                                <i class="fa-solid fa-download mr-2"></i>Download Resume
+                            </a>
+                            <!-- Client-only button -->
+                            <a data-view="client-only" class="contactSocial socialLink contactSocial--website px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.giqcompsolutions.com" target="_blank" rel="noreferrer">
+                                <i class="fa-solid fa-globe mr-2 socialIcon socialIcon-website"></i>GiqCompSolutions.com
+                            </a>
+                        </div>
+                    </div>
+
+                    <div data-view="client-only" class="lg:col-span-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <div>
+                                <div class="font-semibold">Save My Contact</div>
+                                <div class="text-sm opacity-75">Scan or download for quick contact.</div>
+                            </div>
+                            <button id="openQRBtn2" type="button" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition">
+                                Open
+                            </button>
+                        </div>
+
+                        <div class="mt-4 rounded-2xl bg-black/5 dark:bg-black/10 border border-[color:var(--stroke)] p-4 flex justify-center">
+                            <img src="images/Business-Card_QR-Code.png" alt="Business Card QR Code" class="max-w-[220px] rounded-xl">
+                        </div>
+                        <a class="mt-4 inline-flex justify-center w-full px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="images/Business-Card_QR-Code.png" download="Guy_Thierry_Charles_QR.png">
+                            Download QR
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-[color:var(--stroke)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm opacity-75">
+                    <div>© Guy Thierry Charles • Porfolio</div>
+                    <div class="flex gap-3">
+                        <a class="hover:opacity-100 opacity-80 transition" href="#top">Back to top</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- QUOTE MODAL -->
+    <div id="quoteModal" class="hidden fixed inset-0 z-[85]">
+        <div class="absolute inset-0 bg-black/60"></div>
+
+        <div class="relative mx-auto max-w-lg px-4 sm:px-6 py-12">
+            <div class="glass rounded-2xl border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+
+                <div class="p-5 flex items-center justify-between border-b border-[color:var(--stroke)]">
+                    <div class="font-semibold">Request a Quote</div>
+                    <button id="closeQuoteModal" class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <form id="quoteForm" class="p-5 grid gap-4" action="mailto:info@giqcompsolutions.com" method="POST" enctype="text/plain">
+
+                    <p id="quoteFormMsg" class="hidden text-sm rounded-xl px-3 py-2
+            bg-black/5 dark:bg-white/5
+            border border-[color:var(--stroke)]">
+                    </p>
+
+                    <input required type="text" name="Name" placeholder="Your name" class="rounded-2xl p-3 bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)]">
+
+                    <input required type="email" name="Email" placeholder="Your email" class="rounded-2xl p-3 bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)]">
+
+                    <select required name="Service" class="rounded-2xl p-3 bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)]">
+                        <option value="">Select a service</option>
+                        <option>IT Support / Consulting</option>
+                        <option>Web Design / Development</option>
+                        <option>Cybersecurity Consulting</option>
+                        <option>Tech / Network Troubleshooting</option>
+                        <option>Other</option>
+                    </select>
+
+                    <textarea required name="Message" rows="4" placeholder="Briefly describe your needs" class="rounded-2xl p-3 bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)]"></textarea>
+
+                    <button type="submit" class="mt-2 px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition">
+                        Send Request
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Main content -->
-    <div class="mx-auto max-w-full px-10 pt-20">
-        <!-- About section -->
-        <section id="about" class="my-8 p-4 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg" style="margin-top: 6.25rem">
-            <h2 class="text-2xl font-bold mb-4 text-center text-white">
-                About Me
-            </h2>
-            <p class="text-base text-white" style="text-align: center; margin: 0 10px 0 10px;">
-                Hello! I'm Guy Thierry Charles, an experienced IT Technician and the founder of GiqComp Solutions, where I provide tailored IT and digital services for individuals and businesses. With over a decade of expertise in IT support, complemented by web design and development skills and a strong command of various programming languages, I'm passionate about delivering secure and scalable solutions. I am a proactive, detail-oriented professional with excellent communication and problem-solving abilities, dedicated to contributing to team success and fostering a collaborative work environment.
-            </p>
-            <div class="flex flex-col items-center mt-4">
-                <a href="docs/Guy_Thierry_Charles_Resume.pdf" target="_blank" class="inline-block mb-4 px-3 py-2 rounded-md bg-green-500 text-white transition duration-300 button">
-                    <span class="button-text">Resume</span>
-                </a>
-            </div>
-        </section>
+    <!-- PROJECT MODAL -->
+    <div id="projectModal" class="hidden fixed inset-0 z-[80]">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative mx-auto max-w-3xl px-4 sm:px-6 py-6">
+            <div class="glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden shadow-[var(--shadow)] max-h-[85vh] flex flex-col">
 
-        <!-- Projects section -->
-        <section id="projects" class="my-16 p-4 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg">
-            <h2 class="text-3xl font-bold mb-10 text-center">
-                Projects
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                <!-- Project 1 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
-                    <a href="https://guytcharles.github.io/ConsultCareConnect/homepage.html" target="_blank">
-                        <img src="images/ConsultCareConnect_Website_Project.png" alt="Project 1" class="w-full h-auto">
-                    </a>
-                    <h3 class="font-bold mt-4 mb-2">ConsultCareConnect</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">A virtual healthcare platform connecting users with personalized support, symptom-checking tools, and secure record management. Features include dark mode, Google Custom Search, and a dynamic, accessible UI for real-world telehealth use.</p>
-                    <p class="project-sub font-bold text-xs mb-4">Technology: HTML, CSS, JS, LocalStorage, Google Search API</p>
-                    <div class="flex space-x-9">
-                        <a href="https://guytcharles.github.io/ConsultCareConnect/homepage.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/ConsultCareConnect" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
+                <div class="p-5 sm:p-6 flex items-start justify-between gap-4 border-b border-[color:var(--stroke)] shrink-0">
+                    <div>
+                        <div id="modalTitle" class="text-xl sm:text-2xl font-semibold"></div>
+                        <div id="modalTagline" class="mt-1 opacity-80"></div>
                     </div>
+                    <button id="closeProjectModal" type="button" class="px-3 py-1.5 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
 
-                <!-- Project 2 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
-                    <a href="https://gcarthrifit.weebly.com/" target="_blank">
-                        <img src="images/GCArthriFit_Project.png" alt="Project 2" class="w-full h-auto">
-                    </a>
-                    <h3 class="font-bold mt-4 mb-2">GCArthriFit</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">An educational site built with Weebly offering wellness and fitness resources for arthritis management. It features diet and exercise guidance with a clean, responsive layout for easy navigation and accessibility.</p>
-                    <p class="project-sub font-bold text-xs mb-4">Technology: Weebly.com (Web Hosting and Development Hub)</p>
-                    <div class="flex space-x-9">
-                        <a href="https://gcarthrifit.weebly.com/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                    </div>
-                </div>
+                <div class="p-5 sm:p-6 grid gap-5 overflow-y-auto">
+                    <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Project preview" class="w-full rounded-2xl border border-[color:var(--glassStroke)] bg-black/5" />
 
-                <!-- Project 3 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
-                    <a href="https://guytcharles.github.io/Pacific-Trails-Resort/" target="_blank">
-                        <img src="images/Pacific_Trails_Resort_Site_Project.png" alt="Project 3" class="w-full h-auto">
-                    </a>
-                    <h3 class="font-bold mt-4 mb-2">Pacific Trails Resort</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">A responsive resort website with private yurts, activities, and dining info. Includes mobile navigation, geolocation trails, and video tours, providing users with an immersive experience of Northern California’s coast.</p>
-                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
-                    <div class="flex space-x-8">
-                        <a href="https://guytcharles.github.io/Pacific-Trails-Resort/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/Pacific-Trails-Resort" class="text-blue-500 hover:underline">GitHub</a>
-                    </div>
-                </div>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
+                            <div class="text-sm opacity-75">Overview</div>
+                            <p id="modalDesc" class="mt-2 opacity-85 leading-relaxed"></p>
+                        </div>
 
-                <!-- Project 4 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
-                    <a href="https://giqcompsolutions.com/bug-report/" target="_blank">
-                        <img src="images/Bug-Report-App-Project.png" alt="Project 5" class="w-full h-auto">
-                    </a>
-                    <h3 class="font-bold mt-4 mb-2">Bug Report App</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">A web-based application for reporting, tracking, and managing software bugs. It includes a simple user interface for reporting and updating issues, improving collaboration, and speeding up resolution times. Designed with structure and simplicity for development teams.</p>
-                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript, PHP, MySQL</p>
-                    <div class="flex space-x-9">
-                        <a href="https://giqcompsolutions.com/bug-report/" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/bug-report-app" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
-                    <a href="https://planifyverse.onrender.com" target="_blank">
-                        <img src="images/PlanifyVerse.png" alt="Project 4" class="w-full h-auto">
-                    </a>
-                    <h3 class="font-bold mt-4 mb48">PlanifyVerse</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">An AI-powered study planner that generates customized schedules using OpenAI. Users enter study goals and availability. Features include PDF export, dark mode, and responsive design for easy academic planning.</p>
-                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript, Flask/Python, OpenAI API</p>
-                    <div class="flex space-x-9">
-                        <a href="https://planifyverse.onrender.com" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/PlanifyVerse" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="bg-gray-800 p-4 shadow rounded overflow-hidden transition-transform duration-300 transform scale-100 hover:scale-105">
-                    <a href="https://guytcharles.github.io/My-To-Do-List/index-App.html" target="_blank">
-                        <img src="images/My_To-Do_List_App_Project.png" alt="Project 6" class="w-full h-auto">
-                    </a>
-                    <h3 class="font-bold mt-4 mb-2">My To-Do List</h3>
-                    <p class="project-desc text-sm leading-relaxed mb-3">A task management app allowing users to add, prioritize, and organize tasks. Features include color-coded priorities, local storage, a seamless user experience, and a responsive layout for optimal productivity across all devices.</p>
-                    <p class="project-sub font-bold text-xs mb-4">Technologies: HTML, CSS, JavaScript</p>
-                    <div class="flex space-x-8">
-                        <a href="https://guytcharles.github.io/My-To-Do-List/index-App.html" target="_blank" class="text-blue-500 hover:underline">Live Demo</a>
-                        <a href="https://github.com/GuyTCharles/My-To-Do-List" target="_blank" class="text-blue-500 hover:underline">GitHub</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills section -->
-        <section id="skills" class="my-16 p-4 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg">
-            <h2 class="text-2xl font-bold mb-4">Skills</h2>
-            <!-- Skill progress bars -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <p class="skills-title font-bold">HTML</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 90%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">C++</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 65%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">CSS</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 80%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">PHP</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 65%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">JavaScript</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 75%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">Generative AI</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 68%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">Python</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 70%;">
+                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
+                            <div class="text-sm opacity-75">Tech</div>
+                            <p id="modalTech" class="mt-2 opacity-85 leading-relaxed"></p>
+                            <div class="mt-3 text-sm opacity-75">Category</div>
+                            <div id="modalCategory" class="mt-1 font-semibold"></div>
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <p class="skills-title font-bold">OpenAI API</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 75%;"></div>
+                    <!-- Case study in modal -->
+                    <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
+                        <div class="font-semibold mb-2">Case Study</div>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <div>
+                                <div class="text-sm opacity-75">Problem</div>
+                                <p id="modalProblem" class="mt-1 opacity-85"></p>
+                            </div>
+                            <div>
+                                <div class="text-sm opacity-75">Approach</div>
+                                <p id="modalApproach" class="mt-1 opacity-85"></p>
+                            </div>
+                            <div>
+                                <div class="text-sm opacity-75">Result</div>
+                                <p id="modalResult" class="mt-1 opacity-85"></p>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div>
-                    <p class="skills-title font-bold">Flask</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 70%;"></div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="skills-title font-bold">Heroku/Render Deployment</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 80%;"></div>
-                    </div>
-                </div>
-
-                <!--
-                <div>
-                    <p class="font-bold">React.js</p>
-                    <div class="bg-gray-600 h-4 w-full rounded-full">
-                        <div class="bg-green-400 h-full rounded-full" style="width: 65%;"></div>
-                    </div>
-                </div>
-                -->
-            </div>
-        </section>
-
-        <!-- Contact section -->
-        <footer class="my-8 p-6 bg-gradient-to-b from-gray-600 to-gray-800 text-white rounded-lg flex flex-wrap">
-            <!-- Left Side: Contact Info -->
-            <div class="w-full sm:basis-1/2 flex flex-col items-center sm:items-start text-center sm:text-left px-4 mb-6 sm:mb-0">
-                <h2 class="text-2xl font-bold mb-4">Contact Me</h2>
-
-                <!-- Contact Info -->
-                <div class="mb-2">
-                    <a href="tel:+19173425599" class="phone-text">
-                        <i class="fas fa-phone mr-1"></i> 917-342-5599
-                    </a>
-                </div>
-                <div class="mb-2">
-                    <a href="mailto:guythierrycharles@gmail.com" class="email-text">
-                        <i class="fas fa-envelope mr-1"></i> guythierrycharles@gmail.com
-                    </a>
-                </div>
-
-                <!-- Social Media Icons -->
-                <ul class="flex space-x-4 mt-4">
-                    <li class="item linkedin">
-                        <a href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank">
-                            <i class="fa-brands fa-linkedin icon"></i>
+                    <div class="flex flex-wrap gap-2 justify-end">
+                        <a id="modalLive" href="#" class="px-4 py-2 rounded-2xl btn-primary font-semibold transition" target="_blank" rel="noreferrer noopener">
+                            Live Demo
                         </a>
-                        <span class="icon-name">LinkedIn</span>
-                    </li>
-                    <li class="item github">
-                        <a href="https://github.com/GuyTCharles" target="_blank">
-                            <i class="fa-brands fa-github icon"></i>
-                        </a>
-                        <span class="icon-name">GitHub</span>
-                    </li>
-                    <li class="item codepen">
-                        <a href="https://codepen.io/Guy-Thierry-Charles" target="_blank">
-                            <i class="fa-brands fa-codepen icon"></i>
-                        </a>
-                        <span class="icon-name">CodePen</span>
-                    </li>
-                </ul>
-            </div>
 
-            <!-- Right Side: QR Code -->
-            <div class="w-full sm:basis-1/2 flex justify-center sm:justify-end px-4">
-                <div class="share-button cursor-pointer" onclick="shareProfile()">
-                    <img src="images/Business-Card_QR-Code.png" alt="Profile Card" class="w-auto h-auto max-w-[180px] sm:max-w-[200px] md:max-w-[230px] lg:max-w-[250px] rounded-md">
+                        <a id="modalGit" href="#" class="px-4 py-2 rounded-2xl btn-ghost font-semibold transition" target="_blank" rel="noreferrer noopener">
+                            GitHub
+                        </a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Fallback Modal: Download & Share via Email -->
-            <div id="shareModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal()">&times;</span>
-                    <!-- <h2 style="font-weight: bold; margin-bottom: -13px;">SAVE THIS QR CODE</h2> -->
-                    <!-- Modal fallback message, hidden by default -->
-                    <p id="fallbackMessage" style="display: none;">
-                        Your browser doesn't support direct sharing.<br>
-                        Please download the QR Code.
-                    </p>
-
-                    <img src="images/Business-Card_QR-Code.png" alt="Profile QR Code" style="max-width:200px; display:block; margin: 20px auto;">
-
-                    <a href="images/Business-Card_QR-Code.png" download="Business-Card_QR-Code.png" class="download-btn">Download QR Code</a>
-                </div>
-            </div>
-        </footer>
+        </div>
     </div>
-    <script>
-        async function shareProfile() {
-            const fileUrl = 'images/Business-Card_QR-Code.png';
 
+    <!-- QR MODAL -->
+    <div id="qrModal" class="hidden fixed inset-0 z-[85]">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative mx-auto max-w-md px-4 sm:px-6 py-12">
+            <div class="glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden shadow-[var(--shadow)]">
+                <div class="p-5 flex items-center justify-between border-b border-[color:var(--stroke)]">
+                    <div class="font-semibold">Share / Save QR</div>
+                    <button id="closeQRModal" type="button" class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" aria-label="Close">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="p-5">
+                    <img src="images/Business-Card_QR-Code.png" alt="QR Code" class="w-full rounded-2xl border border-[color:var(--stroke)] bg-black/10">
+                    <div class="mt-4 grid grid-cols-2 gap-2">
+                        <button id="nativeShareBtn" type="button" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition">
+                            Share
+                        </button>
+                        <a class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition text-center" href="images/Business-Card_QR-Code.png" download="Guy_Thierry_Charles_QR.png">
+                            Download
+                        </a>
+                    </div>
+                    <p id="shareFallback" class="mt-3 text-sm opacity-75 hidden">
+                        Your browser doesn’t support native sharing. Please use Download.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-[90]">
+        <div class="glass rounded-2xl px-4 py-3 border border-[color:var(--stroke)] text-sm">
+            <span id="toastMsg"></span>
+        </div>
+    </div>
+
+    <script>
+        // -----------------------------
+        // DATA (Projects + Case Studies)
+        // -----------------------------
+        const PROJECTS = [{
+                title: "ConsultCareConnect",
+                tagline: "Virtual healthcare platform with a modern, accessible UI",
+                category: "web",
+                desc: "A virtual healthcare platform connecting users with personalized support, symptom-checking tools, and secure record management. Includes dark mode, Google Custom Search, and a dynamic UI designed for real-world telehealth use.",
+                tech: "HTML, CSS, JavaScript, LocalStorage, Google Search API",
+                image: "images/ConsultCareConnect_Website_Project.png",
+                live: "https://guytcharles.github.io/ConsultCareConnect/homepage.html",
+                git: "https://github.com/GuyTCharles/ConsultCareConnect",
+                caseStudy: {
+                    problem: "Users needed a simple, accessible way to explore telehealth features without a complicated UI.",
+                    approach: "Built a responsive interface with dark mode, clear navigation, and search-driven content discovery.",
+                    result: "A clean demo platform that showcases telehealth UX patterns and scalable UI components."
+                }
+            },
+            {
+                title: "GCArthriFit",
+                tagline: "Wellness and fitness resources for arthritis management",
+                category: "web",
+                desc: "An educational site built with Weebly offering wellness and fitness resources for arthritis management, with clean navigation and accessibility-focused layout.",
+                tech: "Weebly (Site Builder / Hosting)",
+                image: "images/GCArthriFit_Project.png",
+                live: "https://gcarthrifit.weebly.com/",
+                git: "",
+                caseStudy: {
+                    problem: "People managing arthritis needed organized wellness resources that are easy to navigate.",
+                    approach: "Structured content into clear sections with a simple, responsive layout using Weebly tools.",
+                    result: "A user-friendly resource hub that makes wellness guidance easier to access and understand."
+                }
+            },
+            {
+                title: "Pacific Trails Resort",
+                tagline: "Responsive resort website with interactive experiences",
+                category: "web",
+                desc: "A responsive resort website featuring activities, dining info, mobile navigation, and immersive content to bring the experience to life.",
+                tech: "HTML, CSS, JavaScript",
+                image: "images/Pacific_Trails_Resort_Site_Project.png",
+                live: "https://guytcharles.github.io/Pacific-Trails-Resort/",
+                git: "https://github.com/GuyTCharles/Pacific-Trails-Resort",
+                caseStudy: {
+                    problem: "A resort site needed a mobile-friendly experience that still felt immersive and informative.",
+                    approach: "Implemented responsive layout, interactive navigation, and content sections designed for fast scanning.",
+                    result: "A polished demo site that highlights UI structure, responsiveness, and user flow."
+                }
+            },
+            {
+                title: "Bug Report App",
+                tagline: "Track bugs fast with a simple, structured workflow",
+                category: "fullstack",
+                desc: "A web-based application for reporting, tracking, and managing software bugs. Built for clarity and speed to improve collaboration and resolution times.",
+                tech: "HTML, CSS, JavaScript, PHP, MySQL",
+                image: "images/Bug-Report-App-Project.png",
+                live: "https://bugreportapp.sytes.net",
+                git: "https://github.com/GuyTCharles/bug-report-app",
+                caseStudy: {
+                    problem: "Teams needed a straightforward way to report and track issues without tool overload.",
+                    approach: "Designed a clean CRUD workflow with structured fields, simple status updates, and persistence.",
+                    result: "A lightweight tracker that supports faster reporting and clearer issue resolution flow."
+                }
+            },
+            {
+                title: "PlanifyVerse",
+                tagline: "AI-powered study planning with PDF export",
+                category: "ai",
+                desc: "An AI-powered study planner that generates customized schedules using OpenAI. Users enter goals and availability; includes PDF export and responsive design.",
+                tech: "HTML, CSS, JavaScript, Flask/Python, OpenAI API",
+                image: "images/PlanifyVerse.png",
+                live: "https://planifyverse.onrender.com",
+                git: "https://github.com/GuyTCharles/PlanifyVerse",
+                caseStudy: {
+                    problem: "Students struggle to convert goals + time constraints into a realistic study plan.",
+                    approach: "Collected inputs (hours, goals, duration) and generated structured plans via OpenAI; added PDF export.",
+                    result: "A usable planning tool that turns messy requirements into actionable schedules quickly."
+                }
+            },
+            {
+                title: "My To-Do List",
+                tagline: "Simple productivity app with priorities + local storage",
+                category: "web",
+                desc: "A task management app with prioritization, local storage, and a responsive layout designed for an easy daily workflow.",
+                tech: "HTML, CSS, JavaScript",
+                image: "images/My_To-Do_List_App_Project.png",
+                live: "https://guytcharles.github.io/My-To-Do-List/index-App.html",
+                git: "https://github.com/GuyTCharles/My-To-Do-List",
+                caseStudy: {
+                    problem: "Many to-do apps are overbuilt when users just want speed + organization.",
+                    approach: "Used localStorage for persistence, simple UI controls, and a clean priority workflow.",
+                    result: "A fast, responsive productivity app that stays lightweight and easy to use."
+                }
+            }
+        ];
+
+        // -----------------------------
+        // Utilities
+        // -----------------------------
+        const $ = (sel, root = document) => root.querySelector(sel);
+        const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+        function toast(msg) {
+            const t = $("#toast");
+            $("#toastMsg").textContent = msg;
+            t.classList.remove("hidden");
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => t.classList.add("hidden"), 2200);
+        }
+
+        // -----------------------------
+        // CONTACT PROFILES (Recruiter vs Client)
+        // -----------------------------
+        const CONTACT = {
+            recruiter: {
+                phoneDisplay: "+1 (917) 342-5599",
+                phoneTel: "+19173425599",
+                emailDisplay: "guythierrycharles@gmail.com",
+                emailMailto: "guythierrycharles@gmail.com",
+                linkedinUrl: "https://www.linkedin.com/in/guy-thierry-charles-986bb167",
+            },
+            client: {
+                phoneDisplay: "+1 (704) 445-7288",
+                phoneTel: "+17044457288",
+                emailDisplay: "info@giqcompsolutions.com",
+                emailMailto: "info@giqcompsolutions.com",
+                linkedinUrl: "https://www.linkedin.com/company/giqcomp-solutions/",
+            },
+        };
+
+        function normalizeMode(mode) {
+            const m = String(mode || "").toLowerCase().trim();
+            return m === "client" ? "client" : "recruiter";
+        }
+
+        function getMode() {
+            return normalizeMode(localStorage.getItem("viewMode") || "recruiter");
+        }
+
+        function applyContactByMode(mode) {
+            const m = normalizeMode(mode);
+            const cfg = CONTACT[m] || CONTACT.recruiter;
+
+            $("#contactCallBtn")?.setAttribute("href", `tel:${cfg.phoneTel}`);
+            $("#contactEmailBtn")?.setAttribute("href", `mailto:${cfg.emailMailto}`);
+
+            const phoneEl = $("#contactPhoneText");
+            const emailEl = $("#contactEmailText");
+            if (phoneEl) phoneEl.textContent = cfg.phoneDisplay;
+            if (emailEl) emailEl.textContent = cfg.emailDisplay;
+
+            $("#contactLinkedInBtn")?.setAttribute("href", cfg.linkedinUrl);
+            $("#heroLinkedInBtn")?.setAttribute("href", cfg.linkedinUrl);
+        }
+
+        function applyViewMode(mode) {
+            const m = normalizeMode(mode);
+            localStorage.setItem("viewMode", m);
+
+            const isRecruiter = m === "recruiter";
+            const rBtns = [$("#recruiterModeBtn"), $("#recruiterModeBtnM")].filter(Boolean);
+            const cBtns = [$("#clientModeBtn"), $("#clientModeBtnM")].filter(Boolean);
+
+            rBtns.forEach((b) => b.setAttribute("data-active", isRecruiter ? "true" : "false"));
+            cBtns.forEach((b) => b.setAttribute("data-active", !isRecruiter ? "true" : "false"));
+
+            $$('[data-view="client-only"]').forEach((el) => el.classList.toggle("hidden", isRecruiter));
+            $$('[data-view="recruiter-only"]').forEach((el) => el.classList.toggle("hidden", !isRecruiter));
+
+            applyContactByMode(m);
+            applyHeroByMode(m);
+            toast(isRecruiter ? "Recruiter view enabled" : "Client view enabled");
+        }
+
+        // -----------------------------
+        // HERO PROFILE (Recruiter vs Client)
+        // 
+        const HERO_PROFILE = {
+            recruiter: {
+                title: "IT Support & Web Specialist",
+                sub: "Field Tech • Onsite & Remote Support",
+                third: {
+                    show: true,
+                    text: "Resume",
+                    href: "resume/Guy_Thierry_Charles—Resume.pdf",
+                    icon: "fa-file-lines",
+                    targetBlank: true
+                }
+            },
+            client: {
+                title: "Founder • GiqComp Solutions",
+                sub: "IT Support • Web Solutions",
+                third: {
+                    show: true,
+                    text: "Visit GiqComp Solutions",
+                    href: "https://www.giqcompsolutions.com",
+                    icon: "fa-globe",
+                    targetBlank: true,
+                    action: "visit"
+                }
+            }
+        };
+
+        function applyHeroByMode(mode) {
+            const m = normalizeMode(mode);
+            const cfg = HERO_PROFILE[m] || HERO_PROFILE.recruiter;
+
+            $("#heroRoleTitle") && ($("#heroRoleTitle").textContent = cfg.title);
+            $("#heroRoleSub") && ($("#heroRoleSub").textContent = cfg.sub);
+
+            const thirdLink = $("#heroThirdLink");
+            const thirdText = $("#heroThirdText");
+            const thirdIcon = $("#heroThirdIcon");
+
+            if (!thirdLink) return;
+
+            if (cfg.third?.show === false) {
+                thirdLink.classList.add("hidden");
+                return;
+            }
+
+            // Show link
+            thirdLink.classList.remove("hidden");
+            thirdLink.setAttribute("href", cfg.third.href || "#");
+
+            // Icon + text
+            if (thirdText) thirdText.textContent = cfg.third.text || "";
+            if (thirdIcon) {
+                thirdIcon.className = `fa-solid ${cfg.third.icon || "fa-paper-plane"} text-xl`;
+            }
+
+            // NEW: open in new tab if requested
+            if (cfg.third.targetBlank) {
+                thirdLink.setAttribute("target", "_blank");
+                thirdLink.setAttribute("rel", "noreferrer");
+            } else {
+                thirdLink.removeAttribute("target");
+                thirdLink.removeAttribute("rel");
+            }
+            // NEW: set action type so CSS can color Resume vs Visit GiqComp Solutions
+            thirdLink.setAttribute("data-action", cfg.third.action || (cfg.third.targetBlank ? "resume" : "build"));
+        }
+
+        // -----------------------------
+        // Theme
+        // -----------------------------
+        function applyTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+
+            // icon rules:
+            // dark theme -> show sun (white circle) because click goes to light
+            const isDark = theme === "dark";
+            const iconClass = isDark ? "fa-sun" : "fa-moon";
+
+            $("#themeIcon").className = `fa-solid ${iconClass}`;
+        }
+
+        function toggleTheme() {
+            const current = localStorage.getItem("theme") || "dark";
+            applyTheme(current === "dark" ? "light" : "dark");
+        }
+
+        // -----------------------------
+        // Projects render + filter
+        // -----------------------------
+        let activeFilter = "all";
+
+        function projectCard(p) {
+            const hasGit = Boolean(p.git && p.git.trim());
+            return `
+        <article class="projectCard group glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden hover:opacity-95 transition"
+                 data-cat="${p.category}">
+          <button type="button" class="w-full text-left" data-open="${encodeURIComponent(p.title)}">
+            <div class="aspect-[16/10] bg-black/5 dark:bg-black/10 overflow-hidden">
+              <img src="${p.image}" alt="${p.title} screenshot"
+                   class="h-full w-full object-cover opacity-95 group-hover:scale-[1.03] transition duration-300">
+            </div>
+            <div class="p-5">
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-lg font-semibold">${p.title}</h3>
+                <span class="text-xs px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-[color:var(--stroke)] opacity-90">${p.category.toUpperCase()}</span>
+              </div>
+              <p class="mt-2 opacity-80 text-sm leading-relaxed">${p.tagline}</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <a href="${p.live}" target="_blank" rel="noreferrer"
+                   class="px-3 py-2 rounded-2xl bg-[color:var(--text)] text-[color:var(--bg)] text-sm font-semibold hover:opacity-90 transition"
+                   data-stop>
+                  Live
+                </a>
+                ${hasGit ? `
+                  <a href="${p.git}" target="_blank" rel="noreferrer"
+                     class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] text-sm hover:opacity-95 transition"
+                     data-stop>
+                    GitHub
+                  </a>
+                ` : `
+                  <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-70">
+                    No public repo
+                  </span>
+                `}
+                <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-70">
+                  Case study
+                </span>
+              </div>
+            </div>
+          </button>
+        </article>
+      `;
+        }
+
+        function renderProjects() {
+            const grid = $("#projectsGrid");
+            const list = PROJECTS.filter(p => activeFilter === "all" ? true : p.category === activeFilter);
+            grid.innerHTML = list.map(projectCard).join("");
+
+            // Prevent button click when clicking links
+            $$("[data-stop]", grid).forEach(a => a.addEventListener("click", (e) => e.stopPropagation()));
+
+            // Open modal
+            $$("button[data-open]", grid).forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const title = decodeURIComponent(btn.getAttribute("data-open"));
+                    const p = PROJECTS.find(x => x.title === title);
+                    if (p) openProjectModal(p);
+                });
+            });
+        }
+
+        // -----------------------------
+        // Case Studies render
+        // -----------------------------
+        function caseStudyCard(p) {
+            const hasGit = Boolean(p.git && p.git.trim());
+            return `
+        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+          <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+            <div>
+              <div class="font-semibold text-lg">${p.title}</div>
+              <div class="text-sm opacity-75 mt-1">${p.tech}</div>
+            </div>
+            <div class="flex gap-2">
+              <a href="${p.live}" target="_blank" rel="noreferrer"
+                class="px-3 py-2 rounded-2xl bg-[color:var(--text)] text-[color:var(--bg)] text-sm font-semibold hover:opacity-90 transition">
+                Live
+              </a>
+              ${hasGit ? `
+                <a href="${p.git}" target="_blank" rel="noreferrer"
+                  class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] text-sm hover:opacity-95 transition">
+                  GitHub
+                </a>
+              ` : ``}
+              <button type="button" class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] text-sm hover:opacity-95 transition"
+                data-open="${encodeURIComponent(p.title)}">
+                Open Modal
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-4 grid md:grid-cols-3 gap-4">
+            <div>
+              <div class="text-sm opacity-75">Problem</div>
+              <p class="mt-1 opacity-85">${p.caseStudy.problem}</p>
+            </div>
+            <div>
+              <div class="text-sm opacity-75">Approach</div>
+              <p class="mt-1 opacity-85">${p.caseStudy.approach}</p>
+            </div>
+            <div>
+              <div class="text-sm opacity-75">Result</div>
+              <p class="mt-1 opacity-85">${p.caseStudy.result}</p>
+            </div>
+          </div>
+        </div>
+      `;
+        }
+
+        // -----------------------------
+        // Quote modal
+        // 
+        const quoteModal = $("#quoteModal");
+
+        $("#openQuoteBtn")?.addEventListener("click", () => {
+            quoteModal.classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        });
+
+        $("#closeQuoteModal")?.addEventListener("click", () => {
+            quoteModal.classList.add("hidden");
+            document.body.style.overflow = "";
+        });
+
+        // Close on backdrop click
+        quoteModal?.addEventListener("click", (e) => {
+            if (e.target === quoteModal || e.target === quoteModal.firstElementChild) {
+                quoteModal.classList.add("hidden");
+                document.body.style.overflow = "";
+            }
+        });
+
+        // -----------------------------
+        // Quote form validation
+        // -----------------------------
+        const quoteForm = $("#quoteForm");
+        const quoteMsg = $("#quoteFormMsg");
+
+        function sanitizeText(str) {
+            return str
+                .replace(/[<>]/g, "") // remove HTML angle brackets
+                .replace(/\s+/g, " ") // collapse whitespace
+                .trim();
+        }
+
+        function isValidName(name) {
+            return /^[a-zA-ZÀ-ÿ' -]{2,40}$/.test(name);
+        }
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+        }
+
+        quoteForm?.addEventListener("submit", (e) => {
+            e.preventDefault(); // always prevent first so we can show messages reliably
+
+            const nameInput = quoteForm.querySelector('input[name="Name"]');
+            const emailInput = quoteForm.querySelector('input[name="Email"]');
+            const serviceInput = quoteForm.querySelector('select[name="Service"]');
+            const messageInput = quoteForm.querySelector('textarea[name="Message"]');
+
+            const name = sanitizeText(nameInput.value);
+            const email = sanitizeText(emailInput.value);
+            const service = sanitizeText(serviceInput.value);
+            const message = sanitizeText(messageInput.value);
+
+            quoteMsg.classList.add("hidden");
+            quoteMsg.classList.remove("text-red-500", "text-green-500");
+
+            if (!isValidName(name)) {
+                quoteMsg.textContent = "Please enter a valid name.";
+                quoteMsg.classList.remove("hidden");
+                quoteMsg.classList.add("text-red-500");
+                nameInput.focus();
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                quoteMsg.textContent = "Please enter a valid email address.";
+                quoteMsg.classList.remove("hidden");
+                quoteMsg.classList.add("text-red-500");
+                emailInput.focus();
+                return;
+            }
+
+            if (message.length < 10) {
+                quoteMsg.textContent = "Please provide a brief description of your request.";
+                quoteMsg.classList.remove("hidden");
+                quoteMsg.classList.add("text-red-500");
+                messageInput.focus();
+                return;
+            }
+
+            // Apply sanitized values back
+            nameInput.value = name;
+            emailInput.value = email;
+            messageInput.value = message;
+
+            quoteMsg.textContent = "Looks good — opening your email client…";
+            quoteMsg.classList.remove("hidden");
+            quoteMsg.classList.add("text-green-500");
+
+            // Build mailto body (more reliable than form mailto POST)
+            const subject = encodeURIComponent(`Quote Request — ${service || "Service"}`);
+            const body = encodeURIComponent(
+                `Name: ${name}\nEmail: ${email}\nService: ${service}\n\nMessage:\n${message}`
+            );
+
+            setTimeout(() => {
+                window.location.href = `mailto:info@giqcompsolutions.com?subject=${subject}&body=${body}`;
+            }, 250);
+        });
+
+        // -----------------------------
+        // Project modal
+        // -----------------------------
+        function openProjectModal(p) {
+            $("#modalTitle").textContent = p.title;
+            $("#modalTagline").textContent = p.tagline;
+            $("#modalDesc").textContent = p.desc;
+            $("#modalTech").textContent = p.tech;
+            $("#modalCategory").textContent = p.category.toUpperCase();
+            $("#modalImage").src = p.image;
+
+            $("#modalProblem").textContent = p.caseStudy?.problem || "—";
+            $("#modalApproach").textContent = p.caseStudy?.approach || "—";
+            $("#modalResult").textContent = p.caseStudy?.result || "—";
+
+            $("#modalLive").href = p.live;
+
+            if (p.git && p.git.trim()) {
+                $("#modalGit").classList.remove("hidden");
+                $("#modalGit").href = p.git;
+            } else {
+                $("#modalGit").classList.add("hidden");
+                $("#modalGit").href = "#"; // keep valid HTML
+            }
+
+            $("#projectModal").classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeProjectModal() {
+            $("#projectModal").classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+
+        // -----------------------------
+        // QR modal + native share
+        // -----------------------------
+        function openQRModal() {
+            $("#qrModal").classList.remove("hidden");
+            $("#shareFallback").classList.add("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeQRModal() {
+            $("#qrModal").classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+
+        async function nativeShareQR() {
+            const fileUrl = "images/Business-Card_QR-Code.png";
             try {
-                const response = await fetch(fileUrl);
-                const blob = await response.blob();
-                const file = new File([blob], 'Business-Card_QR-Code.png', {
+                const res = await fetch(fileUrl);
+                const blob = await res.blob();
+                const file = new File([blob], "Guy_Thierry_Charles_QR.png", {
                     type: blob.type
                 });
 
@@ -590,35 +1489,189 @@
                     })) {
                     await navigator.share({
                         files: [file],
-                        title: 'Guy Thierry Charles Business Card',
-                        text: 'Scan this QR Code to connect!'
+                        title: "Guy Thierry Charles — QR",
+                        text: "Scan to connect!"
                     });
                 } else {
-                    document.getElementById('shareModal').style.display = 'flex';
-                    // remove 'hidden' to show the fallback text
-                    document.getElementById('fallbackMessage').classList.remove('hidden');
+                    $("#shareFallback").classList.remove("hidden");
                 }
-            } catch (error) {
-                console.error('Sharing failed:', error);
-                document.getElementById('shareModal').style.display = 'flex';
-                document.getElementById('fallbackMessage').classList.remove('hidden');
+            } catch {
+                $("#shareFallback").classList.remove("hidden");
             }
         }
 
-        function closeModal() {
-            document.getElementById('shareModal').style.display = 'none';
-            // add 'hidden' to hide the fallback text
-            document.getElementById('fallbackMessage').classList.add('hidden');
+        // -----------------------------
+        // Scroll progress + reveal
+        // -----------------------------
+        function updateProgress() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+            $("#progress").style.width = pct + "%";
         }
 
-        // Close modal and hide message when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('shareModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
-                document.getElementById('fallbackMessage').classList.add('hidden');
+        function initScrollReveal() {
+            const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (reduce) {
+                $$(".reveal").forEach(el => el.classList.add("in"));
+                return;
             }
-        };
+
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add("in");
+                        obs.unobserve(e.target);
+                    }
+                });
+            }, {
+                threshold: 0.12
+            });
+
+            $$(".reveal").forEach(el => obs.observe(el));
+        }
+
+        // -----------------------------
+        // Init
+        // -----------------------------
+        document.addEventListener("DOMContentLoaded", () => {
+            // Theme init
+            const savedTheme = localStorage.getItem("theme") || "dark";
+            applyTheme(savedTheme);
+
+            $("#themeBtn")?.addEventListener("click", toggleTheme);
+
+            // Mobile menu (toggle + auto-close on desktop resize + icon swap)
+            const mobileMenu = $("#mobileMenu");
+            const menuBtn = $("#menuBtn");
+            const menuIcon = $("#menuIcon"); // <— we’ll add this id in HTML
+
+            function setMenuOpen(isOpen) {
+                if (!mobileMenu || !menuBtn) return;
+
+                mobileMenu.classList.toggle("hidden", !isOpen);
+                menuBtn.setAttribute("aria-expanded", String(isOpen));
+
+                // Swap icon (bars <-> xmark)
+                if (menuIcon) {
+                    menuIcon.className = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+                }
+            }
+
+            function closeMobileMenu() {
+                setMenuOpen(false);
+            }
+
+            function toggleMobileMenu() {
+                const isOpen = mobileMenu && !mobileMenu.classList.contains("hidden");
+                setMenuOpen(!isOpen);
+            }
+
+            // Toggle menu
+            menuBtn?.addEventListener("click", toggleMobileMenu);
+
+            // Close menu when a link is clicked
+            $$("#mobileMenu a").forEach((a) => a.addEventListener("click", closeMobileMenu));
+
+            // Auto-close menu when resizing to desktop (Tailwind lg = 1024px)
+            function syncMenuWithBreakpoint() {
+                if (window.innerWidth >= 1024) closeMobileMenu();
+            }
+            syncMenuWithBreakpoint();
+            window.addEventListener("resize", syncMenuWithBreakpoint);
+
+            // Optional: close on ESC
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeMobileMenu();
+            });
+
+            // Close mobile menu when clicking outside of it
+            document.addEventListener("click", (e) => {
+                if (!mobileMenu || mobileMenu.classList.contains("hidden")) return;
+
+                const clickedInsideMenu = mobileMenu.contains(e.target);
+                const clickedMenuBtn = menuBtn.contains(e.target);
+
+                if (!clickedInsideMenu && !clickedMenuBtn) {
+                    closeMobileMenu();
+                }
+            });
+
+            // ✅ View mode init (ONLY ONCE)
+            const savedView = getMode();
+            applyViewMode(savedView);
+
+            $("#recruiterModeBtn")?.addEventListener("click", () => applyViewMode("recruiter"));
+            $("#clientModeBtn")?.addEventListener("click", () => applyViewMode("client"));
+            $("#recruiterModeBtnM")?.addEventListener("click", () => applyViewMode("recruiter"));
+            $("#clientModeBtnM")?.addEventListener("click", () => applyViewMode("client"));
+
+            // Copy email
+            $("#copyEmailBtn").addEventListener("click", async () => {
+                const mode = getMode();
+                const email = (CONTACT[mode] || CONTACT.recruiter).emailDisplay;
+
+                try {
+                    await navigator.clipboard.writeText(email);
+                    toast("Email copied!");
+                } catch {
+                    toast("Copy failed — select manually.");
+                }
+            });
+
+            // QR modal
+            $("#openQRBtn")?.addEventListener("click", () => {
+                if (getMode() !== "client") return;
+                openQRModal();
+            });
+            $("#openQRBtn2").addEventListener("click", openQRModal);
+            $("#closeQRModal").addEventListener("click", closeQRModal);
+            $("#nativeShareBtn").addEventListener("click", nativeShareQR);
+
+            // Close modals on background click
+            $("#projectModal").addEventListener("click", (e) => {
+                if (e.target === $("#projectModal") || e.target === $("#projectModal").firstElementChild) closeProjectModal();
+            });
+            $("#qrModal").addEventListener("click", (e) => {
+                if (e.target === $("#qrModal") || e.target === $("#qrModal").firstElementChild) closeQRModal();
+            });
+
+            // Close modals (X + ESC)
+            $("#closeProjectModal").addEventListener("click", closeProjectModal);
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") {
+                    if (!$("#projectModal").classList.contains("hidden")) closeProjectModal();
+                    if (!$("#qrModal").classList.contains("hidden")) closeQRModal();
+                    mobileMenu.classList.add("hidden");
+                }
+            });
+
+            // Filters
+            $$(".filterBtn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    activeFilter = btn.dataset.filter;
+                    $$(".filterBtn").forEach(b => b.classList.remove("bg-[color:var(--text)]", "text-[color:var(--bg)]"));
+                    btn.classList.add("bg-[color:var(--text)]", "text-[color:var(--bg)]");
+                    renderProjects();
+                });
+            });
+            // default active filter button
+            const first = $(`.filterBtn[data-filter="all"]`);
+            first?.classList.add("bg-[color:var(--text)]", "text-[color:var(--bg)]");
+
+            renderProjects();
+
+
+            // Scroll progress
+            updateProgress();
+            window.addEventListener("scroll", updateProgress, {
+                passive: true
+            });
+            window.addEventListener("resize", updateProgress);
+
+            // Reveal
+            initScrollReveal();
+        });
     </script>
 </body>
 
