@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
     <style>
-        /* -----------------------------
-       THEME TOKENS (Dark + Light)
-    ------------------------------ */
+        /* ---------------------------
+           THEME TOKENS (Dark + Light)
+           ---------------------------- */
         :root {
             --bg: hsl(220 20% 15%);
             --panel: hsl(220 20% 20%);
@@ -159,9 +159,9 @@
             }
         }
 
-        /* -----------------------------
-       SCROLL REVEAL (simple)
-    ------------------------------ */
+        /* ----------------------
+           SCROLL REVEAL (simple)
+           ---------------------- */
         .reveal {
             opacity: 0;
             transform: translateY(16px);
@@ -177,9 +177,9 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        /* -----------------------------
-       TOGGLES (theme + mode)
-    ------------------------------ */
+        /* ----------------------
+           TOGGLES (theme + mode)
+           ---------------------- */
         .icon-pill {
             width: 42px;
             height: 42px;
@@ -246,9 +246,9 @@
             color: #2563eb;
         }
 
-        /* =============================
-   Social hover + Resume styles
-============================= */
+        /* ============================ 
+           Social hover + Resume styles
+           ============================ */
         /* --- Brand hover colors for icons (works for hero card + contact) --- */
         .socialIcon {
             transition: color .18s ease, transform .18s ease, filter .18s ease;
@@ -329,9 +329,9 @@
             background: linear-gradient(135deg, rgba(34, 211, 238, .10), transparent);
         }
 
-        /* =============================
-   CONTACT section ring hover
-============================= */
+        /* ==========================
+           CONTACT section ring hover
+           ========================== */
 
         #contact .contactSocial {
             transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
@@ -566,7 +566,10 @@
                         <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Services</h2>
                         <p class="mt-2 opacity-80">Tailored IT support and modern digital solutions—delivered with care and precision.</p>
                     </div>
-                    <button id="openQuoteBtn" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition w-fit">
+                    <button id="openQuoteBtn" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold
+         hover:opacity-90 transition
+         whitespace-nowrap shrink-0 inline-flex items-center justify-center
+         self-start md:self-auto">
                         Get a Quote
                     </button>
                 </div>
@@ -937,7 +940,7 @@
 
                 <div class="p-5 flex items-center justify-between border-b border-[color:var(--stroke)]">
                     <div class="font-semibold">Request a Quote</div>
-                    <button id="closeQuoteModal" class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition">
+                    <button id="closeQuoteModal" class="px-3 py-1.5 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
@@ -1075,9 +1078,9 @@
     </div>
 
     <script>
-        // -----------------------------
+        // ------------------------------
         // DATA (Projects + Case Studies)
-        // -----------------------------
+        // ------------------------------
         const PROJECTS = [{
                 title: "ConsultCareConnect",
                 tagline: "Virtual healthcare platform with a modern, accessible UI",
@@ -1170,9 +1173,9 @@
             }
         ];
 
-        // -----------------------------
+        // ----------
         // Utilities
-        // -----------------------------
+        // ----------
         const $ = (sel, root = document) => root.querySelector(sel);
         const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -1184,9 +1187,9 @@
             window.__toastTimer = setTimeout(() => t.classList.add("hidden"), 2200);
         }
 
-        // -----------------------------
+        // --------------------------------------
         // CONTACT PROFILES (Recruiter vs Client)
-        // -----------------------------
+        // --------------------------------------
         const CONTACT = {
             recruiter: {
                 phoneDisplay: "+1 (917) 342-5599",
@@ -1248,9 +1251,9 @@
             toast(isRecruiter ? "Recruiter view enabled" : "Client view enabled");
         }
 
-        // -----------------------------
+        // ----------------------------------
         // HERO PROFILE (Recruiter vs Client)
-        // 
+        // ----------------------------------
         const HERO_PROFILE = {
             recruiter: {
                 title: "IT Support & Web Specialist",
@@ -1317,29 +1320,65 @@
             thirdLink.setAttribute("data-action", cfg.third.action || (cfg.third.targetBlank ? "resume" : "build"));
         }
 
-        // -----------------------------
-        // Theme
-        // -----------------------------
+        // ----------------------------------------
+        // Theme (user override OR system fallback)
+        // ----------------------------------------
+        const THEME_KEY = "theme"; // when present: "dark" | "light". when missing: follow system
+        const themeMq = window.matchMedia("(prefers-color-scheme: dark)");
+
+        function getSystemTheme() {
+            return themeMq.matches ? "dark" : "light";
+        }
+
         function applyTheme(theme) {
             document.documentElement.setAttribute("data-theme", theme);
-            localStorage.setItem("theme", theme);
 
             // icon rules:
             // dark theme -> show sun (white circle) because click goes to light
             const isDark = theme === "dark";
             const iconClass = isDark ? "fa-sun" : "fa-moon";
-
             $("#themeIcon").className = `fa-solid ${iconClass}`;
         }
 
-        function toggleTheme() {
-            const current = localStorage.getItem("theme") || "dark";
-            applyTheme(current === "dark" ? "light" : "dark");
+        function initTheme() {
+            const saved = localStorage.getItem(THEME_KEY);
+            const theme = (saved === "dark" || saved === "light") ? saved : getSystemTheme();
+            applyTheme(theme);
         }
 
-        // -----------------------------
+        // Toggle always sets a user preference (takes you out of "system" mode)
+        function toggleTheme() {
+            const saved = localStorage.getItem(THEME_KEY);
+            const current = (saved === "dark" || saved === "light") ? saved : getSystemTheme();
+            const next = current === "dark" ? "light" : "dark";
+
+            localStorage.setItem(THEME_KEY, next);
+            applyTheme(next);
+        }
+
+        // Helper if later add a "System" button/menu item
+        function setSystemThemeMode() {
+            localStorage.removeItem(THEME_KEY);
+            applyTheme(getSystemTheme());
+        }
+
+        // Listen for OS theme changes (ONLY in System mode)
+        function onSystemThemeChange() {
+            if (!localStorage.getItem(THEME_KEY)) {
+                applyTheme(getSystemTheme());
+            }
+        }
+
+        if (themeMq.addEventListener) {
+            themeMq.addEventListener("change", onSystemThemeChange);
+        } else {
+            // Safari fallback
+            themeMq.addListener(onSystemThemeChange);
+        }
+
+        // ------------------------
         // Projects render + filter
-        // -----------------------------
+        // ------------------------
         let activeFilter = "all";
 
         function projectCard(p) {
@@ -1400,9 +1439,9 @@
             });
         }
 
-        // -----------------------------
+        // -------------------
         // Case Studies render
-        // -----------------------------
+        // -------------------
         function caseStudyCard(p) {
             const hasGit = Boolean(p.git && p.git.trim());
             return `
@@ -1448,9 +1487,9 @@
       `;
         }
 
-        // -----------------------------
+        // ------------
         // Quote modal
-        // 
+        // ------------
         const quoteModal = $("#quoteModal");
 
         $("#openQuoteBtn")?.addEventListener("click", () => {
@@ -1471,9 +1510,9 @@
             }
         });
 
-        // -----------------------------
+        // ----------------------
         // Quote form validation
-        // -----------------------------
+        // ----------------------
         const quoteForm = $("#quoteForm");
         const quoteMsg = $("#quoteFormMsg");
 
@@ -1586,9 +1625,9 @@
             document.body.style.overflow = "";
         }
 
-        // -----------------------------
+        // ------------------------
         // QR modal + native share
-        // -----------------------------
+        // ------------------------
         function openQRModal() {
             $("#qrModal").classList.remove("hidden");
             $("#shareFallback").classList.add("hidden");
@@ -1625,9 +1664,9 @@
             }
         }
 
-        // -----------------------------
+        // -------------------------
         // Scroll progress + reveal
-        // -----------------------------
+        // -------------------------
         function updateProgress() {
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1656,15 +1695,12 @@
             $$(".reveal").forEach(el => obs.observe(el));
         }
 
-        // -----------------------------
+        // -----
         // Init
-        // -----------------------------
+        // -----
         document.addEventListener("DOMContentLoaded", () => {
-             // Theme init (use saved preference, otherwise follow system setting)
-            const savedTheme = localStorage.getItem("theme");
-            const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
-
+            // Theme init (saved preference OR system)
+            initTheme();
             $("#themeBtn")?.addEventListener("click", toggleTheme);
 
             // Mobile menu (toggle + auto-close on desktop resize + icon swap)
@@ -1723,7 +1759,7 @@
                 }
             });
 
-            // ✅ View mode init (ONLY ONCE)
+            // View mode init (ONLY ONCE)
             const savedView = getMode();
             applyViewMode(savedView);
 
