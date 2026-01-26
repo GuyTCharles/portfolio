@@ -1660,9 +1660,10 @@
         // Init
         // -----------------------------
         document.addEventListener("DOMContentLoaded", () => {
-            // Theme init
-            const savedTheme = localStorage.getItem("theme") || "dark";
-            applyTheme(savedTheme);
+             // Theme init (use saved preference, otherwise follow system setting)
+            const savedTheme = localStorage.getItem("theme");
+            const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
 
             $("#themeBtn")?.addEventListener("click", toggleTheme);
 
