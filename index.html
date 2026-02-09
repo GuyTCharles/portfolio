@@ -31,7 +31,6 @@
 
             --glass-bg: rgba(255, 255, 255, .06);
             --glass-stroke: rgba(255, 255, 255, .10);
-            rgba(2, 6, 23, .06);
             /* light mode hover */
             --shadow: 0 20px 60px rgba(0, 0, 0, .28);
         }
@@ -428,6 +427,7 @@
                             <button id="recruiterModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold" aria-label="Recruiter view">
                                 Recruiter
                             </button>
+
                             <button id="clientModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold" aria-label="Client view">
                                 Client
                             </button>
@@ -449,16 +449,6 @@
             <!-- Mobile menu -->
             <div id="mobileMenu" class="hidden mt-3 glass rounded-2xl p-3 shadow-[var(--shadow)]">
                 <div class="grid gap-2">
-                    <!--
-                    <div class="flex gap-2">
-                        <button id="recruiterModeBtnM" type="button" class="w-1/2 px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold">
-                            Recruiter
-                        </button>
-                        <button id="clientModeBtnM" type="button" class="w-1/2 px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold">
-                            Client
-                        </button>
-                    </div>
-                    -->
                     <a data-view="client-only" class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#services">
                         Services
                     </a>
@@ -992,7 +982,24 @@
                 </div>
 
                 <div class="p-5 sm:p-6 grid gap-5 overflow-y-auto">
-                    <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Project preview" class="w-full rounded-2xl border border-[color:var(--glassStroke)] bg-black/5" />
+
+                    <!-- Image container w/ simple carousel flip (light/dark) -->
+                    <div class="relative">
+                        <img id="modalImage" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Project preview" class="w-full rounded-2xl border border-[color:var(--glass-stroke)] bg-black/5" />
+
+                        <!-- Carousel controls (hidden unless project has 2+ images) -->
+                        <button id="modalPrev" type="button" class="hidden absolute left-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" aria-label="Previous image">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+
+                        <button id="modalNext" type="button" class="hidden absolute right-3 top-1/2 -translate-y-1/2 px-2 py-1 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" aria-label="Next image">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+
+                        <div id="modalImgIndicator" class="hidden absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full glass border border-[color:var(--stroke)] text-xs opacity-90">
+                            1 / 1
+                        </div>
+                    </div>
 
                     <div class="grid sm:grid-cols-2 gap-4">
                         <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
@@ -1036,6 +1043,7 @@
                             GitHub
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -1078,22 +1086,26 @@
     </div>
 
     <script>
-        // ------------------------------
+        // -----------------------------
         // DATA (Projects + Case Studies)
-        // ------------------------------
+        // -----------------------------
         const PROJECTS = [{
-                title: "ConsultCareConnect",
-                tagline: "Virtual healthcare platform with a modern, accessible UI",
+                title: "CLT Furniture",
+                tagline: "Modern furniture showroom website focused on clarity, usability, and performance",
                 category: "web",
-                desc: "A virtual healthcare platform connecting users with personalized support, symptom-checking tools, and secure record management. Includes dark mode, Google Custom Search, and a dynamic UI designed for real-world telehealth use.",
-                tech: "HTML, CSS, JavaScript, LocalStorage, Google Search API",
-                image: "images/ConsultCareConnect_Website_Project.png",
-                live: "https://guytcharles.github.io/ConsultCareConnect/homepage.html",
-                git: "https://github.com/GuyTCharles/ConsultCareConnect",
+                desc: "A modern furniture showroom website designed to deliver a clean, intuitive browsing experience. The site emphasizes clear information hierarchy, responsive layout, strong readability, and a refined light and dark mode interface for comfortable viewing across all devices.",
+                tech: "HTML, CSS, JavaScript, Responsive Web Design, Light/Dark Mode UI",
+                image: "images/CLT-Furniture_Light.png", // card preview image
+                images: [
+                    "images/CLT-Furniture_Light.png",
+                    "images/CLT-Furniture_Dark.png"
+                ],
+                live: "https://www.clt-furniture.com",
+                git: "",
                 caseStudy: {
-                    problem: "Users needed a simple, accessible way to explore telehealth features without a complicated UI.",
-                    approach: "Built a responsive interface with dark mode, clear navigation, and search-driven content discovery.",
-                    result: "A clean demo platform that showcases telehealth UX patterns and scalable UI components."
+                    problem: "The client needed a modern, user-friendly furniture website that was easy to navigate, visually consistent, and optimized for mobile users while supporting both light and dark viewing preferences.",
+                    approach: "Designed a structured, section-based layout with responsive grids, consistent spacing, and a cohesive theme system. The interface was optimized for usability, readability, and performance across devices.",
+                    result: "A polished, showroom-style website that feels modern, loads efficiently, and provides a smooth, accessible browsing experience in both light and dark modes."
                 }
             },
             {
@@ -1112,6 +1124,25 @@
                 }
             },
             {
+                title: "ConsultCareConnect",
+                tagline: "Virtual healthcare platform with a modern, accessible UI",
+                category: "web",
+                desc: "A virtual healthcare platform connecting users with personalized support, symptom-checking tools, and secure record management. Includes dark mode, Google Custom Search, and a dynamic UI designed for real-world telehealth use.",
+                tech: "HTML, CSS, JavaScript, LocalStorage, Google Search API",
+                image: "images/ConsultCareConnect_Website_Project_Light.png", // card preview image (light)
+                images: [
+                    "images/ConsultCareConnect_Website_Project_Light.png",
+                    "images/ConsultCareConnect_Website_Project_Dark.png"
+                ],
+                live: "https://guytcharles.github.io/ConsultCareConnect/homepage.html",
+                git: "https://github.com/GuyTCharles/ConsultCareConnect",
+                caseStudy: {
+                    problem: "Users needed a simple, accessible way to explore telehealth features without a complicated interface.",
+                    approach: "Built a responsive UI with dark mode, clear navigation, and search-driven content discovery to support usability and accessibility.",
+                    result: "A clean, modern demo platform that showcases telehealth UX patterns and reusable UI components."
+                }
+            },
+            {
                 title: "Pacific Trails Resort",
                 tagline: "Responsive resort website with interactive experiences",
                 category: "web",
@@ -1124,21 +1155,6 @@
                     problem: "A resort site needed a mobile-friendly experience that still felt immersive and informative.",
                     approach: "Implemented responsive layout, interactive navigation, and content sections designed for fast scanning.",
                     result: "A polished demo site that highlights UI structure, responsiveness, and user flow."
-                }
-            },
-            {
-                title: "Bug Report App",
-                tagline: "Track bugs fast with a simple, structured workflow",
-                category: "fullstack",
-                desc: "A web-based application for reporting, tracking, and managing software bugs. Built for clarity and speed to improve collaboration and resolution times.",
-                tech: "HTML, CSS, JavaScript, PHP, MySQL",
-                image: "images/Bug-Report-App-Project.png",
-                live: "https://bugreportapp.sytes.net",
-                git: "https://github.com/GuyTCharles/bug-report-app",
-                caseStudy: {
-                    problem: "Teams needed a straightforward way to report and track issues without tool overload.",
-                    approach: "Designed a clean CRUD workflow with structured fields, simple status updates, and persistence.",
-                    result: "A lightweight tracker that supports faster reporting and clearer issue resolution flow."
                 }
             },
             {
@@ -1173,9 +1189,9 @@
             }
         ];
 
-        // ----------
+        // -----------------------------
         // Utilities
-        // ----------
+        // -----------------------------
         const $ = (sel, root = document) => root.querySelector(sel);
         const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
@@ -1187,9 +1203,9 @@
             window.__toastTimer = setTimeout(() => t.classList.add("hidden"), 2200);
         }
 
-        // --------------------------------------
+        // -----------------------------
         // CONTACT PROFILES (Recruiter vs Client)
-        // --------------------------------------
+        // -----------------------------
         const CONTACT = {
             recruiter: {
                 phoneDisplay: "+1 (917) 342-5599",
@@ -1209,16 +1225,21 @@
 
         function normalizeMode(mode) {
             const m = String(mode || "").toLowerCase().trim();
-            return m === "client" ? "client" : "recruiter";
+            return m === "client" ? "client" : "recruiter"; // default to recruiter
         }
 
         function getMode() {
-            return normalizeMode(localStorage.getItem("viewMode") || "recruiter");
+            return "recruiter"; // always start in client view
         }
+
+        /*  
+        function getMode() {
+            return normalizeMode(localStorage.getItem("viewMode") || "recruiter");
+        } */
 
         function applyContactByMode(mode) {
             const m = normalizeMode(mode);
-            const cfg = CONTACT[m] || CONTACT.recruiter;
+            const cfg = CONTACT[m] || CONTACT.client;
 
             $("#contactCallBtn")?.setAttribute("href", `tel:${cfg.phoneTel}`);
             $("#contactEmailBtn")?.setAttribute("href", `mailto:${cfg.emailMailto}`);
@@ -1251,9 +1272,9 @@
             toast(isRecruiter ? "Recruiter view enabled" : "Client view enabled");
         }
 
-        // ----------------------------------
+        // -----------------------------
         // HERO PROFILE (Recruiter vs Client)
-        // ----------------------------------
+        // 
         const HERO_PROFILE = {
             recruiter: {
                 title: "IT Support & Web Specialist",
@@ -1282,7 +1303,7 @@
 
         function applyHeroByMode(mode) {
             const m = normalizeMode(mode);
-            const cfg = HERO_PROFILE[m] || HERO_PROFILE.recruiter;
+            const cfg = HERO_PROFILE[m] || HERO_PROFILE.client;
 
             $("#heroRoleTitle") && ($("#heroRoleTitle").textContent = cfg.title);
             $("#heroRoleSub") && ($("#heroRoleSub").textContent = cfg.sub);
@@ -1356,7 +1377,7 @@
             applyTheme(next);
         }
 
-        // Helper if later add a "System" button/menu item
+        // Optional helper if later you add a "System" button/menu item
         function setSystemThemeMode() {
             localStorage.removeItem(THEME_KEY);
             applyTheme(getSystemTheme());
@@ -1376,9 +1397,9 @@
             themeMq.addListener(onSystemThemeChange);
         }
 
-        // ------------------------
+        // -----------------------------
         // Projects render + filter
-        // ------------------------
+        // -----------------------------
         let activeFilter = "all";
 
         function projectCard(p) {
@@ -1439,9 +1460,9 @@
             });
         }
 
-        // -------------------
+        // -----------------------------
         // Case Studies render
-        // -------------------
+        // -----------------------------
         function caseStudyCard(p) {
             const hasGit = Boolean(p.git && p.git.trim());
             return `
@@ -1487,9 +1508,9 @@
       `;
         }
 
-        // ------------
+        // -----------------------------
         // Quote modal
-        // ------------
+        // 
         const quoteModal = $("#quoteModal");
 
         $("#openQuoteBtn")?.addEventListener("click", () => {
@@ -1510,9 +1531,9 @@
             }
         });
 
-        // ----------------------
+        // -----------------------------
         // Quote form validation
-        // ----------------------
+        // -----------------------------
         const quoteForm = $("#quoteForm");
         const quoteMsg = $("#quoteFormMsg");
 
@@ -1592,6 +1613,24 @@
         });
 
         // -----------------------------
+        // Modal image carousel (light / dark)
+        // -----------------------------
+        let modalImages = [];
+        let modalImageIndex = 0;
+
+        function setModalImageByIndex(i) {
+            if (!modalImages.length) return;
+
+            modalImageIndex = (i + modalImages.length) % modalImages.length;
+            $("#modalImage").src = modalImages[modalImageIndex];
+
+            const indicator = $("#modalImgIndicator");
+            if (indicator) {
+                indicator.textContent = `${modalImageIndex + 1} / ${modalImages.length}`;
+            }
+        }
+
+        // -----------------------------
         // Project modal
         // -----------------------------
         function openProjectModal(p) {
@@ -1600,7 +1639,21 @@
             $("#modalDesc").textContent = p.desc;
             $("#modalTech").textContent = p.tech;
             $("#modalCategory").textContent = p.category.toUpperCase();
-            $("#modalImage").src = p.image;
+
+            // Carousel support (2+ images)
+            const prevBtn = $("#modalPrev");
+            const nextBtn = $("#modalNext");
+            const indicator = $("#modalImgIndicator");
+
+            modalImages = Array.isArray(p.images) && p.images.length ? p.images : [p.image];
+            modalImageIndex = 0;
+
+            setModalImageByIndex(0);
+
+            const showCarousel = modalImages.length > 1;
+            prevBtn?.classList.toggle("hidden", !showCarousel);
+            nextBtn?.classList.toggle("hidden", !showCarousel);
+            indicator?.classList.toggle("hidden", !showCarousel);
 
             $("#modalProblem").textContent = p.caseStudy?.problem || "—";
             $("#modalApproach").textContent = p.caseStudy?.approach || "—";
@@ -1625,9 +1678,9 @@
             document.body.style.overflow = "";
         }
 
-        // ------------------------
+        // -----------------------------
         // QR modal + native share
-        // ------------------------
+        // -----------------------------
         function openQRModal() {
             $("#qrModal").classList.remove("hidden");
             $("#shareFallback").classList.add("hidden");
@@ -1664,9 +1717,9 @@
             }
         }
 
-        // -------------------------
+        // -----------------------------
         // Scroll progress + reveal
-        // -------------------------
+        // -----------------------------
         function updateProgress() {
             const scrollTop = window.scrollY || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -1759,7 +1812,7 @@
                 }
             });
 
-            // View mode init (ONLY ONCE)
+            // ✅ View mode init (ONLY ONCE)
             const savedView = getMode();
             applyViewMode(savedView);
 
@@ -1805,6 +1858,18 @@
 
             renderProjects();
 
+            // -----------------------------
+            // Modal image carousel controls
+            // -----------------------------
+            $("#modalPrev")?.addEventListener("click", (e) => {
+                e.stopPropagation();
+                setModalImageByIndex(modalImageIndex - 1);
+            });
+
+            $("#modalNext")?.addEventListener("click", (e) => {
+                e.stopPropagation();
+                setModalImageByIndex(modalImageIndex + 1);
+            });
 
             // Scroll progress
             updateProgress();
