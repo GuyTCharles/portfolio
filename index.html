@@ -222,27 +222,30 @@
             display: none !important;
         }
 
-        /* --- Hero "Visit GiqComp Solutions" subtle blue accent --- */
+        /* --- Hero "Visit GiqComp Solutions" (cyan/teal accent) --- */
         #heroThirdLink[data-action="visit"] {
             background: linear-gradient(135deg,
-                    rgba(59, 130, 246, .12),
-                    /* soft blue */
+                    rgba(34, 211, 238, .14),
+                    rgba(34, 211, 238, .06),
                     transparent);
         }
 
         #heroThirdLink[data-action="visit"] .heroActionIcon {
-            color: rgba(59, 130, 246, .95);
-            filter: drop-shadow(0 0 10px rgba(59, 130, 246, .25));
+            color: #22d3ee;
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, .22));
         }
 
+        /* Light mode */
         html[data-theme="light"] #heroThirdLink[data-action="visit"] {
             background: linear-gradient(135deg,
-                    rgba(37, 99, 235, .10),
+                    rgba(8, 145, 178, .12),
+                    rgba(8, 145, 178, .05),
                     transparent);
         }
 
         html[data-theme="light"] #heroThirdLink[data-action="visit"] .heroActionIcon {
-            color: #2563eb;
+            color: #0891b2;
+            filter: drop-shadow(0 0 10px rgba(8, 145, 178, .16));
         }
 
         /* ============================ 
@@ -443,40 +446,45 @@
            Website button
            ============== */
         #contact .accentBtn--website {
-            /* Default (dark mode) */
             background: linear-gradient(135deg,
-                    rgba(96, 165, 250, .14),
-                    rgba(96, 165, 250, .06),
+                    rgba(34, 211, 238, .14),
+                    rgba(34, 211, 238, .06),
                     transparent);
+
+            transition: border-color .18s ease,
+                box-shadow .18s ease,
+                transform .18s ease,
+                opacity .18s ease;
         }
 
         #contact .accentBtn--website:hover {
-            border-color: rgba(96, 165, 250, .45);
-            box-shadow: 0 0 0 3px rgba(96, 165, 250, .14);
+            border-color: rgba(34, 211, 238, .45);
+            box-shadow: 0 0 0 3px rgba(34, 211, 238, .14);
+            transform: translateY(-1px);
         }
 
         /* Keep icon colored even when not hovering */
         #contact .accentBtn--website i {
-            color: #60a5fa;
-            filter: drop-shadow(0 0 10px rgba(96, 165, 250, .18));
+            color: #22d3ee;
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, .18));
         }
 
-        /* Light mode Website */
+        /* Light mode */
         html[data-theme="light"] #contact .accentBtn--website {
             background: linear-gradient(135deg,
-                    rgba(37, 99, 235, .12),
-                    rgba(37, 99, 235, .05),
+                    rgba(8, 145, 178, .12),
+                    rgba(8, 145, 178, .05),
                     transparent);
         }
 
         html[data-theme="light"] #contact .accentBtn--website:hover {
-            border-color: rgba(37, 99, 235, .45);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, .14);
+            border-color: rgba(8, 145, 178, .45);
+            box-shadow: 0 0 0 3px rgba(8, 145, 178, .14);
         }
 
         html[data-theme="light"] #contact .accentBtn--website i {
-            color: #2563eb;
-            filter: drop-shadow(0 0 10px rgba(37, 99, 235, .14));
+            color: #0891b2;
+            filter: drop-shadow(0 0 10px rgba(8, 145, 178, .14));
         }
     </style>
 
