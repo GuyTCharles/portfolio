@@ -253,33 +253,6 @@
             transition: color .18s ease, transform .18s ease, filter .18s ease;
         }
 
-        /* Dark mode: slightly lighter LinkedIn blue */
-        .socialLink:hover .socialIcon-linkedin {
-            color: #3b82f6;
-            /* softened LinkedIn blue for dark backgrounds */
-            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .30));
-        }
-
-        /* Light mode: official LinkedIn blue */
-        html[data-theme="light"] .socialLink:hover .socialIcon-linkedin {
-            color: #0A66C2;
-            /* official LinkedIn blue */
-            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .22));
-        }
-
-        /* GitHub (make it visibly change) */
-        .socialLink:hover .socialIcon-github {
-            color: #a78bfa;
-            /* violet/purple */
-            filter: drop-shadow(0 0 10px rgba(167, 139, 250, .30));
-        }
-
-        html[data-theme="light"] .socialLink:hover .socialIcon-github {
-            color: #6d28d9;
-            /* deeper violet */
-            filter: drop-shadow(0 0 10px rgba(109, 40, 217, .22));
-        }
-
         /* Website / Globe (soft blue logic like GitHub) */
         .socialLink:hover .socialIcon-website {
             color: #60a5fa;
@@ -371,6 +344,139 @@
         html[data-theme="light"] #contact .contactSocial--website:hover {
             border-color: rgba(37, 99, 235, .55);
             box-shadow: 0 0 0 3px rgba(37, 99, 235, .14);
+        }
+
+
+        /* --------------
+           Accent buttons
+           -------------- */
+        #contact .accentBtn {
+            /* same “feel” as resume button */
+            transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease, opacity .18s ease;
+        }
+
+        #contact .accentBtn:hover {
+            transform: translateY(-1px);
+        }
+
+        /* ===============
+           LinkedIn button
+           =============== */
+        #contact .accentBtn--linkedin {
+            /* Default (dark mode) */
+            background: linear-gradient(135deg,
+                    rgba(59, 130, 246, .14),
+                    rgba(59, 130, 246, .06),
+                    transparent);
+        }
+
+        #contact .accentBtn--linkedin:hover {
+            border-color: rgba(59, 130, 246, .45);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, .14);
+        }
+
+        /* Keep icon colored even when not hovering */
+        #contact .accentBtn--linkedin i {
+            color: #3b82f6;
+            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .18));
+        }
+
+        /* Light mode LinkedIn */
+        html[data-theme="light"] #contact .accentBtn--linkedin {
+            background: linear-gradient(135deg,
+                    rgba(10, 102, 194, .12),
+                    rgba(10, 102, 194, .05),
+                    transparent);
+        }
+
+        html[data-theme="light"] #contact .accentBtn--linkedin:hover {
+            border-color: rgba(10, 102, 194, .45);
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, .14);
+        }
+
+        html[data-theme="light"] #contact .accentBtn--linkedin i {
+            color: #0A66C2;
+            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .14));
+        }
+
+
+        /* =============
+           GitHub button
+           ============= */
+        #contact .accentBtn--github {
+            /* Default (dark mode) */
+            background: linear-gradient(135deg,
+                    rgba(167, 139, 250, .14),
+                    rgba(167, 139, 250, .06),
+                    transparent);
+        }
+
+        #contact .accentBtn--github:hover {
+            border-color: rgba(167, 139, 250, .45);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, .14);
+        }
+
+        #contact .accentBtn--github i {
+            color: #a78bfa;
+            filter: drop-shadow(0 0 10px rgba(167, 139, 250, .18));
+        }
+
+        /* Light mode GitHub */
+        html[data-theme="light"] #contact .accentBtn--github {
+            background: linear-gradient(135deg,
+                    rgba(109, 40, 217, .10),
+                    rgba(109, 40, 217, .05),
+                    transparent);
+        }
+
+        html[data-theme="light"] #contact .accentBtn--github:hover {
+            border-color: rgba(109, 40, 217, .45);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, .14);
+        }
+
+        html[data-theme="light"] #contact .accentBtn--github i {
+            color: #6d28d9;
+            filter: drop-shadow(0 0 10px rgba(109, 40, 217, .14));
+        }
+
+        /* ==============
+           Website button
+           ============== */
+        #contact .accentBtn--website {
+            /* Default (dark mode) */
+            background: linear-gradient(135deg,
+                    rgba(96, 165, 250, .14),
+                    rgba(96, 165, 250, .06),
+                    transparent);
+        }
+
+        #contact .accentBtn--website:hover {
+            border-color: rgba(96, 165, 250, .45);
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, .14);
+        }
+
+        /* Keep icon colored even when not hovering */
+        #contact .accentBtn--website i {
+            color: #60a5fa;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, .18));
+        }
+
+        /* Light mode Website */
+        html[data-theme="light"] #contact .accentBtn--website {
+            background: linear-gradient(135deg,
+                    rgba(37, 99, 235, .12),
+                    rgba(37, 99, 235, .05),
+                    transparent);
+        }
+
+        html[data-theme="light"] #contact .accentBtn--website:hover {
+            border-color: rgba(37, 99, 235, .45);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .14);
+        }
+
+        html[data-theme="light"] #contact .accentBtn--website i {
+            color: #2563eb;
+            filter: drop-shadow(0 0 10px rgba(37, 99, 235, .14));
         }
     </style>
 
@@ -873,11 +979,11 @@
 
                         <div class="mt-4 flex flex-wrap gap-2">
                             <!-- Recruiter-only button -->
-                            <a id="contactLinkedInBtn" class="contactSocial socialLink contactSocial--linkedin px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" rel="noreferrer">
+                            <a id="contactLinkedInBtn" class="contactSocial socialLink contactSocial--linkedin accentBtn accentBtn--linkedin px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" rel="noreferrer">
                                 <i class="fa-brands fa-linkedin mr-2 socialIcon socialIcon-linkedin"></i>LinkedIn
                             </a>
                             <!-- Recruiter-only button -->
-                            <a class="contactSocial socialLink contactSocial--github px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://github.com/GuyTCharles" target="_blank" rel="noreferrer">
+                            <a class="contactSocial socialLink contactSocial--github accentBtn accentBtn--github px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://github.com/GuyTCharles" target="_blank" rel="noreferrer">
                                 <i class="fa-brands fa-github mr-2 socialIcon socialIcon-github"></i>GitHub
                             </a>
                             <!-- Recruiter-only button -->
@@ -885,8 +991,9 @@
                                 <i class="fa-solid fa-download mr-2"></i>Download Resume
                             </a>
                             <!-- Client-only button -->
-                            <a data-view="client-only" class="contactSocial socialLink contactSocial--website px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.giqcompsolutions.com" target="_blank" rel="noreferrer">
-                                <i class="fa-solid fa-globe mr-2 socialIcon socialIcon-website"></i>GiqCompSolutions.com
+                            <a data-view="client-only" class="contactSocial socialLink accentBtn accentBtn--website px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.giqcompsolutions.com" target="_blank" rel="noreferrer">
+                                <i class="fa-solid fa-globe mr-2 socialIcon socialIcon-website"></i>
+                                GiqCompSolutions.com
                             </a>
                         </div>
                     </div>
