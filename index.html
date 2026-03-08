@@ -295,6 +295,15 @@
             color: var(--text);
         }
 
+        #themeIcon {
+            display: inline-block;
+            transition: transform .18s ease;
+        }
+
+        html[data-theme="light"] #themeIcon.fa-moon {
+            transform: scaleX(-1);
+        }
+
         .mode-pill {
             min-width: 6.5rem;
             border-radius: var(--button-radius);
