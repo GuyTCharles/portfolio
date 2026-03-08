@@ -4,9 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Guy Thierry Charles — Portfolio </title>
+    <title>Guy Thierry Charles | Portfolio</title>
+    <meta name="description" content="Portfolio of Guy Thierry Charles featuring IT support, secure web design, automation, and selected client and product work." />
+    <meta name="theme-color" content="#07111f" />
+    <meta property="og:title" content="Guy Thierry Charles | IT Support & Web Portfolio" />
+    <meta property="og:description" content="IT support, modern websites, automation, and selected projects by Guy Thierry Charles." />
+    <meta property="og:image" content="images/logo.png" />
 
-    <link rel="icon" href="images/initial-logo.png" type="image/png" />
+    <link rel="icon" href="images/web-icon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
@@ -15,46 +23,40 @@
            THEME TOKENS (Dark + Light)
            ---------------------------- */
         :root {
-            --bg: hsl(220 20% 15%);
-            --panel: hsl(220 20% 20%);
-            --panel2: hsl(220 18% 24%);
-            --text: hsl(0 0% 96%);
-            --muted: hsl(220 10% 75%);
-            --stroke: hsl(220 18% 28%);
-            --accent: hsl(160 84% 39%);
-            --accent2: hsl(190 90% 45%);
-            --ring: rgba(34, 197, 94, .35);
+            --bg: hsl(221 58% 8%);
+            --panel: hsl(221 43% 12%);
+            --panel2: hsl(221 30% 16%);
+            --text: hsl(210 40% 98%);
+            --muted: hsl(215 22% 73%);
+            --stroke: rgba(148, 163, 184, .16);
+            --accent: hsl(153 72% 47%);
+            --accent2: hsl(191 95% 62%);
+            --ring: rgba(34, 211, 238, .30);
             --hover: rgba(255, 255, 255, .08);
-            /* subtle hover in dark */
-            --hover-strong: rgba(255, 255, 255, .12);
-            /* slightly stronger (optional) */
-
-            --glass-bg: rgba(255, 255, 255, .06);
-            --glass-stroke: rgba(255, 255, 255, .10);
-            /* light mode hover */
-            --shadow: 0 20px 60px rgba(0, 0, 0, .28);
+            --hover-strong: rgba(255, 255, 255, .14);
+            --glass-bg: linear-gradient(180deg, rgba(8, 14, 27, .86), rgba(8, 14, 27, .64));
+            --glass-stroke: rgba(255, 255, 255, .08);
+            --shadow: 0 24px 80px rgba(2, 8, 23, .42);
+            --button-radius: 1rem;
+            --button-radius-tight: .9rem;
         }
 
         /* Light theme overrides */
         html[data-theme="light"] {
-            --bg: hsl(210 40% 98%);
+            --bg: hsl(210 33% 98%);
             --panel: hsl(0 0% 100%);
-            --panel2: hsl(210 40% 96%);
-            --text: hsl(222 47% 11%);
-            --muted: hsl(215 16% 35%);
-            --stroke: hsl(215 20% 88%);
-            --accent: hsl(160 84% 34%);
-            --accent2: hsl(200 95% 36%);
-            --ring: rgba(16, 185, 129, .28);
-            --hover: rgba(2, 6, 23, .06);
-            /* subtle hover in light */
-            --hover-strong: rgba(2, 6, 23, .10);
-            /* slightly stronger (optional) */
-
-            --glass-bg: rgba(255, 255, 255, .75);
-            --glass-stroke: rgba(15, 23, 42, .10);
-
-            --shadow: 0 20px 60px rgba(2, 6, 23, .10);
+            --panel2: hsl(210 33% 96%);
+            --text: hsl(222 47% 12%);
+            --muted: hsl(215 16% 38%);
+            --stroke: rgba(15, 23, 42, .09);
+            --accent: hsl(158 78% 35%);
+            --accent2: hsl(199 93% 40%);
+            --ring: rgba(14, 165, 233, .24);
+            --hover: rgba(15, 23, 42, .06);
+            --hover-strong: rgba(15, 23, 42, .10);
+            --glass-bg: linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(248, 250, 252, .90));
+            --glass-stroke: rgba(15, 23, 42, .08);
+            --shadow: 0 28px 72px rgba(15, 23, 42, .10);
         }
 
         html {
@@ -62,10 +64,17 @@
         }
 
         body {
-            background: var(--bg);
+            font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
+            letter-spacing: -.01em;
+            background:
+                radial-gradient(880px 420px at 0% 0%, rgba(34, 197, 94, .10), transparent 60%),
+                radial-gradient(720px 420px at 100% 8%, rgba(34, 211, 238, .12), transparent 56%),
+                radial-gradient(860px 420px at 50% 100%, rgba(59, 130, 246, .08), transparent 60%),
+                var(--bg);
             color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
+            text-rendering: optimizeLegibility;
         }
 
         html,
@@ -73,7 +82,20 @@
             width: 100%;
             max-width: 100%;
             margin: 0;
-            background: var(--bg);
+            background-color: var(--bg);
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: "Space Grotesk", "Manrope", sans-serif;
+            letter-spacing: -.035em;
+        }
+
+        ::selection {
+            background: rgba(56, 189, 248, .22);
+            color: var(--text);
         }
 
         #services,
@@ -99,30 +121,31 @@
         .bg-glow:before {
             content: "";
             position: absolute;
-            inset: -40%;
+            inset: -35%;
             background:
-                radial-gradient(650px 320px at 20% 20%, rgba(34, 197, 94, .16), transparent 60%),
-                radial-gradient(700px 360px at 85% 30%, rgba(34, 211, 238, .12), transparent 60%),
-                radial-gradient(520px 300px at 55% 85%, rgba(59, 130, 246, .10), transparent 60%);
-            filter: blur(12px);
+                radial-gradient(620px 320px at 16% 18%, rgba(34, 197, 94, .18), transparent 62%),
+                radial-gradient(820px 420px at 88% 12%, rgba(34, 211, 238, .16), transparent 64%),
+                radial-gradient(760px 360px at 52% 88%, rgba(59, 130, 246, .11), transparent 60%);
+            filter: blur(18px);
             pointer-events: none;
             z-index: -1;
         }
 
         html[data-theme="light"] .bg-glow:before {
             background:
-                radial-gradient(650px 320px at 20% 20%, rgba(16, 185, 129, .14), transparent 60%),
-                radial-gradient(700px 360px at 85% 30%, rgba(14, 165, 233, .10), transparent 60%),
-                radial-gradient(520px 300px at 55% 85%, rgba(59, 130, 246, .08), transparent 60%);
-            filter: blur(14px);
+                radial-gradient(620px 320px at 16% 18%, rgba(16, 185, 129, .12), transparent 62%),
+                radial-gradient(820px 420px at 88% 12%, rgba(14, 165, 233, .11), transparent 64%),
+                radial-gradient(760px 360px at 52% 88%, rgba(59, 130, 246, .07), transparent 60%);
+            filter: blur(16px);
         }
 
         /* Glass surface */
         .glass {
             background: var(--glass-bg);
             border: 1px solid var(--glass-stroke);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: var(--shadow);
         }
 
         :focus-visible {
@@ -176,6 +199,69 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        .project-modal-shell {
+            min-height: 100%;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .project-modal-frame {
+            width: min(100%, 72rem);
+            max-height: min(92vh, 60rem);
+        }
+
+        .qr-modal-shell {
+            min-height: 100%;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .qr-modal-frame {
+            width: min(100%, 34rem);
+        }
+
+        .qr-modal-preview {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            border-radius: 1.4rem;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--glass-stroke);
+        }
+
+        html[data-theme="light"] .qr-modal-preview {
+            background: rgba(248, 250, 252, .88);
+        }
+
+        .qr-modal-image {
+            width: min(100%, 17.5rem);
+            aspect-ratio: 1;
+            object-fit: contain;
+            border-radius: 1.15rem;
+            border: 1px solid var(--glass-stroke);
+            background: rgba(0, 0, 0, .06);
+        }
+
+        html[data-theme="light"] .qr-modal-image {
+            background: rgba(15, 23, 42, .04);
+        }
+
+        @media (min-width: 640px) {
+            .project-modal-shell {
+                padding: 1.5rem;
+            }
+
+            .qr-modal-shell {
+                padding: 1.5rem;
+            }
+        }
+
         /* ----------------------
            TOGGLES (theme + mode)
            ---------------------- */
@@ -185,35 +271,43 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border-radius: 999px;
+            border-radius: var(--button-radius-tight);
             border: 1px solid var(--glass-stroke);
-            transition: transform .18s ease, background .2s ease;
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+            transition: transform .18s ease, background .2s ease, border-color .2s ease;
         }
 
         .icon-pill:hover {
             transform: translateY(-1px);
+            border-color: rgba(103, 232, 249, .18);
         }
 
         /* Dark mode needs: white circle + sun icon */
         html[data-theme="dark"] .theme-pill {
-            background: #fff;
-            color: #0b1220;
+            background: rgba(255, 255, 255, .08);
+            color: var(--text);
         }
 
         /* Light mode: dark circle + moon icon */
         html[data-theme="light"] .theme-pill {
-            background: #0b1220;
-            color: #fff;
-        }
-
-        .mode-pill {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, .74);
             color: var(--text);
         }
 
+        .mode-pill {
+            min-width: 6.5rem;
+            border-radius: var(--button-radius);
+            background: transparent;
+            color: var(--muted);
+            border-color: transparent;
+        }
+
         .mode-pill[data-active="true"] {
-            background: var(--text);
-            color: var(--bg);
+            background: linear-gradient(135deg, rgba(52, 211, 153, .18), rgba(56, 189, 248, .14));
+            border-color: rgba(103, 232, 249, .18);
+            color: var(--text);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
         }
 
         /* Utility for hiding sections by view */
@@ -222,12 +316,14 @@
             display: none !important;
         }
 
-        /* --- Hero "Visit GiqComp Solutions" (cyan/teal accent) --- */
+        /* --- Hero website action keeps a colored icon without a tinted card --- */
         #heroThirdLink[data-action="visit"] {
-            background: linear-gradient(135deg,
-                    rgba(34, 211, 238, .14),
-                    rgba(34, 211, 238, .06),
-                    transparent);
+            background:
+                linear-gradient(135deg,
+                    rgba(34, 211, 238, .16),
+                    rgba(59, 130, 246, .08) 42%,
+                    rgba(255, 255, 255, .03) 100%);
+            border-color: rgba(34, 211, 238, .18);
         }
 
         #heroThirdLink[data-action="visit"] .heroActionIcon {
@@ -235,18 +331,39 @@
             filter: drop-shadow(0 0 10px rgba(34, 211, 238, .22));
         }
 
+        #heroThirdLink[data-action="visit"]:hover {
+            background:
+                linear-gradient(135deg,
+                    rgba(34, 211, 238, .20),
+                    rgba(59, 130, 246, .10) 42%,
+                    rgba(255, 255, 255, .04) 100%);
+            border-color: rgba(56, 189, 248, .28);
+        }
+
         /* Light mode */
         html[data-theme="light"] #heroThirdLink[data-action="visit"] {
-            background: linear-gradient(135deg,
-                    rgba(8, 145, 178, .12),
-                    rgba(8, 145, 178, .05),
-                    transparent);
+            background:
+                linear-gradient(135deg,
+                    rgba(224, 242, 254, .96),
+                    rgba(219, 234, 254, .84) 42%,
+                    rgba(255, 255, 255, .86) 100%);
+            border-color: rgba(14, 165, 233, .16);
         }
 
         html[data-theme="light"] #heroThirdLink[data-action="visit"] .heroActionIcon {
             color: #0891b2;
             filter: drop-shadow(0 0 10px rgba(8, 145, 178, .16));
         }
+
+        html[data-theme="light"] #heroThirdLink[data-action="visit"]:hover {
+            background:
+                linear-gradient(135deg,
+                    rgba(224, 242, 254, 1),
+                    rgba(191, 219, 254, .92) 42%,
+                    rgba(255, 255, 255, .9) 100%);
+            border-color: rgba(8, 145, 178, .24);
+        }
+        
 
         /* ============================ 
            Social hover + Resume styles
@@ -256,7 +373,52 @@
             transition: color .18s ease, transform .18s ease, filter .18s ease;
         }
 
-        /* Website / Globe (soft blue logic like GitHub) */
+        .heroActionIcon {
+            transition: color .18s ease, filter .18s ease;
+        }
+
+        #heroLinkedInBtn:hover {
+            border-color: rgba(59, 130, 246, .42);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, .12);
+        }
+
+        html[data-theme="light"] #heroLinkedInBtn:hover {
+            border-color: rgba(10, 102, 194, .42);
+            box-shadow: 0 0 0 3px rgba(10, 102, 194, .12);
+        }
+
+        .socialLink:hover .socialIcon-linkedin {
+            color: #60a5fa;
+            filter: drop-shadow(0 0 10px rgba(96, 165, 250, .28));
+        }
+
+        html[data-theme="light"] .socialLink:hover .socialIcon-linkedin {
+            color: #0a66c2;
+            filter: drop-shadow(0 0 10px rgba(10, 102, 194, .18));
+        }
+
+        #heroGitHubBtn:hover {
+            border-color: rgba(167, 139, 250, .42);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, .12);
+        }
+
+        html[data-theme="light"] #heroGitHubBtn:hover {
+            border-color: rgba(109, 40, 217, .38);
+            box-shadow: 0 0 0 3px rgba(109, 40, 217, .10);
+        }
+
+        .socialLink:hover .socialIcon-github {
+            color: #c4b5fd;
+            filter: drop-shadow(0 0 10px rgba(167, 139, 250, .22));
+        }
+
+        html[data-theme="light"] .socialLink:hover .socialIcon-github {
+            color: #6d28d9;
+            filter: drop-shadow(0 0 10px rgba(109, 40, 217, .16));
+        }
+
+        /* Website / Globe keeps its accent color without a card glow */
+
         .socialLink:hover .socialIcon-website {
             color: #60a5fa;
             /* soft blue for dark mode */
@@ -286,12 +448,48 @@
         /* --- Hero "Resume" vs "Let's build something" special accent colors --- */
         #heroThirdLink[data-action="resume"] .heroActionIcon {
             color: rgba(34, 197, 94, .98);
-            /* green */
             filter: drop-shadow(0 0 10px rgba(34, 197, 94, .25));
         }
 
         #heroThirdLink[data-action="resume"] {
-            background: linear-gradient(135deg, rgba(34, 197, 94, .12), transparent);
+            background:
+                linear-gradient(135deg,
+                    rgba(34, 197, 94, .16),
+                    rgba(16, 185, 129, .08) 42%,
+                    rgba(255, 255, 255, .03) 100%);
+            border-color: rgba(34, 197, 94, .18);
+        }
+
+        #heroThirdLink[data-action="resume"]:hover {
+            background:
+                linear-gradient(135deg,
+                    rgba(34, 197, 94, .20),
+                    rgba(16, 185, 129, .10) 42%,
+                    rgba(255, 255, 255, .04) 100%);
+            border-color: rgba(34, 197, 94, .28);
+        }
+
+        html[data-theme="light"] #heroThirdLink[data-action="resume"] {
+            background:
+                linear-gradient(135deg,
+                    rgba(220, 252, 231, .98),
+                    rgba(209, 250, 229, .88) 42%,
+                    rgba(255, 255, 255, .88) 100%);
+            border-color: rgba(34, 197, 94, .16);
+        }
+
+        html[data-theme="light"] #heroThirdLink[data-action="resume"] .heroActionIcon {
+            color: #16a34a;
+            filter: drop-shadow(0 0 10px rgba(22, 163, 74, .18));
+        }
+
+        html[data-theme="light"] #heroThirdLink[data-action="resume"]:hover {
+            background:
+                linear-gradient(135deg,
+                    rgba(220, 252, 231, 1),
+                    rgba(187, 247, 208, .92) 42%,
+                    rgba(255, 255, 255, .9) 100%);
+            border-color: rgba(34, 197, 94, .24);
         }
 
         #heroThirdLink[data-action="build"] .heroActionIcon {
@@ -316,7 +514,7 @@
             transform: translateY(-1px);
         }
 
-        /* LinkedIn ring (NO icon color touch) */
+        /* LinkedIn ring (No icon color touch) */
         #contact .contactSocial--linkedin:hover {
             border-color: rgba(59, 130, 246, .55);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, .14);
@@ -402,7 +600,6 @@
             filter: drop-shadow(0 0 10px rgba(10, 102, 194, .14));
         }
 
-
         /* =============
            GitHub button
            ============= */
@@ -486,6 +683,796 @@
             color: #0891b2;
             filter: drop-shadow(0 0 10px rgba(8, 145, 178, .14));
         }
+
+        .header-shell {
+            border-radius: 1.7rem;
+        }
+
+        .workspace-shell {
+            max-width: 82rem;
+        }
+
+        .brand-mark {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.3rem;
+            height: 3.3rem;
+            flex: 0 0 auto;
+            overflow: hidden;
+            border-radius: 999px;
+        }
+
+        .brand-mark img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            filter:
+                drop-shadow(0 12px 22px rgba(2, 8, 23, .24))
+                saturate(1.04)
+                brightness(1.02);
+        }
+
+        html[data-theme="dark"] .brand-mark img {
+            filter:
+                drop-shadow(0 0 12px rgba(56, 189, 248, .16))
+                drop-shadow(0 0 14px rgba(34, 197, 94, .12))
+                drop-shadow(0 14px 26px rgba(2, 8, 23, .36))
+                saturate(1.06)
+                brightness(1.03);
+        }
+
+        .nav-link {
+            display: block;
+            padding: .7rem .95rem;
+            border-radius: 999px;
+            font-weight: 700;
+            color: var(--muted);
+            transition: transform .2s ease, background .2s ease, color .2s ease;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-1px);
+            background: var(--hover);
+            color: var(--text);
+        }
+
+        .audience-switch {
+            padding: .35rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--glass-stroke);
+        }
+
+        html[data-theme="light"] .audience-switch {
+            background: rgba(255, 255, 255, .78);
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+            font-size: .72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .22em;
+            color: var(--accent2);
+        }
+
+        .section-kicker::before {
+            content: "";
+            width: .55rem;
+            height: .55rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            box-shadow: 0 0 0 5px rgba(56, 189, 248, .12);
+        }
+
+        .hero-shell {
+            margin-top: .35rem;
+            align-items: stretch;
+        }
+
+        .headline-accent {
+            display: block;
+            color: transparent;
+            background-image: linear-gradient(135deg, #86efac 0%, #67e8f9 48%, #93c5fd 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        html[data-theme="light"] .headline-accent {
+            background-image: linear-gradient(135deg, #059669 0%, #0891b2 48%, #2563eb 100%);
+        }
+
+        .hero-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            right: -12%;
+            top: -15%;
+            width: 13rem;
+            height: 13rem;
+            border-radius: 999px;
+            background: radial-gradient(circle, rgba(34, 211, 238, .20), transparent 66%);
+            pointer-events: none;
+        }
+
+        .hero-profile-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .hero-profile-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.05rem;
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+
+        .hero-photo-wrap {
+            position: relative;
+            flex: 0 0 auto;
+            padding: .38rem;
+            border-radius: 1.8rem;
+            background:
+                linear-gradient(155deg, rgba(255, 255, 255, .72), rgba(255, 255, 255, .14)),
+                linear-gradient(160deg, rgba(56, 189, 248, .26), rgba(34, 197, 94, .18) 56%, rgba(15, 23, 42, .08));
+            box-shadow:
+                0 22px 42px rgba(15, 23, 42, .14),
+                inset 0 1px 0 rgba(255, 255, 255, .55);
+        }
+
+        .hero-photo-wrap::before {
+            content: "";
+            position: absolute;
+            inset: -.5rem;
+            border-radius: 1.9rem;
+            background: radial-gradient(circle at 20% 15%, rgba(34, 211, 238, .18), transparent 58%);
+            z-index: -1;
+            pointer-events: none;
+            opacity: .9;
+        }
+
+        .hero-photo-wrap::after {
+            content: "";
+            position: absolute;
+            inset: .38rem;
+            border-radius: 1.48rem;
+            border: 1px solid rgba(255, 255, 255, .28);
+            pointer-events: none;
+        }
+
+        html[data-theme="light"] .hero-photo-wrap {
+            background:
+                linear-gradient(155deg, rgba(255, 255, 255, .98), rgba(255, 255, 255, .58)),
+                linear-gradient(160deg, rgba(186, 230, 253, .78), rgba(209, 250, 229, .92) 62%, rgba(255, 255, 255, .96));
+            box-shadow:
+                0 20px 40px rgba(15, 23, 42, .10),
+                inset 0 1px 0 rgba(255, 255, 255, .92);
+        }
+
+        .hero-photo {
+            display: block;
+            width: 5.95rem;
+            aspect-ratio: 5 / 6;
+            object-fit: cover;
+            object-position: 54% 16%;
+            border-radius: 1.46rem;
+            border: 1px solid rgba(255, 255, 255, .60);
+            background: rgba(15, 23, 42, .10);
+            filter: contrast(1.03) saturate(1.02);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .24),
+                0 8px 18px rgba(15, 23, 42, .12);
+        }
+
+        .hero-profile-copy {
+            min-width: 0;
+            flex: 1 1 auto;
+        }
+
+        .hero-profile-copy #heroRoleTitle {
+            line-height: 1.1;
+            white-space: pre-line;
+        }
+
+        .hero-profile-copy #heroRoleTitle.is-compact {
+            font-size: clamp(.95rem, 1.05rem + .12vw, 1.12rem);
+            line-height: 1.16;
+            letter-spacing: -.025em;
+            max-width: 15ch;
+        }
+
+        .brand-wordmark {
+            display: block;
+            width: clamp(6.95rem, 11.9vw, 8.55rem);
+            max-width: 34%;
+            height: auto;
+            opacity: .98;
+            filter: drop-shadow(0 10px 22px rgba(15, 23, 42, .18)) saturate(1.03) contrast(1.04);
+            flex: 0 0 auto;
+            margin-top: .1rem;
+        }
+
+        html[data-theme="dark"] .brand-wordmark {
+            filter:
+                drop-shadow(0 0 18px rgba(34, 197, 94, .08))
+                drop-shadow(0 0 20px rgba(56, 189, 248, .10))
+                drop-shadow(0 12px 28px rgba(15, 23, 42, .34))
+                brightness(1.14)
+                saturate(1.09)
+                contrast(1.08);
+        }
+
+        .hero-wordmark-responsive {
+            display: none;
+        }
+
+        .cta-primary,
+        .cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .75rem;
+            padding: .95rem 1.2rem;
+            border-radius: var(--button-radius);
+            font-weight: 800;
+            text-decoration: none;
+            transition: transform .2s ease, opacity .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+
+        .cta-primary:hover,
+        .cta-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(220, 252, 231, .92));
+            color: #06101f;
+            box-shadow: 0 18px 36px rgba(15, 23, 42, .18);
+        }
+
+        html[data-theme="light"] .cta-primary {
+            background: linear-gradient(135deg, #06101f, #0f172a);
+            color: #f8fafc;
+            box-shadow: 0 18px 36px rgba(15, 23, 42, .16);
+        }
+
+        .cta-secondary {
+            color: var(--text);
+            border: 1px solid var(--glass-stroke);
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .metric-chip,
+        .quick-card,
+        .service-card,
+        .skill-card,
+        .timeline-card,
+        .contact-card,
+        .contact-qr-card,
+        .about-highlight,
+        .projectCard {
+            border-radius: 1.35rem;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--glass-stroke);
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+        }
+
+        html[data-theme="light"] .metric-chip,
+        html[data-theme="light"] .quick-card,
+        html[data-theme="light"] .service-card,
+        html[data-theme="light"] .skill-card,
+        html[data-theme="light"] .timeline-card,
+        html[data-theme="light"] .contact-card,
+        html[data-theme="light"] .contact-qr-card,
+        html[data-theme="light"] .about-highlight,
+        html[data-theme="light"] .projectCard {
+            background: rgba(255, 255, 255, .80);
+        }
+
+        .metric-chip span,
+        .quick-card span {
+            display: block;
+            margin-bottom: .35rem;
+            font-size: .74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            color: var(--muted);
+        }
+
+        .metric-chip strong,
+        .quick-card strong {
+            display: block;
+            line-height: 1.45;
+        }
+
+        .metric-chip {
+            padding: 1rem 1.05rem;
+        }
+
+        .quick-card {
+            padding: .95rem 1rem;
+        }
+
+        .service-card:hover,
+        .skill-card:hover,
+        .timeline-card:hover,
+        .contact-card:hover,
+        .contact-qr-card:hover,
+        .about-highlight:hover,
+        .projectCard:hover {
+            transform: translateY(-4px);
+            border-color: rgba(103, 232, 249, .20);
+            box-shadow: 0 20px 42px rgba(2, 8, 23, .12);
+        }
+
+        .skill-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            opacity: .9;
+        }
+
+        .skill-card--support::before {
+            background: linear-gradient(90deg, rgba(16, 185, 129, .9), rgba(45, 212, 191, .45), transparent);
+        }
+
+        .skill-card--web::before {
+            background: linear-gradient(90deg, rgba(14, 165, 233, .9), rgba(59, 130, 246, .45), transparent);
+        }
+
+        .skill-card--fullstack::before {
+            background: linear-gradient(90deg, rgba(139, 92, 246, .9), rgba(99, 102, 241, .45), transparent);
+        }
+
+        .service-icon {
+            width: 2.75rem;
+            height: 2.75rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: .95rem;
+            background: linear-gradient(135deg, rgba(52, 211, 153, .18), rgba(56, 189, 248, .16));
+            border: 1px solid rgba(103, 232, 249, .16);
+        }
+
+        .section-shell {
+            position: relative;
+            padding: clamp(1.35rem, 2vw, 1.8rem);
+            border-radius: 1.75rem;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .015));
+            border: 1px solid var(--glass-stroke);
+            box-shadow: var(--shadow);
+        }
+
+        html[data-theme="light"] .section-shell {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .98), rgba(248, 250, 252, .92));
+        }
+
+        .about-experience-grid {
+            align-items: stretch;
+        }
+
+        .about-balance-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-balance-copy {
+            max-width: 58rem;
+        }
+
+        .about-balance-copy p + p {
+            margin-top: 1rem;
+        }
+
+        .about-highlights-grid {
+            margin-top: 1.5rem;
+        }
+
+        .about-highlight {
+            display: flex;
+            flex-direction: column;
+            gap: .45rem;
+            min-height: 100%;
+        }
+
+        .about-highlight strong {
+            font-size: 1rem;
+            line-height: 1.35;
+        }
+
+        .about-highlight p {
+            margin: 0;
+            font-size: .92rem;
+            line-height: 1.55;
+            color: var(--muted);
+        }
+
+        #contact .contactQuickLink {
+            text-decoration: none;
+            transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+        }
+
+        #contact .contactQuickLink:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        #contact .contactQuickLinkLabel {
+            display: inline-flex;
+            align-items: center;
+            gap: .55rem;
+        }
+
+        #contact .contactQuickLinkLabel i {
+            font-size: .92rem;
+            opacity: .9;
+        }
+
+        #contact #contactPhoneCard:hover {
+            border-color: rgba(34, 197, 94, .45);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, .14);
+        }
+
+        html[data-theme="light"] #contact #contactPhoneCard:hover {
+            border-color: rgba(22, 163, 74, .42);
+            box-shadow: 0 0 0 3px rgba(22, 163, 74, .12);
+        }
+
+        #contact #contactEmailCard:hover {
+            border-color: rgba(59, 130, 246, .48);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, .14);
+        }
+
+        html[data-theme="light"] #contact #contactEmailCard:hover {
+            border-color: rgba(37, 99, 235, .42);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+        }
+
+        .experience-stack {
+            margin-top: 1rem;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .experience-intro {
+            max-width: 34rem;
+        }
+
+        @media (max-width: 767px) {
+            .about-highlight strong {
+                font-size: .98rem;
+            }
+
+            .about-highlight p {
+                font-size: .9rem;
+            }
+        }
+
+        .filterRail {
+            align-self: flex-start;
+            display: inline-grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: .22rem;
+            width: min(100%, 15rem);
+            padding: .22rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, .06);
+            background: rgba(255, 255, 255, .02);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+        }
+
+        html[data-theme="light"] .filterRail {
+            background: rgba(15, 23, 42, .02);
+            border-color: rgba(15, 23, 42, .08);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .88);
+        }
+
+        .filterBtn {
+            width: 100%;
+            min-width: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: .62rem .4rem;
+            border: 0;
+            border-radius: .8rem;
+            font-size: .84rem;
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -.01em;
+            color: var(--muted);
+            background: transparent;
+            transition: background .18s ease, color .18s ease;
+        }
+
+        .filterBtn:hover {
+            background: rgba(255, 255, 255, .04);
+            color: var(--text);
+        }
+
+        html[data-theme="light"] .filterBtn:hover {
+            background: rgba(15, 23, 42, .04);
+        }
+
+        .filterBtn.is-active {
+            background: rgba(255, 255, 255, .08);
+            color: var(--text);
+        }
+
+        html[data-theme="light"] .filterBtn.is-active {
+            background: rgba(15, 23, 42, .08);
+            color: #0f172a;
+        }
+
+        @media (max-width: 639px) {
+            .filterRail {
+                width: min(100%, 14rem);
+            }
+
+            .filterBtn {
+                padding: .58rem .35rem;
+                font-size: .82rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .filterRail {
+                width: min(100%, 13.5rem);
+                gap: .18rem;
+                padding: .18rem;
+                border-radius: .9rem;
+            }
+
+            .filterBtn {
+                padding: .54rem .22rem;
+                border-radius: .72rem;
+                font-size: .8rem;
+            }
+        }
+
+        .projectCard {
+            overflow: hidden;
+        }
+
+        .projectCard .project-badge,
+        .modal-category-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: .35rem .7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .10);
+            border: 1px solid rgba(255, 255, 255, .12);
+            color: #f8fafc;
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            backdrop-filter: blur(10px);
+        }
+
+        html[data-theme="light"] .projectCard .project-badge,
+        html[data-theme="light"] .modal-category-badge {
+            background: linear-gradient(135deg, rgba(240, 249, 255, .96), rgba(236, 253, 245, .92));
+            border-color: rgba(15, 23, 42, .10);
+            color: #0f172a;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .88);
+        }
+
+        .projectCard .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 2.65rem;
+            padding: .78rem 1rem;
+            border-radius: var(--button-radius-tight);
+            font-size: .88rem;
+            font-weight: 800;
+            letter-spacing: .01em;
+            text-decoration: none;
+            transition: transform .18s ease, opacity .18s ease;
+        }
+
+        button.rounded-2xl,
+        a.rounded-2xl {
+            border-radius: var(--button-radius);
+        }
+
+        .projectCard .project-link:hover {
+            transform: translateY(-1px);
+        }
+
+        .projectCard .project-link--primary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(220, 252, 231, .92));
+            color: #06101f;
+        }
+
+        html[data-theme="light"] .projectCard .project-link--primary {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        .projectCard .project-link--secondary {
+            background: rgba(255, 255, 255, .05);
+            color: var(--text);
+            border: 1px solid var(--glass-stroke);
+        }
+
+        .projectCard .project-link--ghost {
+            width: 100%;
+            justify-content: space-between;
+            padding: .82rem 1rem;
+            color: var(--text);
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--glass-stroke);
+        }
+
+        html[data-theme="light"] .projectCard .project-link--ghost {
+            background: rgba(248, 250, 252, .96);
+            border-color: rgba(15, 23, 42, .08);
+            color: #0f172a;
+        }
+
+        .modal-panel {
+            border-radius: 1.35rem;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--glass-stroke);
+            padding: 1.05rem 1.1rem;
+        }
+
+        html[data-theme="light"] .modal-panel {
+            background: rgba(255, 255, 255, .82);
+        }
+
+        .modal-section-label {
+            font-size: .72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            color: var(--muted);
+        }
+
+        .modal-copy {
+            margin: 0;
+            line-height: 1.72;
+            color: rgba(248, 250, 252, .84);
+        }
+
+        html[data-theme="light"] .modal-copy {
+            color: rgba(51, 65, 85, .92);
+        }
+
+        .modal-chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .55rem;
+        }
+
+        .modal-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: .42rem .7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .10);
+            color: var(--text);
+            font-size: .79rem;
+            font-weight: 700;
+            letter-spacing: -.01em;
+        }
+
+        html[data-theme="light"] .modal-chip {
+            background: rgba(248, 250, 252, .96);
+            border-color: rgba(15, 23, 42, .08);
+            color: #0f172a;
+        }
+
+        .modal-category-badge {
+            font-size: .72rem;
+            letter-spacing: .12em;
+        }
+
+        .case-study-grid {
+            align-items: stretch;
+        }
+
+        .case-study-item {
+            min-height: 100%;
+            border-radius: 1.1rem;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .07);
+            padding: .95rem 1rem;
+        }
+
+        html[data-theme="light"] .case-study-item {
+            background: rgba(248, 250, 252, .92);
+            border-color: rgba(15, 23, 42, .06);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, rgba(255, 255, 255, .96), rgba(220, 252, 231, .92));
+            color: #06101f;
+            text-decoration: none;
+        }
+
+        html[data-theme="light"] .btn-primary {
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        .btn-ghost {
+            background: rgba(255, 255, 255, .05);
+            color: var(--text);
+            border: 1px solid var(--glass-stroke);
+            text-decoration: none;
+        }
+
+        @media (max-width: 767px) {
+            .brand-mark {
+                width: 2.95rem;
+                height: 2.95rem;
+            }
+
+            .mode-pill {
+                min-width: 0;
+                flex: 1 1 0%;
+            }
+
+            .hero-card::before {
+                width: 10rem;
+                height: 10rem;
+            }
+
+            .hero-profile-row {
+                gap: .85rem;
+            }
+
+            .hero-profile-main {
+                gap: .9rem;
+            }
+
+            .hero-photo {
+                width: 5.35rem;
+                object-position: 56% 14%;
+            }
+
+            .brand-wordmark {
+                width: 5.15rem;
+                max-width: 28%;
+                margin-top: .24rem;
+            }
+
+            .section-shell {
+                border-radius: 1.45rem;
+            }
+        }
+
+        @media (min-width: 520px) {
+            .hero-wordmark-responsive {
+                display: block;
+            }
+        }
     </style>
 
     <script>
@@ -504,55 +1491,45 @@
 <body class="relative overflow-x-hidden">
     <div class="bg-glow fixed inset-0 pointer-events-none"></div>
 
-    <div id="progress" class="fixed top-0 left-0 h-[3px] w-0 bg-black/40 dark:bg-white/70 z-[60]"></div>
+    <div id="progress" class="fixed top-0 left-0 h-[3px] w-0 bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 z-[60]"></div>
 
     <!-- NAV -->
     <header class="sticky top-0 z-50">
-        <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-4">
-            <div class="glass w-full rounded-2xl px-4 sm:px-5 py-3 shadow-[var(--shadow)]">
-                <div class="flex items-center justify-between gap-3 w-full flex-wrap sm:flex-nowrap">
-
-                    <!-- LEFT: Brand -->
-                    <a href="#top" class="flex items-center gap-3 no-underline min-w-0">
-                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-black/10 text-[color:var(--text)] border border-[color:var(--stroke)]">
-                            <i class="fa-solid fa-bolt"></i>
+        <div class="workspace-shell mx-auto px-4 sm:px-6 pt-4">
+            <div class="glass header-shell w-full px-4 sm:px-6 py-3">
+                <div class="flex items-center justify-between gap-4">
+                    <a href="#top" class="flex items-center gap-4 no-underline min-w-0">
+                        <span class="brand-mark shrink-0">
+                            <img src="images/logo.png" alt="GiqComp Solutions logo" />
                         </span>
-                        <div class="leading-tight">
-                            <div class="font-semibold tracking-tight">Guy Thierry Charles</div>
-                            <div class="text-xs opacity-80">IT • Web • Network • Security • Cloud • AI</div>
+                        <div class="min-w-0 leading-tight">
+                            <div class="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.34em] text-[color:var(--muted)]">Portfolio</div>
+                            <div class="font-display text-[1rem] sm:text-lg font-semibold tracking-tight truncate">Guy Thierry Charles</div>
                         </div>
                     </a>
 
-                    <!-- CENTER: Nav links (only these collapse) -->
                     <nav class="hidden lg:flex items-center gap-1">
-                        <a data-view="client-only" class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#services">
-                            Services
-                        </a>
-                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#projects">Projects</a>
-                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#skills">Skills</a>
-                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#about">About</a>
-                        <a class="px-3 py-2 rounded-xl transition opacity-90 hover:opacity-100 hover:bg-[color:var(--hover)]" href="#contact">Contact</a>
+                        <a data-view="client-only" class="nav-link" href="#services">Services</a>
+                        <a class="nav-link" href="#projects">Projects</a>
+                        <a class="nav-link" href="#skills">Skills</a>
+                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                     </nav>
 
-                    <!-- RIGHT: Controls (always visible) -->
                     <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                        <!-- View toggle -->
-                        <div class="flex items-center gap-2">
-                            <button id="recruiterModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold" aria-label="Recruiter view">
+                        <div class="hidden md:flex items-center gap-2 audience-switch">
+                            <button id="recruiterModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill text-sm font-semibold" aria-label="Recruiter view">
                                 Recruiter
                             </button>
-
-                            <button id="clientModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill border border-[color:var(--stroke)] text-sm font-semibold" aria-label="Client view">
+                            <button id="clientModeBtn" type="button" class="px-3 py-2 rounded-2xl mode-pill text-sm font-semibold" aria-label="Client view">
                                 Client
                             </button>
                         </div>
 
-                        <!-- Theme toggle (single button for all sizes) -->
-                        <button id="themeBtn" class="w-10 h-10 flex items-center justify-center rounded-2xl mode-pill border border-[color:var(--stroke)]" aria-label="Toggle theme">
+                        <button id="themeBtn" class="theme-pill w-10 h-10 flex items-center justify-center rounded-2xl border border-[color:var(--stroke)]" aria-label="Toggle theme">
                             <i id="themeIcon" class="fa-solid fa-sun leading-none text-[15px]"></i>
                         </button>
 
-                        <!-- Hamburger appears only on small screens -->
                         <button id="menuBtn" class="icon-pill lg:hidden" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
                             <i id="menuIcon" class="fa-solid fa-bars"></i>
                         </button>
@@ -560,80 +1537,106 @@
                 </div>
             </div>
 
-            <!-- Mobile menu -->
-            <div id="mobileMenu" class="hidden mt-3 glass rounded-2xl p-3 shadow-[var(--shadow)]">
+            <div id="mobileMenu" class="hidden mt-3 glass rounded-[1.5rem] p-4 shadow-[var(--shadow)]">
                 <div class="grid gap-2">
-                    <a data-view="client-only" class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#services">
-                        Services
-                    </a>
-                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#projects">Projects</a>
-                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#skills">Skills</a>
-                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#about">About</a>
-                    <a class="px-3 py-2 rounded-xl transition hover:bg-[color:var(--hover)]" href="#contact">Contact</a>
+                    <div class="flex gap-2 md:hidden audience-switch">
+                        <button id="recruiterModeBtnM" type="button" class="w-1/2 px-3 py-2 rounded-2xl mode-pill text-sm font-semibold">
+                            Recruiter
+                        </button>
+                        <button id="clientModeBtnM" type="button" class="w-1/2 px-3 py-2 rounded-2xl mode-pill text-sm font-semibold">
+                            Client
+                        </button>
+                    </div>
+                    <a data-view="client-only" class="nav-link px-3" href="#services">Services</a>
+                    <a class="nav-link px-3" href="#projects">Projects</a>
+                    <a class="nav-link px-3" href="#skills">Skills</a>
+                    <a class="nav-link px-3" href="#about">About</a>
+                    <a class="nav-link px-3" href="#contact">Contact</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- HERO -->
-    <main id="top" class="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-6">
-        <section class="grid lg:grid-cols-12 gap-8 items-start reveal">
+    <main id="top" class="workspace-shell mx-auto px-4 sm:px-6 pt-8 sm:pt-12 pb-8">
+        <section class="hero-shell grid lg:grid-cols-12 gap-8 reveal">
             <div class="lg:col-span-7">
-                <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-sm">
-                    <span class="h-2 w-2 rounded-full bg-[color:var(--accent)]"></span>
-                    <span class="opacity-90">Secure, modern, user-friendly systems</span>
-                </div>
+                <div class="section-kicker">Support • Web • Automation</div>
 
-                <!--<h1 class="mt-5 text-3xl sm:text-[2.5rem] font-semibold tracking-tight">-->
-                <h1 class="mt-5 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
-                    IT Support & Web Specialist
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400">
-                        Building Secure, Scalable Systems
-                    </span>
+                <h1 class="mt-6 text-4xl sm:text-6xl font-semibold leading-[1.02]">
+                    IT support specialist,
+                    <span class="headline-accent">web designer and developer</span>
                 </h1>
 
-                <p class="mt-4 text-lg leading-relaxed opacity-80">
-                    I’m Guy Thierry Charles, an IT Support Specialist, Web Designer / Developer, and founder of GiqComp Solutions. I help individuals and businesses overcome technical challenges by delivering reliable IT support and modern, high-performance, secure web solutions.
+                <p class="mt-5 max-w-2xl text-lg sm:text-xl leading-relaxed text-[color:var(--muted)]">
+                    I help businesses and teams remove technical friction, support users confidently, and launch fast, secure websites with cleaner structure.
                 </p>
 
-                <div class="mt-6">
-                    <a href="#projects" class="flex items-center justify-center
-            w-full sm:w-auto
-            px-5 py-3 rounded-2xl
-            bg-[color:var(--text)] text-[color:var(--bg)]
-            font-semibold
-            hover:opacity-90 transition">
-                        View Featured Projects
+                <div class="mt-8 flex flex-wrap gap-3">
+                    <a href="#projects" class="cta-primary">
+                        <span>See Selected Work</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" data-view="client-only" class="cta-secondary">
+                        <span>Start a Project</span>
+                    </a>
+                    <a href="resume/Guy_Thierry_Charles—Resume.pdf" data-view="recruiter-only" class="cta-secondary" download="Guy_Thierry_Charles—Resume.pdf">
+                        <span>Download Resume</span>
                     </a>
                 </div>
-                <!-- Client view CTA -->
-                <div data-view="client-only" class="mt-10 lg:mt-12 rounded-2xl glass border border-[color:var(--stroke)] p-4 lg:p-5">
-                    <div class="font-semibold text-lg">Need IT support or a modern website?</div>
-                    <p class="mt-1 opacity-80">From tech support and troubleshooting to secure web builds, I deliver solutions that work.</p>
-                    <div class="mt-4 flex flex-wrap gap-2">
-                        <a href="#contact" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] font-semibold hover:opacity-95 transition">
-                            Request a Consultation
-                        </a>
+
+                <div class="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                    <div class="metric-chip">
+                        <span>Focus</span>
+                        <strong>Reliable support, systems, and day-to-day operations.</strong>
                     </div>
+                    <div class="metric-chip">
+                        <span>Builds</span>
+                        <strong>Websites and interfaces with clearer hierarchy and cleaner UX.</strong>
+                    </div>
+                    <div class="metric-chip">
+                        <span>Approach</span>
+                        <strong>Security-minded delivery, business-ready decisions.</strong>
+                    </div>
+                    <div class="metric-chip">
+                        <span>Workflow</span>
+                        <strong>Documentation and automation that reduce noise and rework.</strong>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-sm text-[color:var(--muted)]">
+                    Open to IT support, consulting, web builds, and workflow improvements.
                 </div>
             </div>
 
             <div class="lg:col-span-5">
-                <div class="glass rounded-2xl p-4 lg:p-5 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
-                    <div class="flex items-center gap-4">
-                        <div class="relative">
-                            <img src="images/ID_Photo.png" alt="Guy Thierry Charles" class="h-20 w-20 rounded-2xl object-cover border border-[color:var(--stroke)]">
-                            <span class="absolute -bottom-2 -right-2 inline-flex h-7 w-7 items-center justify-center rounded-2xl bg-[color:var(--accent)] text-black font-bold border border-black/10">
-                                <i class="fa-solid fa-check"></i>
-                            </span>
+                <div class="glass hero-card rounded-[1.7rem] p-5 lg:p-6 border border-[color:var(--stroke)]">
+                    <div class="hero-profile-row">
+                        <div class="hero-profile-main">
+                            <div class="hero-photo-wrap">
+                                <img src="images/ID_Photo.png" alt="Guy Thierry Charles" class="hero-photo" />
+                            </div>
+                            <div class="hero-profile-copy">
+                                <div class="text-xs font-bold uppercase tracking-[0.28em] text-[color:var(--muted)]">Profile</div>
+                                <div id="heroRoleTitle" class="font-display text-xl font-semibold"></div>
+                                <div id="heroRoleSub" class="mt-1 text-sm text-[color:var(--muted)] hidden"></div>
+                            </div>
                         </div>
-                        <div>
-                            <div id="heroRoleTitle" class="font-semibold text-xl">Founder • GiqComp Solutions</div>
-                            <div id="heroRoleSub" class="opacity-75">IT Support • Web Solutions</div>
+                        <img id="heroWordmark" src="images/GiqCompSolutions-site-logo-hero.png" alt="GiqComp Solutions wordmark" class="brand-wordmark hero-wordmark-responsive" />
+                    </div>
+
+                    <div class="mt-6 grid gap-3 xl:grid-cols-2">
+                        <div class="quick-card">
+                            <span>Primary Work</span>
+                            <strong>Support systems, websites, and practical technical consulting.</strong>
+                        </div>
+                        <div class="quick-card">
+                            <span>Strength</span>
+                            <strong>Combining troubleshooting depth with user-facing polish.</strong>
                         </div>
                     </div>
 
-                    <div class="mt-5 grid gap-3">
+                    <div class="mt-6 grid gap-3">
                         <a id="heroLinkedInBtn" class="socialLink glass rounded-2xl p-4 transition flex items-center justify-between border border-[color:var(--stroke)] hover:bg-[color:var(--hover)]" href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" rel="noreferrer">
                             <div class="flex items-center gap-3">
                                 <i class="fa-brands fa-linkedin text-xl socialIcon socialIcon-linkedin"></i>
@@ -663,30 +1666,24 @@
         </section>
 
         <!-- SERVICES (Client view only) -->
-        <section id="services" data-view="client-only" class="mt-16 reveal">
-            <div class="glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
-                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+        <section id="services" data-view="client-only" class="mt-20 reveal">
+            <div class="section-shell">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
                     <div>
-                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Services</h2>
-                        <p class="mt-2 opacity-80">Tailored IT support and modern digital solutions—delivered with care and precision.</p>
+                        <div class="section-kicker">Services</div>
+                        <h2 class="mt-3 text-2xl sm:text-4xl font-semibold">Technical support and web work with less friction.</h2>
+                        <p class="mt-3 max-w-3xl text-[color:var(--muted)]">From user support and infrastructure cleanup to polished websites, the goal is the same: make the experience feel stable, clear, and well executed.</p>
                     </div>
-                    <button id="openQuoteBtn" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold
-         hover:opacity-90 transition
-         whitespace-nowrap shrink-0 inline-flex items-center justify-center
-         self-start md:self-auto">
-                        Get a Quote
+                    <button id="openQuoteBtn" class="cta-primary whitespace-nowrap">
+                        <span>Get a Quote</span>
                     </button>
                 </div>
 
                 <div class="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                     <!-- Card -->
-                    <div class="group rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-6 shadow-sm">
+                    <div class="group service-card p-6">
                         <div class="flex items-start gap-3">
-                            <span class="w-10 aspect-square rounded-full
-             flex items-center justify-center
-             bg-black/5 dark:bg-white/10
-             border border-[color:var(--stroke)]
-             flex-shrink-0">
+                            <span class="service-icon flex-shrink-0">
                                 <i class="fa-solid fa-laptop-medical"></i>
                             </span>
                             <div class="min-w-0">
@@ -707,13 +1704,9 @@
                     </div>
 
                     <!-- Card -->
-                    <div class="group rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-6 shadow-sm">
+                    <div class="group service-card p-6">
                         <div class="flex items-start gap-3">
-                            <span class="w-10 aspect-square rounded-full
-             flex items-center justify-center
-             bg-black/5 dark:bg-white/10
-             border border-[color:var(--stroke)]
-             flex-shrink-0">
+                            <span class="service-icon flex-shrink-0">
                                 <i class="fa-solid fa-code"></i>
                             </span>
                             <div class="min-w-0">
@@ -734,13 +1727,9 @@
                     </div>
 
                     <!-- Card -->
-                    <div class="group rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-6 shadow-sm">
+                    <div class="group service-card p-6">
                         <div class="flex items-start gap-3">
-                            <span class="w-10 aspect-square rounded-full
-             flex items-center justify-center
-             bg-black/5 dark:bg-white/10
-             border border-[color:var(--stroke)]
-             flex-shrink-0">
+                            <span class="service-icon flex-shrink-0">
                                 <i class="fa-solid fa-shield-halved"></i>
                             </span>
                             <div class="min-w-0">
@@ -761,13 +1750,9 @@
                     </div>
 
                     <!-- Card -->
-                    <div class="group rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-6 shadow-sm">
+                    <div class="group service-card p-6">
                         <div class="flex items-start gap-3">
-                            <span class="w-10 aspect-square rounded-full
-             flex items-center justify-center
-             bg-black/5 dark:bg-white/10
-             border border-[color:var(--stroke)]
-             flex-shrink-0">
+                            <span class="service-icon flex-shrink-0">
                                 <i class="fa-solid fa-cloud"></i>
                             </span>
                             <div class="min-w-0">
@@ -788,13 +1773,9 @@
                     </div>
 
                     <!-- Card -->
-                    <div class="group rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-6 shadow-sm">
+                    <div class="group service-card p-6">
                         <div class="flex items-start gap-3">
-                            <span class="w-10 aspect-square rounded-full
-             flex items-center justify-center
-             bg-black/5 dark:bg-white/10
-             border border-[color:var(--stroke)]
-             flex-shrink-0">
+                            <span class="service-icon flex-shrink-0">
                                 <i class="fa-solid fa-screwdriver-wrench"></i>
                             </span>
                             <div class="min-w-0">
@@ -815,13 +1796,9 @@
                     </div>
 
                     <!-- Card -->
-                    <div class="group rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-6 shadow-sm">
+                    <div class="group service-card p-6">
                         <div class="flex items-start gap-3">
-                            <span class="w-10 aspect-square rounded-full
-             flex items-center justify-center
-             bg-black/5 dark:bg-white/10
-             border border-[color:var(--stroke)]
-             flex-shrink-0">
+                            <span class="service-icon flex-shrink-0">
                                 <i class="fa-solid fa-diagram-project"></i>
                             </span>
                             <div class="min-w-0">
@@ -845,41 +1822,40 @@
         </section>
 
         <!-- FEATURED PROJECTS -->
-        <section id="projects" class="mt-16 reveal">
-            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-                <div>
-                    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Featured Projects</h2>
-                    <p class="mt-2 opacity-80">Selected projects with concise overviews and case studies.</p>
+        <section id="projects" class="mt-20 reveal">
+            <div class="section-shell">
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                    <div>
+                        <div class="section-kicker">Selected Work</div>
+                        <h2 class="mt-3 text-2xl sm:text-4xl font-semibold">Projects with clearer outcomes and cleaner presentation.</h2>
+                        <p class="mt-3 max-w-3xl text-[color:var(--muted)]">A mix of business websites, product interfaces, and AI-assisted tools that show how I approach usability, structure, and delivery.</p>
+                    </div>
+
+                    <div class="filterRail" role="toolbar" aria-label="Filter projects">
+                        <button class="filterBtn" data-filter="all" type="button" aria-pressed="false">All</button>
+                        <button class="filterBtn" data-filter="web" type="button" aria-pressed="false">Web</button>
+                        <button class="filterBtn" data-filter="ai" type="button" aria-pressed="false">AI</button>
+                    </div>
                 </div>
 
-                <div class="flex flex-wrap gap-2">
-                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="all" type="button">All</button>
-                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="web" type="button">Web</button>
-                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="fullstack" type="button">Full-Stack</button>
-                    <button class="filterBtn px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" data-filter="ai" type="button">AI</button>
-                </div>
+                <div id="projectsGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
-
-            <div id="projectsGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </section>
 
         <!-- SKILLS -->
-        <section id="skills" class="mt-16 reveal">
-            <div class="glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
+        <section id="skills" class="mt-20 reveal">
+            <div class="section-shell">
                 <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
                     <div>
-                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Skills Snapshot</h2>
-                        <p class="mt-2 opacity-80">Practical mix of IT operations, web development, and security-first approach.</p>
+                        <div class="section-kicker">Capabilities</div>
+                        <h2 class="mt-3 text-2xl sm:text-4xl font-semibold">Practical skills across support, web, and delivery.</h2>
+                        <p class="mt-3 max-w-3xl text-[color:var(--muted)]">The value is not just the tools themselves. It is knowing how to use them to make systems easier to support and interfaces easier to trust.</p>
                     </div>
-                    <div class="text-sm opacity-75">Clean UI • Fast UX • Reliable delivery</div>
+                    <div class="text-sm text-[color:var(--muted)]">Support depth • Web polish • Security awareness</div>
                 </div>
 
                 <div class="mt-6 grid md:grid-cols-3 gap-5">
-                    <!-- IT & Systems -->
-                    <div class="rounded-2xl border border-[color:var(--stroke)] p-5
-              bg-gradient-to-br
-              from-emerald-500/25 via-emerald-500/10 to-transparent
-              dark:from-emerald-400/25 dark:via-emerald-400/10">
+                    <div class="skill-card skill-card--support p-5">
                         <div class="font-semibold">IT & Systems</div>
                         <ul class="mt-3 opacity-80 space-y-2">
                             <li>Windows • macOS • Troubleshooting</li>
@@ -888,11 +1864,7 @@
                         </ul>
                     </div>
 
-                    <!-- Web Development -->
-                    <div class="rounded-2xl border border-[color:var(--stroke)] p-5
-              bg-gradient-to-br
-              from-sky-500/25 via-sky-500/10 to-transparent
-              dark:from-sky-400/25 dark:via-sky-400/10">
+                    <div class="skill-card skill-card--web p-5">
                         <div class="font-semibold">Web Development</div>
                         <ul class="mt-3 opacity-80 space-y-2">
                             <li>HTML • CSS • JavaScript</li>
@@ -901,11 +1873,7 @@
                         </ul>
                     </div>
 
-                    <!-- Full-Stack & AI -->
-                    <div class="rounded-2xl border border-[color:var(--stroke)] p-5
-              bg-gradient-to-br
-              from-violet-500/25 via-violet-500/10 to-transparent
-              dark:from-violet-400/25 dark:via-violet-400/10">
+                    <div class="skill-card skill-card--fullstack p-5">
                         <div class="font-semibold">Full-Stack & AI</div>
                         <ul class="mt-3 opacity-80 space-y-2">
                             <li>Python/Flask • PHP • MySQL</li>
@@ -918,36 +1886,55 @@
         </section>
 
         <!-- ABOUT -->
-        <section id="about" class="mt-16 reveal">
-            <div class="grid lg:grid-cols-12 gap-6 items-start">
-                <div class="lg:col-span-7 glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
-                    <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">About</h2>
-                    <p class="mt-3 opacity-80 leading-relaxed">
-                        I provide IT support to individuals, healthcare, education, and enterprise environments. I also design and develop modern, streamlined, responsive, and secure web applications and websites. Rigorous, collaborative, and results-oriented, I focus on optimizing operational efficiency, enhancing the user experience, and delivering reliable and scalable solutions.
-                    </p>
+        <section id="about" class="mt-20 reveal">
+            <div class="about-experience-grid grid lg:grid-cols-12 gap-6">
+                <div class="about-balance-card lg:col-span-7 section-shell" data-match-group="about-experience">
+                    <div class="section-kicker">About</div>
+                    <h2 class="mt-3 text-2xl sm:text-4xl font-semibold">Reliable technical work with practical clarity.</h2>
+                    <div class="about-balance-copy mt-4 leading-relaxed text-[color:var(--muted)]">
+                        <p>
+                            I work across IT support and modern web delivery, with equal focus on system stability and user experience. This helps me solve problems efficiently and deliver solutions that hold up in practice.
+                        </p>
+                    </div>
 
-                    <div class="mt-6 flex flex-wrap gap-2">
-                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Security-first mindset</span>
-                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Accessible, user-focused UI</span>
-                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Efficient troubleshooting</span>
-                        <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-80">Effective communication</span>
+                    <div class="about-highlights-grid grid sm:grid-cols-2 gap-3">
+                        <div class="about-highlight p-4">
+                            <strong>Security-first mindset</strong>
+                            <p>Decisions made with access, risk, and long-term stability in mind.</p>
+                        </div>
+                        <div class="about-highlight p-4">
+                            <strong>Accessible, user-focused interfaces</strong>
+                            <p>Layouts designed to be clear, calm, and easy to use on real screens.</p>
+                        </div>
+                        <div class="about-highlight p-4">
+                            <strong>Structured troubleshooting and follow-through</strong>
+                            <p>Issues solved methodically, documented clearly, and carried to completion.</p>
+                        </div>
+                        <div class="about-highlight p-4">
+                            <strong>Clear communication across technical and non-technical teams</strong>
+                            <p>Updates kept practical and understandable for users, clients, and teams.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="lg:col-span-5 glass rounded-xl p-5 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
-                    <h3 class="text-xl font-semibold">Experience Timeline</h3>
-                    <div class="mt-4 space-y-4">
-                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-3">
+                <div class="about-balance-card lg:col-span-5 section-shell" data-match-group="about-experience">
+                    <div class="section-kicker">Experience</div>
+                    <h3 class="mt-3 text-2xl font-semibold">Where that work shows up.</h3>
+                    <p class="experience-intro mt-3 text-[color:var(--muted)]">
+                        The through line is steady support, cleaner execution, and systems that make the next handoff easier.
+                    </p>
+                    <div class="experience-stack">
+                        <div class="timeline-card p-4">
                             <div class="font-semibold">IT Support Specialist</div>
-                            <div class="text-sm opacity-75">Healthcare, enterprise, and end-user support</div>
+                            <div class="mt-1 text-sm text-[color:var(--muted)]">Healthcare, enterprise, and end-user environments where uptime and clear support matter.</div>
                         </div>
-                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-3">
+                        <div class="timeline-card p-4">
                             <div class="font-semibold">Founder — GiqComp Solutions</div>
-                            <div class="text-sm opacity-75">IT support, consulting, web, and digital solutions</div>
+                            <div class="mt-1 text-sm text-[color:var(--muted)]">IT support, consulting, web delivery, and digital solutions for clients who need cleaner execution.</div>
                         </div>
-                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-3">
+                        <div class="timeline-card p-4">
                             <div class="font-semibold">Technical Builder</div>
-                            <div class="text-sm opacity-75">Automation, performance optimization, UI, and UX refinements</div>
+                            <div class="mt-1 text-sm text-[color:var(--muted)]">Automation, performance tuning, UI refinement, and systems that are easier to maintain.</div>
                         </div>
                     </div>
                 </div>
@@ -955,79 +1942,65 @@
         </section>
 
         <!-- CONTACT -->
-        <section id="contact" class="mt-16 reveal">
-            <div class="glass rounded-2xl p-6 border border-[color:var(--stroke)] shadow-[var(--shadow)]">
-                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                    <div>
-                        <h2 class="text-2xl sm:text-3xl font-semibold tracking-tight">Contact</h2>
-                        <p class="mt-2 opacity-80">Professional IT support and modern web solutions, tailored to your needs.</p>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                        <a id="contactCallBtn" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="tel:+17044457288">
-                            <i class="fa-solid fa-phone mr-2"></i>Call
-                        </a>
-                        <a id="contactEmailBtn" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="mailto:info@giqcompsolutions.com">
-                            <i class="fa-solid fa-envelope mr-2"></i>Email
-                        </a>
-                    </div>
+        <section id="contact" class="mt-20 reveal">
+            <div class="section-shell">
+                <div>
+                    <div class="section-kicker">Contact</div>
+                    <h2 class="mt-3 text-2xl sm:text-4xl font-semibold">Get in touch.</h2>
+                    <p class="mt-3 max-w-3xl text-[color:var(--muted)]">Feel free to reach out about a role, project, or technical support. I’m happy to connect.</p>
                 </div>
 
                 <div class="mt-6 grid lg:grid-cols-12 gap-6">
-                    <div class="lg:col-span-7 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
+                    <div class="lg:col-span-7 contact-card p-5">
                         <div class="grid sm:grid-cols-2 gap-3">
-                            <div class="rounded-2xl bg-black/5 dark:bg-black/10 border border-[color:var(--stroke)] p-4">
-                                <div class="text-sm opacity-75">Phone</div>
+                            <a id="contactPhoneCard" class="about-highlight contactQuickLink p-4 no-underline hover:border-[color:var(--stroke)]" href="tel:+17044457288">
+                                <div class="contactQuickLinkLabel text-sm text-[color:var(--muted)]">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>Phone</span>
+                                </div>
                                 <div id="contactPhoneText" class="mt-1 font-semibold">+1 (704) 445-7288</div>
-                            </div>
-                            <div class="rounded-2xl bg-black/5 dark:bg-black/10 border border-[color:var(--stroke)] p-4">
-                                <div class="text-sm opacity-75">Email</div>
+                            </a>
+                            <a id="contactEmailCard" class="about-highlight contactQuickLink p-4 no-underline hover:border-[color:var(--stroke)]" href="mailto:info@giqcompsolutions.com">
+                                <div class="contactQuickLinkLabel text-sm text-[color:var(--muted)]">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span>Email</span>
+                                </div>
                                 <div id="contactEmailText" class="mt-1 font-semibold">info@giqcompsolutions.com</div>
-                            </div>
+                            </a>
                         </div>
 
                         <div class="mt-4 flex flex-wrap gap-2">
-                            <!-- Recruiter-only button -->
                             <a id="contactLinkedInBtn" class="contactSocial socialLink contactSocial--linkedin accentBtn accentBtn--linkedin px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.linkedin.com/in/guy-thierry-charles-986bb167" target="_blank" rel="noreferrer">
                                 <i class="fa-brands fa-linkedin mr-2 socialIcon socialIcon-linkedin"></i>LinkedIn
                             </a>
-                            <!-- Recruiter-only button -->
                             <a class="contactSocial socialLink contactSocial--github accentBtn accentBtn--github px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://github.com/GuyTCharles" target="_blank" rel="noreferrer">
                                 <i class="fa-brands fa-github mr-2 socialIcon socialIcon-github"></i>GitHub
                             </a>
-                            <!-- Recruiter-only button -->
                             <a id="contactResumeBtn" data-view="recruiter-only" class="resumeBtn contactSocial px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)]" href="resume/Guy_Thierry_Charles—Resume.pdf" download="Guy_Thierry_Charles—Resume.pdf">
                                 <i class="fa-solid fa-download mr-2"></i>Download Resume
                             </a>
-                            <!-- Client-only button -->
                             <a data-view="client-only" class="contactSocial socialLink accentBtn accentBtn--website px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="https://www.giqcompsolutions.com" target="_blank" rel="noreferrer">
-                                <i class="fa-solid fa-globe mr-2 socialIcon socialIcon-website"></i>
-                                GiqCompSolutions.com
+                                <i class="fa-solid fa-globe mr-1.5 socialIcon socialIcon-website"></i>GiqCompSolutions.com
                             </a>
                         </div>
                     </div>
 
-                    <div data-view="client-only" class="lg:col-span-5 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
-                        <div class="flex items-center justify-between gap-3">
-                            <div>
-                                <div class="font-semibold">Save My Contact</div>
-                                <div class="text-sm opacity-75">Scan or download for quick contact.</div>
-                            </div>
-                            <button id="openQRBtn2" type="button" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition">
-                                Open
-                            </button>
+                    <div data-view="client-only" class="lg:col-span-5 contact-qr-card p-5 h-full flex flex-col justify-between">
+                        <div>
+                            <div class="font-semibold">Contact QR</div>
+                            <div class="mt-1 text-sm text-[color:var(--muted)]">Open the QR to scan, share, or save my contact quickly.</div>
                         </div>
 
-                        <div class="mt-4 rounded-2xl bg-black/5 dark:bg-black/10 border border-[color:var(--stroke)] p-4 flex justify-center">
-                            <img src="images/Business-Card_QR-Code.png" alt="Business Card QR Code" class="max-w-[220px] rounded-xl">
+                        <div class="mt-5">
+                            <button id="openQRBtn2" type="button" class="cta-primary w-full sm:w-auto sm:min-w-[11rem] !px-4 !py-2">
+                                <span>Open QR</span>
+                            </button>
                         </div>
-                        <a class="mt-4 inline-flex justify-center w-full px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" href="images/Business-Card_QR-Code.png" download="Guy_Thierry_Charles_QR.png">
-                            Download QR
-                        </a>
                     </div>
                 </div>
 
                 <div class="mt-8 pt-6 border-t border-[color:var(--stroke)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-sm opacity-75">
-                    <div>© Guy Thierry Charles • Porfolio</div>
+                    <div>© Guy Thierry Charles • Portfolio</div>
                     <div class="flex gap-3">
                         <a class="hover:opacity-100 opacity-80 transition" href="#top">Back to top</a>
                     </div>
@@ -1083,13 +2056,13 @@
     <!-- PROJECT MODAL -->
     <div id="projectModal" class="hidden fixed inset-0 z-[80]">
         <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative mx-auto max-w-3xl px-4 sm:px-6 py-6">
-            <div class="glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden shadow-[var(--shadow)] max-h-[85vh] flex flex-col">
+        <div id="projectModalShell" class="relative project-modal-shell">
+            <div class="project-modal-frame glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden shadow-[var(--shadow)] flex flex-col">
 
                 <div class="p-5 sm:p-6 flex items-start justify-between gap-4 border-b border-[color:var(--stroke)] shrink-0">
                     <div>
                         <div id="modalTitle" class="text-xl sm:text-2xl font-semibold"></div>
-                        <div id="modalTagline" class="mt-1 opacity-80"></div>
+                        <div id="modalTagline" class="mt-2 max-w-2xl text-sm sm:text-[.98rem] leading-relaxed text-[color:var(--muted)]"></div>
                     </div>
                     <button id="closeProjectModal" type="button" class="px-3 py-1.5 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
@@ -1117,41 +2090,43 @@
                     </div>
 
                     <div class="grid sm:grid-cols-2 gap-4">
-                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
-                            <div class="text-sm opacity-75">Overview</div>
-                            <p id="modalDesc" class="mt-2 opacity-85 leading-relaxed"></p>
+                        <div class="modal-panel">
+                            <div class="modal-section-label">Overview</div>
+                            <p id="modalDesc" class="modal-copy mt-3"></p>
                         </div>
 
-                        <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
-                            <div class="text-sm opacity-75">Tech</div>
-                            <p id="modalTech" class="mt-2 opacity-85 leading-relaxed"></p>
-                            <div class="mt-3 text-sm opacity-75">Category</div>
-                            <div id="modalCategory" class="mt-1 font-semibold"></div>
+                        <div class="modal-panel">
+                            <div class="modal-section-label">Stack</div>
+                            <div id="modalTech" class="modal-chip-row mt-3"></div>
+                            <div class="mt-4 modal-section-label">Category</div>
+                            <div class="mt-3">
+                                <span id="modalCategory" class="project-badge modal-category-badge"></span>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Case study in modal -->
-                    <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-4">
-                        <div class="font-semibold mb-2">Case Study</div>
-                        <div class="grid md:grid-cols-3 gap-3">
-                            <div>
-                                <div class="text-sm opacity-75">Problem</div>
-                                <p id="modalProblem" class="mt-1 opacity-85"></p>
+                    <div class="modal-panel">
+                        <div class="font-semibold mb-3">Case Study</div>
+                        <div class="case-study-grid grid md:grid-cols-3 gap-3">
+                            <div class="case-study-item">
+                                <div class="modal-section-label">Problem Space</div>
+                                <p id="modalProblem" class="modal-copy mt-3"></p>
                             </div>
-                            <div>
-                                <div class="text-sm opacity-75">Approach</div>
-                                <p id="modalApproach" class="mt-1 opacity-85"></p>
+                            <div class="case-study-item">
+                                <div class="modal-section-label">Implementation</div>
+                                <p id="modalApproach" class="modal-copy mt-3"></p>
                             </div>
-                            <div>
-                                <div class="text-sm opacity-75">Result</div>
-                                <p id="modalResult" class="mt-1 opacity-85"></p>
+                            <div class="case-study-item">
+                                <div class="modal-section-label">Outcome</div>
+                                <p id="modalResult" class="modal-copy mt-3"></p>
                             </div>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-2 justify-end">
                         <a id="modalLive" href="#" class="px-4 py-2 rounded-2xl btn-primary font-semibold transition" target="_blank" rel="noreferrer noopener">
-                            Live Demo
+                            Live Site
                         </a>
 
                         <a id="modalGit" href="#" class="px-4 py-2 rounded-2xl btn-ghost font-semibold transition" target="_blank" rel="noreferrer noopener">
@@ -1167,27 +2142,26 @@
     <!-- QR MODAL -->
     <div id="qrModal" class="hidden fixed inset-0 z-[85]">
         <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative mx-auto max-w-md px-4 sm:px-6 py-12">
-            <div class="glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden shadow-[var(--shadow)]">
+        <div id="qrModalShell" class="relative qr-modal-shell">
+            <div class="qr-modal-frame glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden shadow-[var(--shadow)]">
                 <div class="p-5 flex items-center justify-between border-b border-[color:var(--stroke)]">
-                    <div class="font-semibold">Share / Save QR</div>
+                    <div class="font-semibold">Contact QR</div>
                     <button id="closeQRModal" type="button" class="px-3 py-1.5 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition" aria-label="Close">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>
-                <div class="p-5">
-                    <img src="images/Business-Card_QR-Code.png" alt="QR Code" class="w-full rounded-2xl border border-[color:var(--stroke)] bg-black/10">
-                    <div class="mt-4 grid grid-cols-2 gap-2">
-                        <button id="nativeShareBtn" type="button" class="px-4 py-2 rounded-2xl bg-[color:var(--accent)] text-black font-semibold hover:opacity-90 transition">
+                <div class="p-5 sm:p-6">
+                    <div class="qr-modal-preview">
+                        <img src="images/Business-Card_QR-Code.png" alt="QR Code" class="qr-modal-image">
+                    </div>
+                    <div id="qrActionRow" class="mt-5 grid grid-cols-2 gap-2 sm:gap-3">
+                        <button id="nativeShareBtn" type="button" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] font-semibold hover:opacity-95 transition">
                             Share
                         </button>
-                        <a class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition text-center" href="images/Business-Card_QR-Code.png" download="Guy_Thierry_Charles_QR.png">
-                            Save
+                        <a id="downloadQRLink" class="px-4 py-2 rounded-2xl glass border border-[color:var(--stroke)] hover:opacity-95 transition text-center font-semibold" href="images/Business-Card_QR-Code.png" download="Guy_Thierry_Charles_QR.png">
+                            Download
                         </a>
                     </div>
-                    <p id="shareFallback" class="mt-3 text-sm opacity-75 hidden">
-                        Your browser doesn’t support native sharing. Please use Download.
-                    </p>
                 </div>
             </div>
         </div>
@@ -1206,9 +2180,9 @@
         // -----------------------------
         const PROJECTS = [{
                 title: "CLT Furniture",
-                tagline: "Modern furniture showroom website focused on clarity, usability, and performance",
+                tagline: "Modern furniture showroom website focused on clarity, usability, and performance.",
                 category: "web",
-                desc: "A modern furniture showroom website designed to deliver a clean, intuitive browsing experience. The site emphasizes clear information hierarchy, responsive layout, strong readability, and a refined light and dark mode interface for comfortable viewing across all devices.",
+                desc: "A responsive showroom website built around product discovery, cleaner information hierarchy, and a more polished browsing flow. The front-end focuses on structured content presentation, theme-aware UI behavior, and a refined visual system that keeps product browsing clear across screen sizes.",
                 tech: "HTML, CSS, JavaScript, Responsive Web Design, Light/Dark Mode UI",
                 image: "images/CLT-Furniture_Light.png", // card preview image (light)
                 images: [
@@ -1218,16 +2192,16 @@
                 live: "https://www.clt-furniture.com",
                 git: "",
                 caseStudy: {
-                    problem: "The client needed a modern, user-friendly furniture website that was easy to navigate, visually consistent, and optimized for mobile users while supporting both light and dark viewing preferences.",
-                    approach: "Designed a structured, section-based layout with responsive grids, consistent spacing, and a cohesive theme system. The interface was optimized for usability, readability, and performance across devices.",
-                    result: "A polished, showroom-style website that feels modern, loads efficiently, and provides a smooth, accessible browsing experience in both light and dark modes."
+                    problem: "The catalog needed to feel premium without losing clarity, especially on mobile where dense layouts and inconsistent hierarchy make browsing slower.",
+                    approach: "I built a modular layout system with responsive content blocks, stronger spacing rhythm, and a light/dark theming layer that preserved readability and product focus across breakpoints.",
+                    result: "The final site presents collections more clearly, improves scanability, and delivers a showroom-style experience that feels polished without becoming visually heavy."
                 }
             },
             {
                 title: "Lotus Decor Studio",
-                tagline: "Elegant event decor website focused on bookings, trust, and a polished user experience",
+                tagline: "Elegant event decor website focused on bookings, trust, and a polished user experience.",
                 category: "web",
-                desc: "A premium event decor website designed to showcase service packages, venue options, and gallery examples while making quote requests simple and intuitive. The site emphasizes clean visual hierarchy, responsive behavior, smooth navigation, and consistent branding across all screen sizes.",
+                desc: "A conversion-oriented event decor website designed to surface service packages, gallery content, and inquiry paths with stronger presentation and clearer booking intent. The build emphasizes visual hierarchy, trust signals, and responsive flow across service and quote sections.",
                 tech: "HTML, CSS, JavaScript, Responsive Web Design, Accessibility, UX/UI Design",
                 image: "images/Lotus-Decor-Studio_Home.png", // card preview image
                 images: [
@@ -1236,16 +2210,17 @@
                 live: "https://guytcharles.github.io/event-decor-services/index.html",
                 git: "https://github.com/GuyTCharles/event-decor-services",
                 caseStudy: {
-                    problem: "Lotus Decor Studio needed a professional online presence that could clearly present offerings, build credibility, and convert visitors into inquiries, especially on mobile devices.",
-                    approach: "Built a section-based, conversion-focused layout with sticky navigation, smooth anchor scrolling, package tabs, legal pages, and gallery image modals. Standardized spacing, button sizing, and interactive behavior across breakpoints to keep the experience consistent and user-friendly.",
-                    result: "A polished, modern website that communicates services clearly, feels premium and cohesive, and supports a smoother path from browsing to quote request."
+                    problem: "The business needed a site that could communicate premium service offerings quickly while reducing friction between browsing, trust-building, and quote inquiry.",
+                    approach: "I structured the experience around anchored navigation, service grouping, gallery presentation, and mobile-first spacing so users could move from package review to inquiry with less friction.",
+                    result: "The result is a more polished lead-generation website that frames services professionally and supports a clearer path from interest to booking inquiry."
                 }
             },
             {
                 title: "PlanifyVerse",
-                tagline: "AI-powered study planning web application with PDF export",
+                tagline: "AI-powered study planning web application with PDF export.",
                 category: "ai",
-                desc: "An AI-powered study planner that generates customized schedules using OpenAI. Users enter goals and availability; includes PDF export and responsive design.",
+                badgeLabel: "Web App + AI",
+                desc: "An AI-assisted planning tool that converts availability, goals, and deadlines into structured study schedules through an OpenAI-backed generation flow. The app combines guided inputs, generated planning output, and export-ready formatting in a responsive interface.",
                 tech: "HTML, CSS, JavaScript, Flask/Python, OpenAI API",
                 image: "images/PlanifyVerse_Light.png", // card preview image (light)
                 images: [
@@ -1255,16 +2230,16 @@
                 live: "https://voiceless-angelique-planifyverse-d8a0edc9.koyeb.app",
                 git: "https://github.com/GuyTCharles/PlanifyVerse",
                 caseStudy: {
-                    problem: "Students struggle to convert goals + time constraints into a realistic study plan.",
-                    approach: "Collected inputs (hours, goals, duration) and generated structured plans via OpenAI; added PDF export.",
-                    result: "A usable planning tool that turns messy requirements into actionable schedules quickly."
+                    problem: "Study planning is often fragmented: users know their goals and constraints, but turning them into a realistic schedule is slow and inconsistent.",
+                    approach: "I built a form-driven planning pipeline that captures time blocks and deadlines, generates structured schedules through the OpenAI API, and formats the result for in-app review and PDF export.",
+                    result: "PlanifyVerse turns loose planning inputs into usable schedules in one flow, reducing manual planning time and giving users a cleaner starting point."
                 }
             },
             {
                 title: "ConsultCareConnect",
-                tagline: "Virtual healthcare platform with a modern, accessible UI",
+                tagline: "Virtual healthcare platform with a modern, accessible UI.",
                 category: "web",
-                desc: "A virtual healthcare platform connecting users with personalized support, symptom-checking tools, and secure record management. Includes dark mode, Google Custom Search, and a dynamic UI designed for real-world telehealth use.",
+                desc: "A healthcare interface concept designed around discoverability, symptom support, and secure-feeling interaction patterns. The front-end focuses on accessible layout, clear navigation, search-assisted discovery, and responsive patient-facing UI structure.",
                 tech: "HTML, CSS, JavaScript, LocalStorage, Google Search API",
                 image: "images/ConsultCareConnect_Website_Project_Light.png",
                 images: [
@@ -1274,31 +2249,32 @@
                 live: "https://guytcharles.github.io/ConsultCareConnect/homepage.html",
                 git: "https://github.com/GuyTCharles/ConsultCareConnect",
                 caseStudy: {
-                    problem: "Users needed a simple, accessible way to explore telehealth features without a complicated interface.",
-                    approach: "Built a responsive UI with dark mode, clear navigation, and search-driven content discovery to support usability and accessibility.",
-                    result: "A clean, modern demo platform that showcases telehealth UX patterns and reusable UI components."
+                    problem: "Healthcare interfaces can become visually dense and difficult to navigate, especially when users need to search, triage, or locate support quickly.",
+                    approach: "I organized the experience around high-clarity navigation, search and symptom entry points, theme support, and calmer content grouping to keep the interface readable and easier to use.",
+                    result: "The concept demonstrates a cleaner telehealth-style UI with stronger accessibility cues, better scanability, and reusable support-oriented interaction patterns."
                 }
             },
             {
                 title: "Pacific Trails Resort",
-                tagline: "Responsive resort website with interactive experiences",
+                tagline: "Responsive resort website with interactive experiences.",
                 category: "web",
-                desc: "A responsive resort website featuring activities, dining info, mobile navigation, and immersive content to bring the experience to life.",
+                desc: "A travel-oriented resort website designed to bring activities, dining, and planning details into a smoother responsive experience. The interface focuses on content grouping, lightweight interaction, and clearer wayfinding across device sizes.",
                 tech: "HTML, CSS, JavaScript",
                 image: "images/Pacific_Trails_Resort_Site_Project.png",
                 live: "https://guytcharles.github.io/Pacific-Trails-Resort/",
                 git: "https://github.com/GuyTCharles/Pacific-Trails-Resort",
                 caseStudy: {
-                    problem: "A resort site needed a mobile-friendly experience that still felt immersive and informative.",
-                    approach: "Implemented responsive layout, interactive navigation, and content sections designed for fast scanning.",
-                    result: "A polished demo site that highlights UI structure, responsiveness, and user flow."
+                    problem: "The site needed to feel immersive without sacrificing mobile usability or making trip-planning information harder to find.",
+                    approach: "I used responsive sectioning, simplified navigation, and clearer content sequencing so users could scan activities, accommodations, and planning details with less effort.",
+                    result: "The final build presents resort content in a more structured, travel-friendly way while preserving a stronger sense of place."
                 }
             },
             {
                 title: "Focus Board",
-                tagline: "Responsive task planner with priorities, due dates, and dark mode",
+                tagline: "Responsive task planner with priorities, due dates, and dark mode.",
                 category: "web",
-                desc: "Focus Board is a polished, responsive productivity app for daily planning. Users can add tasks with priority and due dates, track progress, filter and sort tasks, and keep everything saved locally for a fast, reliable workflow.",
+                badgeLabel: "Web App",
+                desc: "A lightweight productivity web app for task capture, prioritization, and daily planning. The interface combines local persistence, filter and sort controls, and theme support in a fast client-side workflow built for repeat use.",
                 tech: "HTML, CSS, JavaScript",
                 image: "images/Focus-Board-App_Light.png",
                 images: [
@@ -1308,11 +2284,26 @@
                 live: "https://guytcharles.github.io/focus-board/index.html",
                 git: "https://github.com/GuyTCharles/focus-board",
                 caseStudy: {
-                    problem: "Users need a lightweight task app that still supports real planning.",
-                    approach: "Implemented persistent task management with priorities, due dates, filtering/sorting, and theme support in a modern responsive interface.",
-                    result: "A fast, intuitive Focus Board that improves daily organization without unnecessary complexity."
+                    problem: "Many lightweight task tools are either too limited for real planning or too heavy for fast day-to-day use.",
+                    approach: "I built a client-side task workflow with priority states, due-date handling, localStorage persistence, filter and sort controls, and responsive theme-aware UI behavior.",
+                    result: "Focus Board keeps task management fast and approachable while still supporting the planning detail needed for everyday execution."
                 }
-            }
+            }, 
+            //{
+            //    title: "GCArthriFit",
+            //    tagline: "Wellness and fitness resources for arthritis management",
+            //    category: "web",
+            //    desc: "An educational site built with Weebly offering wellness and fitness resources for arthritis management, with clean navigation and accessibility-focused layout.",
+            //    tech: "Weebly (Site Builder / Hosting)",
+            //    image: "images/GCArthriFit_Project.png",
+            //    live: "https://gcarthrifit.weebly.com/",
+            //    git: "",
+            //    caseStudy: {
+            //        problem: "People managing arthritis needed organized wellness resources that are easy to navigate.",
+            //        approach: "Structured content into clear sections with a simple, responsive layout using Weebly tools.",
+            //        result: "A user-friendly resource hub that makes wellness guidance easier to access and understand."
+            //    }
+            //}
         ];
 
         // -----------------------------
@@ -1320,6 +2311,28 @@
         // -----------------------------
         const $ = (sel, root = document) => root.querySelector(sel);
         const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+        function getProjectBadgeLabel(project) {
+            return project.badgeLabel || (project.category === "ai" ? "AI" : "Web");
+        }
+
+        function setModalTechStack(tech) {
+            const techRoot = $("#modalTech");
+            if (!techRoot) return;
+
+            const items = (Array.isArray(tech) ? tech : String(tech || "").split(","))
+                .map(item => String(item).trim())
+                .filter(Boolean);
+
+            techRoot.innerHTML = "";
+
+            items.forEach(item => {
+                const chip = document.createElement("span");
+                chip.className = "modal-chip";
+                chip.textContent = item;
+                techRoot.appendChild(chip);
+            });
+        }
 
         function toast(msg) {
             const t = $("#toast");
@@ -1351,24 +2364,19 @@
 
         function normalizeMode(mode) {
             const m = String(mode || "").toLowerCase().trim();
-            return m === "client" ? "client" : "recruiter"; // default to recruiter
+            return m === "recruiter" ? "recruiter" : "client";
         }
 
-        function getMode() {
-            return "recruiter"; // always start in client view
-        }
-
-        /*  
         function getMode() {
             return normalizeMode(localStorage.getItem("viewMode") || "recruiter");
-        } */
+        }
 
         function applyContactByMode(mode) {
             const m = normalizeMode(mode);
             const cfg = CONTACT[m] || CONTACT.client;
 
-            $("#contactCallBtn")?.setAttribute("href", `tel:${cfg.phoneTel}`);
-            $("#contactEmailBtn")?.setAttribute("href", `mailto:${cfg.emailMailto}`);
+            $("#contactPhoneCard")?.setAttribute("href", `tel:${cfg.phoneTel}`);
+            $("#contactEmailCard")?.setAttribute("href", `mailto:${cfg.emailMailto}`);
 
             const phoneEl = $("#contactPhoneText");
             const emailEl = $("#contactEmailText");
@@ -1379,9 +2387,10 @@
             $("#heroLinkedInBtn")?.setAttribute("href", cfg.linkedinUrl);
         }
 
-        function applyViewMode(mode) {
+        function applyViewMode(mode, options = {}) {
             const m = normalizeMode(mode);
             localStorage.setItem("viewMode", m);
+            const silent = Boolean(options.silent);
 
             const isRecruiter = m === "recruiter";
             const rBtns = [$("#recruiterModeBtn"), $("#recruiterModeBtnM")].filter(Boolean);
@@ -1395,7 +2404,9 @@
 
             applyContactByMode(m);
             applyHeroByMode(m);
-            toast(isRecruiter ? "Recruiter view enabled" : "Client view enabled");
+            if (!silent) {
+                toast(isRecruiter ? "Recruiter view enabled" : "Client view enabled");
+            }
         }
 
         // -----------------------------
@@ -1403,8 +2414,8 @@
         // 
         const HERO_PROFILE = {
             recruiter: {
-                title: "IT Support & Web Specialist",
-                sub: "Field Tech • Onsite & Remote Support",
+                title: "IT Support &\nWeb Specialist",
+                sub: "Onsite, remote, & web support",
                 third: {
                     show: true,
                     text: "Resume",
@@ -1414,8 +2425,8 @@
                 }
             },
             client: {
-                title: "Founder • GiqComp Solutions",
-                sub: "IT Support • Web Solutions",
+                title: "Founder\nGiqComp Solutions",
+                sub: "IT support, web systems, & automation",
                 third: {
                     show: true,
                     text: "Visit GiqComp Solutions",
@@ -1430,13 +2441,24 @@
         function applyHeroByMode(mode) {
             const m = normalizeMode(mode);
             const cfg = HERO_PROFILE[m] || HERO_PROFILE.client;
-
-            $("#heroRoleTitle") && ($("#heroRoleTitle").textContent = cfg.title);
-            $("#heroRoleSub") && ($("#heroRoleSub").textContent = cfg.sub);
-
+            const heroRoleTitle = $("#heroRoleTitle");
+            const heroRoleSub = $("#heroRoleSub");
+            const heroWordmark = $("#heroWordmark");
             const thirdLink = $("#heroThirdLink");
             const thirdText = $("#heroThirdText");
             const thirdIcon = $("#heroThirdIcon");
+
+            if (heroRoleTitle) {
+                heroRoleTitle.textContent = cfg.title;
+                heroRoleTitle.classList.toggle("is-compact", m === "recruiter" || m === "client");
+            }
+            if (heroRoleSub) {
+                heroRoleSub.textContent = cfg.sub;
+                heroRoleSub.classList.toggle("hidden", !cfg.sub);
+            }
+            if (heroWordmark) {
+                heroWordmark.classList.toggle("hidden", m === "recruiter");
+            }
 
             if (!thirdLink) return;
 
@@ -1452,7 +2474,7 @@
             // Icon + text
             if (thirdText) thirdText.textContent = cfg.third.text || "";
             if (thirdIcon) {
-                thirdIcon.className = `fa-solid ${cfg.third.icon || "fa-paper-plane"} text-xl`;
+                thirdIcon.className = `fa-solid ${cfg.third.icon || "fa-paper-plane"} text-xl heroActionIcon`;
             }
 
             // NEW: open in new tab if requested
@@ -1530,36 +2552,40 @@
 
         function projectCard(p) {
             const hasGit = Boolean(p.git && p.git.trim());
+            const badgeLabel = getProjectBadgeLabel(p);
             return `
-        <article class="projectCard group glass rounded-2xl border border-[color:var(--stroke)] overflow-hidden hover:opacity-95 transition"
+        <article class="projectCard group glass border border-[color:var(--stroke)]"
                  data-cat="${p.category}">
           <button type="button" class="w-full text-left" data-open="${encodeURIComponent(p.title)}">
-            <div class="aspect-[16/10] bg-black/5 dark:bg-black/10 overflow-hidden">
-              <img src="${p.image}" alt="${p.title} screenshot"
-                   class="h-full w-full object-cover opacity-95 group-hover:scale-[1.03] transition duration-300">
-            </div>
-            <div class="p-5">
-              <div class="flex items-start justify-between gap-3">
-                <h3 class="text-lg font-semibold">${p.title}</h3>
-                <span class="text-xs px-3 py-1 rounded-full bg-black/5 dark:bg-white/10 border border-[color:var(--stroke)] opacity-90">${p.category.toUpperCase()}</span>
+            <div class="p-5 sm:p-6">
+              <div class="flex items-center justify-start">
+                <span class="project-badge">${badgeLabel}</span>
               </div>
-              <p class="mt-2 opacity-80 text-sm leading-relaxed">${p.tagline}</p>
-              <div class="mt-4 flex flex-wrap gap-2">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <h3 class="mt-5 text-lg sm:text-xl font-semibold">${p.title}</h3>
+                  <p class="mt-2 opacity-80 text-sm leading-relaxed">${p.tagline}</p>
+                </div>
+              </div>
+              <div class="mt-5 flex flex-wrap items-center gap-2">
                 <a href="${p.live}" target="_blank" rel="noreferrer"
-                   class="px-3 py-2 rounded-2xl bg-[color:var(--text)] text-[color:var(--bg)] text-sm font-semibold hover:opacity-90 transition"
+                   class="project-link project-link--primary"
                    data-stop>
-                  Live
+                  Live Site
                 </a>
                 ${hasGit ? `
                   <a href="${p.git}" target="_blank" rel="noreferrer"
-                     class="px-3 py-2 rounded-2xl glass border border-[color:var(--stroke)] text-sm hover:opacity-95 transition"
+                     class="project-link project-link--secondary"
                      data-stop>
                     GitHub
                   </a>
                 ` : `
                 `}
-                <span class="px-3 py-2 rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] text-sm opacity-70">
-                  Case study
+              </div>
+              <div class="mt-3">
+                <span class="project-link project-link--ghost">
+                  <span>Open case study</span>
+                  <i class="fa-solid fa-arrow-right-long text-xs opacity-70"></i>
                 </span>
               </div>
             </div>
@@ -1586,17 +2612,26 @@
             });
         }
 
+        function syncFilterButtons() {
+            $$(".filterBtn").forEach((btn) => {
+                const isActive = btn.dataset.filter === activeFilter;
+                btn.classList.toggle("is-active", isActive);
+                btn.setAttribute("aria-pressed", String(isActive));
+            });
+        }
+
         // -----------------------------
         // Case Studies render
         // -----------------------------
         function caseStudyCard(p) {
             const hasGit = Boolean(p.git && p.git.trim());
+            const techSummary = Array.isArray(p.tech) ? p.tech.join(" • ") : p.tech;
             return `
         <div class="rounded-2xl bg-black/5 dark:bg-white/5 border border-[color:var(--stroke)] p-5">
           <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
             <div>
               <div class="font-semibold text-lg">${p.title}</div>
-              <div class="text-sm opacity-75 mt-1">${p.tech}</div>
+              <div class="text-sm opacity-75 mt-1">${techSummary}</div>
             </div>
             <div class="flex gap-2">
               <a href="${p.live}" target="_blank" rel="noreferrer"
@@ -1763,8 +2798,8 @@
             $("#modalTitle").textContent = p.title;
             $("#modalTagline").textContent = p.tagline;
             $("#modalDesc").textContent = p.desc;
-            $("#modalTech").textContent = p.tech;
-            $("#modalCategory").textContent = p.category.toUpperCase();
+            setModalTechStack(p.tech);
+            $("#modalCategory").textContent = getProjectBadgeLabel(p);
 
             // Carousel support (2+ images)
             const prevBtn = $("#modalPrev");
@@ -1807,9 +2842,29 @@
         // -----------------------------
         // QR modal + native share
         // -----------------------------
+        function syncQRShareAvailability() {
+            const shareBtn = $("#nativeShareBtn");
+            const downloadLink = $("#downloadQRLink");
+            const actionRow = $("#qrActionRow");
+            const canNativeShare = typeof navigator.share === "function";
+
+            if (!shareBtn || !downloadLink || !actionRow) return;
+
+            shareBtn.classList.toggle("hidden", !canNativeShare);
+            shareBtn.toggleAttribute("disabled", !canNativeShare);
+            downloadLink.classList.toggle("col-span-2", !canNativeShare);
+        }
+
+        function triggerQRDownload() {
+            const downloadLink = $("#downloadQRLink");
+            if (!downloadLink) return;
+
+            downloadLink.click();
+        }
+
         function openQRModal() {
             $("#qrModal").classList.remove("hidden");
-            $("#shareFallback").classList.add("hidden");
+            syncQRShareAvailability();
             document.body.style.overflow = "hidden";
         }
 
@@ -1818,13 +2873,32 @@
             document.body.style.overflow = "";
         }
 
+        let qrShareInFlight = false;
+
         async function nativeShareQR() {
-            const fileUrl = "images/Business-Card_QR-Code.png";
+            const shareBtn = $("#nativeShareBtn");
+            const filePath = "images/Business-Card_QR-Code.png";
+            const fileUrl = new URL(filePath, window.location.href).href;
+            const shareTitle = "Guy Thierry Charles Contact QR";
+            const shareText = "Scan or save my contact QR.";
+
+            if (qrShareInFlight) return;
+
+            qrShareInFlight = true;
+            shareBtn?.setAttribute("disabled", "true");
+
+            if (typeof navigator.share !== "function") {
+                qrShareInFlight = false;
+                shareBtn?.removeAttribute("disabled");
+                triggerQRDownload();
+                return;
+            }
+
             try {
-                const res = await fetch(fileUrl);
+                const res = await fetch(filePath);
                 const blob = await res.blob();
                 const file = new File([blob], "Guy_Thierry_Charles_QR.png", {
-                    type: blob.type
+                    type: blob.type || "image/png"
                 });
 
                 if (navigator.canShare && navigator.canShare({
@@ -1832,14 +2906,41 @@
                     })) {
                     await navigator.share({
                         files: [file],
-                        title: "Guy Thierry Charles — QR",
-                        text: "Scan to connect!"
+                        title: shareTitle,
+                        text: shareText
                     });
-                } else {
-                    $("#shareFallback").classList.remove("hidden");
+                    return;
                 }
-            } catch {
-                $("#shareFallback").classList.remove("hidden");
+
+                await navigator.share({
+                    title: shareTitle,
+                    text: shareText,
+                    url: fileUrl
+                });
+            } catch (error) {
+                if (["AbortError", "InvalidStateError", "NotAllowedError"].includes(error?.name)) {
+                    return;
+                }
+
+                try {
+                    await navigator.share({
+                        title: shareTitle,
+                        text: shareText,
+                        url: fileUrl
+                    });
+                } catch (shareError) {
+                    if (["AbortError", "InvalidStateError", "NotAllowedError"].includes(shareError?.name)) {
+                        return;
+                    }
+                    triggerQRDownload();
+                } finally {
+                    qrShareInFlight = false;
+                    shareBtn?.removeAttribute("disabled");
+                }
+                return;
+            } finally {
+                qrShareInFlight = false;
+                shareBtn?.removeAttribute("disabled");
             }
         }
 
@@ -1872,6 +2973,28 @@
             });
 
             $$(".reveal").forEach(el => obs.observe(el));
+        }
+
+        function syncMatchedCardHeights() {
+            const groups = new Map();
+            $$("[data-match-group]").forEach((el) => {
+                const key = el.dataset.matchGroup;
+                if (!groups.has(key)) groups.set(key, []);
+                groups.get(key).push(el);
+            });
+
+            groups.forEach((nodes) => {
+                nodes.forEach((node) => {
+                    node.style.minHeight = "";
+                });
+
+                if (window.innerWidth < 1024) return;
+
+                const tallest = Math.max(...nodes.map((node) => node.offsetHeight), 0);
+                nodes.forEach((node) => {
+                    node.style.minHeight = `${tallest}px`;
+                });
+            });
         }
 
         // -----
@@ -1940,7 +3063,9 @@
 
             // ✅ View mode init (ONLY ONCE)
             const savedView = getMode();
-            applyViewMode(savedView);
+            applyViewMode(savedView, {
+                silent: true
+            });
 
             $("#recruiterModeBtn")?.addEventListener("click", () => applyViewMode("recruiter"));
             $("#clientModeBtn")?.addEventListener("click", () => applyViewMode("client"));
@@ -1953,10 +3078,18 @@
 
             // Close modals on background click
             $("#projectModal").addEventListener("click", (e) => {
-                if (e.target === $("#projectModal") || e.target === $("#projectModal").firstElementChild) closeProjectModal();
+                if (
+                    e.target === $("#projectModal") ||
+                    e.target === $("#projectModal").firstElementChild ||
+                    e.target === $("#projectModalShell")
+                ) closeProjectModal();
             });
             $("#qrModal").addEventListener("click", (e) => {
-                if (e.target === $("#qrModal") || e.target === $("#qrModal").firstElementChild) closeQRModal();
+                if (
+                    e.target === $("#qrModal") ||
+                    e.target === $("#qrModal").firstElementChild ||
+                    e.target === $("#qrModalShell")
+                ) closeQRModal();
             });
 
             // Close modals (X + ESC)
@@ -1973,14 +3106,11 @@
             $$(".filterBtn").forEach(btn => {
                 btn.addEventListener("click", () => {
                     activeFilter = btn.dataset.filter;
-                    $$(".filterBtn").forEach(b => b.classList.remove("bg-[color:var(--text)]", "text-[color:var(--bg)]"));
-                    btn.classList.add("bg-[color:var(--text)]", "text-[color:var(--bg)]");
+                    syncFilterButtons();
                     renderProjects();
                 });
             });
-            // default active filter button
-            const first = $(`.filterBtn[data-filter="all"]`);
-            first?.classList.add("bg-[color:var(--text)]", "text-[color:var(--bg)]");
+            syncFilterButtons();
 
             renderProjects();
 
@@ -2006,6 +3136,12 @@
 
             // Reveal
             initScrollReveal();
+
+            const syncMatchedCards = () => requestAnimationFrame(syncMatchedCardHeights);
+            syncMatchedCards();
+            window.addEventListener("resize", syncMatchedCards);
+            window.addEventListener("load", syncMatchedCards);
+            document.fonts?.ready?.then(syncMatchedCards);
         });
     </script>
 </body>
